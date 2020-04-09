@@ -1,0 +1,927 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{706E9AB2-D413-410D-955B-CE517FA04CDD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ECommerce.WEB</RootNamespace>
+    <AssemblyName>ECommerce.WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44344</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\animate.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\color1.css" />
+    <Content Include="assets\css\color10.css" />
+    <Content Include="assets\css\color11.css" />
+    <Content Include="assets\css\color12.css" />
+    <Content Include="assets\css\color2.css" />
+    <Content Include="assets\css\color3.css" />
+    <Content Include="assets\css\color4.css" />
+    <Content Include="assets\css\color5.css" />
+    <Content Include="assets\css\color6.css" />
+    <Content Include="assets\css\color7.css" />
+    <Content Include="assets\css\color8.css" />
+    <Content Include="assets\css\color9.css" />
+    <Content Include="assets\css\flipclock.css" />
+    <Content Include="assets\css\fontawesome.css" />
+    <Content Include="assets\css\magnific-popup.css" />
+    <Content Include="assets\css\slick-theme.css" />
+    <Content Include="assets\css\slick.css" />
+    <Content Include="assets\css\themify-icons.css" />
+    <Content Include="assets\images\1.gif" />
+    <Content Include="assets\images\1.jpg" />
+    <Content Include="assets\images\about\about-us.jpg" />
+    <Content Include="assets\images\about\about.jpg" />
+    <Content Include="assets\images\add.jpg" />
+    <Content Include="assets\images\ajax-loader.gif" />
+    <Content Include="assets\images\app\1.png" />
+    <Content Include="assets\images\app\2.png" />
+    <Content Include="assets\images\app\3.jpg" />
+    <Content Include="assets\images\app\4.png" />
+    <Content Include="assets\images\app\app-storw.png" />
+    <Content Include="assets\images\app\play-store.png" />
+    <Content Include="assets\images\avtar\1.jpg" />
+    <Content Include="assets\images\avtar\2.jpg" />
+    <Content Include="assets\images\avtar\3.jpg" />
+    <Content Include="assets\images\avtar\4.jpg" />
+    <Content Include="assets\images\avtar\5.jpg" />
+    <Content Include="assets\images\avtar\6.jpg" />
+    <Content Include="assets\images\avtar\7.jpg" />
+    <Content Include="assets\images\avtar\8.jpg" />
+    <Content Include="assets\images\banner-furniture.jpg" />
+    <Content Include="assets\images\banner-l.png" />
+    <Content Include="assets\images\banner\1.jpg" />
+    <Content Include="assets\images\banner\2.jpg" />
+    <Content Include="assets\images\banner\3.jpg" />
+    <Content Include="assets\images\banner\4.jpg" />
+    <Content Include="assets\images\banner\41.jpg" />
+    <Content Include="assets\images\banner\5.png" />
+    <Content Include="assets\images\banner\9.jpg" />
+    <Content Include="assets\images\banner\add-banner.jpg" />
+    <Content Include="assets\images\banner\add-banner2.jpg" />
+    <Content Include="assets\images\banner\add-banner4.jpg" />
+    <Content Include="assets\images\banner\add-nbanner3.jpg" />
+    <Content Include="assets\images\banner\banner1.jpg" />
+    <Content Include="assets\images\banner\banner2.jpg" />
+    <Content Include="assets\images\banner\kids1.jpg" />
+    <Content Include="assets\images\banner\sub-banner1.jpg" />
+    <Content Include="assets\images\banner\sub-banner2.jpg" />
+    <Content Include="assets\images\beauty\1.jpg" />
+    <Content Include="assets\images\beauty\banner\1.jpg" />
+    <Content Include="assets\images\beauty\banner\2.jpg" />
+    <Content Include="assets\images\beauty\banner\3.jpg" />
+    <Content Include="assets\images\beauty\banner\4.jpg" />
+    <Content Include="assets\images\beauty\banner\5.jpg" />
+    <Content Include="assets\images\beauty\banner\6.jpg" />
+    <Content Include="assets\images\beauty\banner\7.jpg" />
+    <Content Include="assets\images\beauty\banner\8.jpg" />
+    <Content Include="assets\images\beauty\blog\1.jpg" />
+    <Content Include="assets\images\beauty\blog\2.jpg" />
+    <Content Include="assets\images\beauty\blog\3.jpg" />
+    <Content Include="assets\images\beauty\blog\4.jpg" />
+    <Content Include="assets\images\beauty\insta\1.jpg" />
+    <Content Include="assets\images\beauty\insta\10.jpg" />
+    <Content Include="assets\images\beauty\insta\2.jpg" />
+    <Content Include="assets\images\beauty\insta\3.jpg" />
+    <Content Include="assets\images\beauty\insta\4.jpg" />
+    <Content Include="assets\images\beauty\insta\5.jpg" />
+    <Content Include="assets\images\beauty\insta\6.jpg" />
+    <Content Include="assets\images\beauty\insta\7.jpg" />
+    <Content Include="assets\images\beauty\insta\8.jpg" />
+    <Content Include="assets\images\beauty\insta\9.jpg" />
+    <Content Include="assets\images\beauty\pro\1.jpg" />
+    <Content Include="assets\images\beauty\pro\10.jpg" />
+    <Content Include="assets\images\beauty\pro\11.jpg" />
+    <Content Include="assets\images\beauty\pro\12.jpg" />
+    <Content Include="assets\images\beauty\pro\13.jpg" />
+    <Content Include="assets\images\beauty\pro\14.jpg" />
+    <Content Include="assets\images\beauty\pro\15.jpg" />
+    <Content Include="assets\images\beauty\pro\16.jpg" />
+    <Content Include="assets\images\beauty\pro\19.jpg" />
+    <Content Include="assets\images\beauty\pro\2.jpg" />
+    <Content Include="assets\images\beauty\pro\20.jpg" />
+    <Content Include="assets\images\beauty\pro\3.jpg" />
+    <Content Include="assets\images\beauty\pro\4.jpg" />
+    <Content Include="assets\images\beauty\pro\5.jpg" />
+    <Content Include="assets\images\beauty\pro\6.jpg" />
+    <Content Include="assets\images\beauty\pro\7.jpg" />
+    <Content Include="assets\images\beauty\pro\8.jpg" />
+    <Content Include="assets\images\bg-title.jpg" />
+    <Content Include="assets\images\blog\1.jpg" />
+    <Content Include="assets\images\blog\10.jpg" />
+    <Content Include="assets\images\blog\11.jpg" />
+    <Content Include="assets\images\blog\2.jpg" />
+    <Content Include="assets\images\blog\3.jpg" />
+    <Content Include="assets\images\blog\4.jpg" />
+    <Content Include="assets\images\blog\5.jpg" />
+    <Content Include="assets\images\blog\6.jpg" />
+    <Content Include="assets\images\blog\7.jpg" />
+    <Content Include="assets\images\blog\8.jpg" />
+    <Content Include="assets\images\blog\9.jpg" />
+    <Content Include="assets\images\blog\multi-category\1.jpg" />
+    <Content Include="assets\images\blog\multi-category\2.jpg" />
+    <Content Include="assets\images\blog\multi-category\3.jpg" />
+    <Content Include="assets\images\blog\multi-category\4.jpg" />
+    <Content Include="assets\images\blog\multi-category\5.jpg" />
+    <Content Include="assets\images\blog\multi-category\6.jpg" />
+    <Content Include="assets\images\blog\pattern.png" />
+    <Content Include="assets\images\call-us.jpg" />
+    <Content Include="assets\images\category\cat-banner1.jpg" />
+    <Content Include="assets\images\category\cat-banner2.jpg" />
+    <Content Include="assets\images\category\cat-banner3.jpg" />
+    <Content Include="assets\images\category\cat-banner4.jpg" />
+    <Content Include="assets\images\category\fashion\accessories.png" />
+    <Content Include="assets\images\category\fashion\bags.png" />
+    <Content Include="assets\images\category\fashion\bottoms.png" />
+    <Content Include="assets\images\category\fashion\dress.png" />
+    <Content Include="assets\images\category\fashion\heels.png" />
+    <Content Include="assets\images\category\fashion\swim-wear.png" />
+    <Content Include="assets\images\category\fashion\tops.png" />
+    <Content Include="assets\images\category\furniture\1.png" />
+    <Content Include="assets\images\category\furniture\2.png" />
+    <Content Include="assets\images\category\furniture\3.png" />
+    <Content Include="assets\images\category\furniture\4.png" />
+    <Content Include="assets\images\category\furniture\5.png" />
+    <Content Include="assets\images\category\furniture\6.png" />
+    <Content Include="assets\images\category\furniture\7.png" />
+    <Content Include="assets\images\category\grocery\1.png" />
+    <Content Include="assets\images\category\grocery\2.png" />
+    <Content Include="assets\images\category\grocery\3.png" />
+    <Content Include="assets\images\category\grocery\4.png" />
+    <Content Include="assets\images\category\grocery\5.png" />
+    <Content Include="assets\images\category\grocery\6.png" />
+    <Content Include="assets\images\category\grocery\7.png" />
+    <Content Include="assets\images\category\kids\clothes.png" />
+    <Content Include="assets\images\category\kids\gel.png" />
+    <Content Include="assets\images\category\kids\pyramid.png" />
+    <Content Include="assets\images\category\kids\shoe.png" />
+    <Content Include="assets\images\category\kids\socks.png" />
+    <Content Include="assets\images\category\kids\tshirt.png" />
+    <Content Include="assets\images\category\layout-1\bag.png" />
+    <Content Include="assets\images\category\layout-1\fashion.png" />
+    <Content Include="assets\images\category\layout-1\furniture.png" />
+    <Content Include="assets\images\category\layout-1\light.png" />
+    <Content Include="assets\images\category\layout-1\mobile.png" />
+    <Content Include="assets\images\category\layout-1\razer.png" />
+    <Content Include="assets\images\category\layout-3\bag.png" />
+    <Content Include="assets\images\category\layout-3\camera.png" />
+    <Content Include="assets\images\category\layout-3\fashion.png" />
+    <Content Include="assets\images\category\layout-3\hair-raizer.png" />
+    <Content Include="assets\images\category\layout-3\light.png" />
+    <Content Include="assets\images\category\layout-3\mobile.png" />
+    <Content Include="assets\images\category\layout-4\1.png" />
+    <Content Include="assets\images\category\layout-4\2.png" />
+    <Content Include="assets\images\category\layout-4\3.png" />
+    <Content Include="assets\images\category\layout-4\4.png" />
+    <Content Include="assets\images\category\layout-4\5.png" />
+    <Content Include="assets\images\category\layout-4\6.png" />
+    <Content Include="assets\images\collection\1.jpg" />
+    <Content Include="assets\images\collection\11.jpg" />
+    <Content Include="assets\images\collection\3.jpg" />
+    <Content Include="assets\images\collection\5.jpg" />
+    <Content Include="assets\images\collection\6.jpg" />
+    <Content Include="assets\images\collection\7.jpg" />
+    <Content Include="assets\images\collection\8.jpg" />
+    <Content Include="assets\images\collection\9.jpg" />
+    <Content Include="assets\images\coming-soon.jpg" />
+    <Content Include="assets\images\cosmetic\1.jpg" />
+    <Content Include="assets\images\cosmetic\13.jpg" />
+    <Content Include="assets\images\cosmetic\14.jpg" />
+    <Content Include="assets\images\cosmetic\19.jpg" />
+    <Content Include="assets\images\cosmetic\2.jpg" />
+    <Content Include="assets\images\cosmetic\3.jpg" />
+    <Content Include="assets\images\cosmetic\4.jpg" />
+    <Content Include="assets\images\cosmetic\6.jpg" />
+    <Content Include="assets\images\dropdown.png" />
+    <Content Include="assets\images\electronics\banner\1.jpg" />
+    <Content Include="assets\images\electronics\banner\2.jpg" />
+    <Content Include="assets\images\electronics\banner\3.jpg" />
+    <Content Include="assets\images\electronics\banner\4.jpg" />
+    <Content Include="assets\images\electronics\banner\5.jpg" />
+    <Content Include="assets\images\electronics\banner\6.jpg" />
+    <Content Include="assets\images\electronics\banner\7.jpg" />
+    <Content Include="assets\images\electronics\blog\1.jpg" />
+    <Content Include="assets\images\electronics\blog\2.jpg" />
+    <Content Include="assets\images\electronics\blog\3.jpg" />
+    <Content Include="assets\images\electronics\blog\4.jpg" />
+    <Content Include="assets\images\electronics\insta\1.jpg" />
+    <Content Include="assets\images\electronics\insta\10.jpg" />
+    <Content Include="assets\images\electronics\insta\2.jpg" />
+    <Content Include="assets\images\electronics\insta\3.jpg" />
+    <Content Include="assets\images\electronics\insta\4.jpg" />
+    <Content Include="assets\images\electronics\insta\5.jpg" />
+    <Content Include="assets\images\electronics\insta\6.jpg" />
+    <Content Include="assets\images\electronics\insta\7.jpg" />
+    <Content Include="assets\images\electronics\insta\8.jpg" />
+    <Content Include="assets\images\electronics\insta\9.jpg" />
+    <Content Include="assets\images\electronics\pro\1.jpg" />
+    <Content Include="assets\images\electronics\pro\10.jpg" />
+    <Content Include="assets\images\electronics\pro\11.jpg" />
+    <Content Include="assets\images\electronics\pro\12.jpg" />
+    <Content Include="assets\images\electronics\pro\13.jpg" />
+    <Content Include="assets\images\electronics\pro\14.jpg" />
+    <Content Include="assets\images\electronics\pro\15.jpg" />
+    <Content Include="assets\images\electronics\pro\16.jpg" />
+    <Content Include="assets\images\electronics\pro\17.jpg" />
+    <Content Include="assets\images\electronics\pro\18.jpg" />
+    <Content Include="assets\images\electronics\pro\19.jpg" />
+    <Content Include="assets\images\electronics\pro\2.jpg" />
+    <Content Include="assets\images\electronics\pro\20.jpg" />
+    <Content Include="assets\images\electronics\pro\21.jpg" />
+    <Content Include="assets\images\electronics\pro\22.jpg" />
+    <Content Include="assets\images\electronics\pro\23.jpg" />
+    <Content Include="assets\images\electronics\pro\24.jpg" />
+    <Content Include="assets\images\electronics\pro\25.jpg" />
+    <Content Include="assets\images\electronics\pro\26.jpg" />
+    <Content Include="assets\images\electronics\pro\27.jpg" />
+    <Content Include="assets\images\electronics\pro\28.jpg" />
+    <Content Include="assets\images\electronics\pro\29.jpg" />
+    <Content Include="assets\images\electronics\pro\3.jpg" />
+    <Content Include="assets\images\electronics\pro\30.jpg" />
+    <Content Include="assets\images\electronics\pro\31.jpg" />
+    <Content Include="assets\images\electronics\pro\32.jpg" />
+    <Content Include="assets\images\electronics\pro\33.jpg" />
+    <Content Include="assets\images\electronics\pro\34.jpg" />
+    <Content Include="assets\images\electronics\pro\35.jpg" />
+    <Content Include="assets\images\electronics\pro\4.jpg" />
+    <Content Include="assets\images\electronics\pro\5.jpg" />
+    <Content Include="assets\images\electronics\pro\6.jpg" />
+    <Content Include="assets\images\electronics\pro\7.jpg" />
+    <Content Include="assets\images\electronics\pro\8.jpg" />
+    <Content Include="assets\images\electronics\pro\9.jpg" />
+    <Content Include="assets\images\fashion\4-image\1.jpg" />
+    <Content Include="assets\images\fashion\4-image\2.jpg" />
+    <Content Include="assets\images\fashion\4-image\3.jpg" />
+    <Content Include="assets\images\fashion\4-image\4.jpg" />
+    <Content Include="assets\images\fashion\4-image\m-1.jpg" />
+    <Content Include="assets\images\fashion\4-image\m-2.jpg" />
+    <Content Include="assets\images\fashion\4-image\m-3.jpg" />
+    <Content Include="assets\images\fashion\banner\1.jpg" />
+    <Content Include="assets\images\fashion\banner\2.jpg" />
+    <Content Include="assets\images\fashion\banner\3.jpg" />
+    <Content Include="assets\images\fashion\banner\banner1.jpg" />
+    <Content Include="assets\images\fashion\banner\banner2.jpg" />
+    <Content Include="assets\images\fashion\blog\1.jpg" />
+    <Content Include="assets\images\fashion\blog\2.jpg" />
+    <Content Include="assets\images\fashion\blog\3.jpg" />
+    <Content Include="assets\images\fashion\blog\4.jpg" />
+    <Content Include="assets\images\fashion\blog\5.jpg" />
+    <Content Include="assets\images\fashion\insta\1.jpg" />
+    <Content Include="assets\images\fashion\insta\10.jpg" />
+    <Content Include="assets\images\fashion\insta\2.jpg" />
+    <Content Include="assets\images\fashion\insta\3.jpg" />
+    <Content Include="assets\images\fashion\insta\4.jpg" />
+    <Content Include="assets\images\fashion\insta\5.jpg" />
+    <Content Include="assets\images\fashion\insta\6.jpg" />
+    <Content Include="assets\images\fashion\insta\7.jpg" />
+    <Content Include="assets\images\fashion\insta\8.jpg" />
+    <Content Include="assets\images\fashion\insta\9.jpg" />
+    <Content Include="assets\images\fashion\pro\1.jpg" />
+    <Content Include="assets\images\fashion\pro\10.jpg" />
+    <Content Include="assets\images\fashion\pro\11.jpg" />
+    <Content Include="assets\images\fashion\pro\12.jpg" />
+    <Content Include="assets\images\fashion\pro\13.jpg" />
+    <Content Include="assets\images\fashion\pro\14.jpg" />
+    <Content Include="assets\images\fashion\pro\2.jpg" />
+    <Content Include="assets\images\fashion\pro\3.jpg" />
+    <Content Include="assets\images\fashion\pro\4.jpg" />
+    <Content Include="assets\images\fashion\pro\5.jpg" />
+    <Content Include="assets\images\fashion\pro\6.jpg" />
+    <Content Include="assets\images\fashion\pro\7.jpg" />
+    <Content Include="assets\images\fashion\pro\8.jpg" />
+    <Content Include="assets\images\favicon\1.png" />
+    <Content Include="assets\images\favicon\10.png" />
+    <Content Include="assets\images\favicon\11.png" />
+    <Content Include="assets\images\favicon\12.png" />
+    <Content Include="assets\images\favicon\2.png" />
+    <Content Include="assets\images\favicon\3.png" />
+    <Content Include="assets\images\favicon\4.png" />
+    <Content Include="assets\images\favicon\5.png" />
+    <Content Include="assets\images\favicon\6.png" />
+    <Content Include="assets\images\favicon\7.png" />
+    <Content Include="assets\images\favicon\8.png" />
+    <Content Include="assets\images\favicon\9.png" />
+    <Content Include="assets\images\featured\featured1.jpg" />
+    <Content Include="assets\images\featured\featured2.jpg" />
+    <Content Include="assets\images\featured\featured3.jpg" />
+    <Content Include="assets\images\featured\featured4.jpg" />
+    <Content Include="assets\images\featured\featured5.jpg" />
+    <Content Include="assets\images\featured\featured6.jpg" />
+    <Content Include="assets\images\furniture\1.jpg" />
+    <Content Include="assets\images\furniture\10.jpg" />
+    <Content Include="assets\images\furniture\2.jpg" />
+    <Content Include="assets\images\furniture\3.jpg" />
+    <Content Include="assets\images\furniture\4.jpg" />
+    <Content Include="assets\images\furniture\5.jpg" />
+    <Content Include="assets\images\furniture\6.jpg" />
+    <Content Include="assets\images\furniture\7.jpg" />
+    <Content Include="assets\images\furniture\8.jpg" />
+    <Content Include="assets\images\furniture\9.jpg" />
+    <Content Include="assets\images\furniture\b-1.jpg" />
+    <Content Include="assets\images\furniture\banner.jpg" />
+    <Content Include="assets\images\furniture\banner1.jpg" />
+    <Content Include="assets\images\furniture\insta\1.jpg" />
+    <Content Include="assets\images\furniture\insta\10.jpg" />
+    <Content Include="assets\images\furniture\insta\2.jpg" />
+    <Content Include="assets\images\furniture\insta\3.jpg" />
+    <Content Include="assets\images\furniture\insta\4.jpg" />
+    <Content Include="assets\images\furniture\insta\5.jpg" />
+    <Content Include="assets\images\furniture\insta\6.jpg" />
+    <Content Include="assets\images\furniture\insta\7.jpg" />
+    <Content Include="assets\images\furniture\insta\8.jpg" />
+    <Content Include="assets\images\furniture\insta\9.jpg" />
+    <Content Include="assets\images\furniture\lb-bg.jpg" />
+    <Content Include="assets\images\furniture\pro\1.jpg" />
+    <Content Include="assets\images\furniture\pro\2.jpg" />
+    <Content Include="assets\images\furniture\pro\3.jpg" />
+    <Content Include="assets\images\furniture\type\1.jpg" />
+    <Content Include="assets\images\furniture\type\2.jpg" />
+    <Content Include="assets\images\furniture\type\3.jpg" />
+    <Content Include="assets\images\grocery\1.jpg" />
+    <Content Include="assets\images\grocery\banner\1.jpg" />
+    <Content Include="assets\images\grocery\banner\2.jpg" />
+    <Content Include="assets\images\grocery\banner\3.jpg" />
+    <Content Include="assets\images\grocery\banner\4.jpg" />
+    <Content Include="assets\images\grocery\banner\5.jpg" />
+    <Content Include="assets\images\grocery\blog\1.jpg" />
+    <Content Include="assets\images\grocery\blog\2.jpg" />
+    <Content Include="assets\images\grocery\blog\3.jpg" />
+    <Content Include="assets\images\grocery\blog\4.jpg" />
+    <Content Include="assets\images\grocery\insta\1.jpg" />
+    <Content Include="assets\images\grocery\insta\10.jpg" />
+    <Content Include="assets\images\grocery\insta\2.jpg" />
+    <Content Include="assets\images\grocery\insta\3.jpg" />
+    <Content Include="assets\images\grocery\insta\4.jpg" />
+    <Content Include="assets\images\grocery\insta\5.jpg" />
+    <Content Include="assets\images\grocery\insta\6.jpg" />
+    <Content Include="assets\images\grocery\insta\7.jpg" />
+    <Content Include="assets\images\grocery\insta\8.jpg" />
+    <Content Include="assets\images\grocery\insta\9.jpg" />
+    <Content Include="assets\images\grocery\pro\1.jpg" />
+    <Content Include="assets\images\grocery\pro\10.jpg" />
+    <Content Include="assets\images\grocery\pro\2.jpg" />
+    <Content Include="assets\images\grocery\pro\3.jpg" />
+    <Content Include="assets\images\grocery\pro\4.jpg" />
+    <Content Include="assets\images\grocery\pro\5.jpg" />
+    <Content Include="assets\images\grocery\pro\6.jpg" />
+    <Content Include="assets\images\grocery\pro\7.jpg" />
+    <Content Include="assets\images\grocery\pro\8.jpg" />
+    <Content Include="assets\images\grocery\pro\9.jpg" />
+    <Content Include="assets\images\home-banner\1.jpg" />
+    <Content Include="assets\images\home-banner\10.jpg" />
+    <Content Include="assets\images\home-banner\11.jpg" />
+    <Content Include="assets\images\home-banner\12.jpg" />
+    <Content Include="assets\images\home-banner\13.html" />
+    <Content Include="assets\images\home-banner\14.jpg" />
+    <Content Include="assets\images\home-banner\15.jpg" />
+    <Content Include="assets\images\home-banner\16.jpg" />
+    <Content Include="assets\images\home-banner\17.jpg" />
+    <Content Include="assets\images\home-banner\18.jpg" />
+    <Content Include="assets\images\home-banner\19.jpg" />
+    <Content Include="assets\images\home-banner\2.jpg" />
+    <Content Include="assets\images\home-banner\20.jpg" />
+    <Content Include="assets\images\home-banner\21.html" />
+    <Content Include="assets\images\home-banner\22.jpg" />
+    <Content Include="assets\images\home-banner\23.jpg" />
+    <Content Include="assets\images\home-banner\24.jpg" />
+    <Content Include="assets\images\home-banner\25.jpg" />
+    <Content Include="assets\images\home-banner\26.jpg" />
+    <Content Include="assets\images\home-banner\27.jpg" />
+    <Content Include="assets\images\home-banner\28.jpg" />
+    <Content Include="assets\images\home-banner\29.jpg" />
+    <Content Include="assets\images\home-banner\3.jpg" />
+    <Content Include="assets\images\home-banner\30.jpg" />
+    <Content Include="assets\images\home-banner\31.html" />
+    <Content Include="assets\images\home-banner\32.html" />
+    <Content Include="assets\images\home-banner\33.html" />
+    <Content Include="assets\images\home-banner\34.html" />
+    <Content Include="assets\images\home-banner\35.html" />
+    <Content Include="assets\images\home-banner\36.html" />
+    <Content Include="assets\images\home-banner\37.html" />
+    <Content Include="assets\images\home-banner\38.html" />
+    <Content Include="assets\images\home-banner\39.html" />
+    <Content Include="assets\images\home-banner\4.jpg" />
+    <Content Include="assets\images\home-banner\40.html" />
+    <Content Include="assets\images\home-banner\5.jpg" />
+    <Content Include="assets\images\home-banner\6.jpg" />
+    <Content Include="assets\images\home-banner\7.jpg" />
+    <Content Include="assets\images\home-banner\8.jpg" />
+    <Content Include="assets\images\home-banner\9.jpg" />
+    <Content Include="assets\images\icon\american-express.png" />
+    <Content Include="assets\images\icon\black-icon\like.png" />
+    <Content Include="assets\images\icon\black-icon\profile.png" />
+    <Content Include="assets\images\icon\black-icon\settings.png" />
+    <Content Include="assets\images\icon\black-icon\shopping-cart.png" />
+    <Content Include="assets\images\icon\brand-logo\10.png" />
+    <Content Include="assets\images\icon\brand-logo\11.png" />
+    <Content Include="assets\images\icon\brand-logo\12.png" />
+    <Content Include="assets\images\icon\brand-logo\2.png" />
+    <Content Include="assets\images\icon\brand-logo\3.png" />
+    <Content Include="assets\images\icon\brand-logo\4.png" />
+    <Content Include="assets\images\icon\brand-logo\5.png" />
+    <Content Include="assets\images\icon\brand-logo\6.png" />
+    <Content Include="assets\images\icon\brand-logo\7.png" />
+    <Content Include="assets\images\icon\brand-logo\8.png" />
+    <Content Include="assets\images\icon\brand-logo\9.png" />
+    <Content Include="assets\images\icon\cart-3.png" />
+    <Content Include="assets\images\icon\cart-black.png" />
+    <Content Include="assets\images\icon\cart.png" />
+    <Content Include="assets\images\icon\discover.png" />
+    <Content Include="assets\images\icon\l-1\search.png" />
+    <Content Include="assets\images\icon\l-1\shopping-cart.png" />
+    <Content Include="assets\images\icon\l-1\user.png" />
+    <Content Include="assets\images\icon\l-1\wishlist.png" />
+    <Content Include="assets\images\icon\l-2\cart.png" />
+    <Content Include="assets\images\icon\l-2\user.png" />
+    <Content Include="assets\images\icon\l-2\wishlist.png" />
+    <Content Include="assets\images\icon\logo.png" />
+    <Content Include="assets\images\icon\logo2.png" />
+    <Content Include="assets\images\icon\logo3.png" />
+    <Content Include="assets\images\icon\mastercard.png" />
+    <Content Include="assets\images\icon\paypal.png" />
+    <Content Include="assets\images\icon\profile.png" />
+    <Content Include="assets\images\icon\search.png" />
+    <Content Include="assets\images\icon\settings-3.png" />
+    <Content Include="assets\images\icon\settings.png" />
+    <Content Include="assets\images\icon\user.png" />
+    <Content Include="assets\images\icon\visa.png" />
+    <Content Include="assets\images\icon\wishlist-3.png" />
+    <Content Include="assets\images\icon\wishlist.png" />
+    <Content Include="assets\images\insta\1.jpg" />
+    <Content Include="assets\images\insta\10.jpg" />
+    <Content Include="assets\images\insta\2.jpg" />
+    <Content Include="assets\images\insta\3.jpg" />
+    <Content Include="assets\images\insta\4.jpg" />
+    <Content Include="assets\images\insta\5.jpg" />
+    <Content Include="assets\images\insta\6.jpg" />
+    <Content Include="assets\images\insta\7.jpg" />
+    <Content Include="assets\images\insta\8.jpg" />
+    <Content Include="assets\images\insta\9.jpg" />
+    <Content Include="assets\images\kids\1.jpg" />
+    <Content Include="assets\images\kids\10.jpg" />
+    <Content Include="assets\images\kids\13.jpg" />
+    <Content Include="assets\images\kids\14.jpg" />
+    <Content Include="assets\images\kids\2.jpg" />
+    <Content Include="assets\images\kids\3.jpg" />
+    <Content Include="assets\images\kids\4.jpg" />
+    <Content Include="assets\images\kids\5.jpg" />
+    <Content Include="assets\images\kids\6.jpg" />
+    <Content Include="assets\images\kids\7.jpg" />
+    <Content Include="assets\images\kids\8.jpg" />
+    <Content Include="assets\images\kids\9.jpg" />
+    <Content Include="assets\images\kids\blog\1.jpg" />
+    <Content Include="assets\images\kids\blog\2.jpg" />
+    <Content Include="assets\images\kids\blog\3.jpg" />
+    <Content Include="assets\images\kids\blog\4.jpg" />
+    <Content Include="assets\images\kids\blog\5.jpg" />
+    <Content Include="assets\images\kids\insta\1.jpg" />
+    <Content Include="assets\images\kids\insta\10.jpg" />
+    <Content Include="assets\images\kids\insta\2.jpg" />
+    <Content Include="assets\images\kids\insta\3.jpg" />
+    <Content Include="assets\images\kids\insta\4.jpg" />
+    <Content Include="assets\images\kids\insta\5.jpg" />
+    <Content Include="assets\images\kids\insta\6.jpg" />
+    <Content Include="assets\images\kids\insta\7.jpg" />
+    <Content Include="assets\images\kids\insta\8.jpg" />
+    <Content Include="assets\images\kids\insta\9.jpg" />
+    <Content Include="assets\images\landing-page\demo\1.jpg" />
+    <Content Include="assets\images\landing-page\demo\10.jpg" />
+    <Content Include="assets\images\landing-page\demo\11.jpg" />
+    <Content Include="assets\images\landing-page\demo\12.jpg" />
+    <Content Include="assets\images\landing-page\demo\13.jpg" />
+    <Content Include="assets\images\landing-page\demo\14.jpg" />
+    <Content Include="assets\images\landing-page\demo\15.jpg" />
+    <Content Include="assets\images\landing-page\demo\16.jpg" />
+    <Content Include="assets\images\landing-page\demo\17.jpg" />
+    <Content Include="assets\images\landing-page\demo\18.jpg" />
+    <Content Include="assets\images\landing-page\demo\19.jpg" />
+    <Content Include="assets\images\landing-page\demo\2.jpg" />
+    <Content Include="assets\images\landing-page\demo\20.jpg" />
+    <Content Include="assets\images\landing-page\demo\21.jpg" />
+    <Content Include="assets\images\landing-page\demo\22.jpg" />
+    <Content Include="assets\images\landing-page\demo\23.jpg" />
+    <Content Include="assets\images\landing-page\demo\24.jpg" />
+    <Content Include="assets\images\landing-page\demo\25.jpg" />
+    <Content Include="assets\images\landing-page\demo\26.jpg" />
+    <Content Include="assets\images\landing-page\demo\27.jpg" />
+    <Content Include="assets\images\landing-page\demo\28.jpg" />
+    <Content Include="assets\images\landing-page\demo\29.jpg" />
+    <Content Include="assets\images\landing-page\demo\3.jpg" />
+    <Content Include="assets\images\landing-page\demo\30.jpg" />
+    <Content Include="assets\images\landing-page\demo\31.jpg" />
+    <Content Include="assets\images\landing-page\demo\32.jpg" />
+    <Content Include="assets\images\landing-page\demo\33.jpg" />
+    <Content Include="assets\images\landing-page\demo\34.jpg" />
+    <Content Include="assets\images\landing-page\demo\35.jpg" />
+    <Content Include="assets\images\landing-page\demo\36.jpg" />
+    <Content Include="assets\images\landing-page\demo\37.jpg" />
+    <Content Include="assets\images\landing-page\demo\38.html" />
+    <Content Include="assets\images\landing-page\demo\39.html" />
+    <Content Include="assets\images\landing-page\demo\4.jpg" />
+    <Content Include="assets\images\landing-page\demo\40.html" />
+    <Content Include="assets\images\landing-page\demo\41.html" />
+    <Content Include="assets\images\landing-page\demo\42.html" />
+    <Content Include="assets\images\landing-page\demo\43.html" />
+    <Content Include="assets\images\landing-page\demo\44.html" />
+    <Content Include="assets\images\landing-page\demo\45.html" />
+    <Content Include="assets\images\landing-page\demo\46.html" />
+    <Content Include="assets\images\landing-page\demo\47.html" />
+    <Content Include="assets\images\landing-page\demo\48.html" />
+    <Content Include="assets\images\landing-page\demo\49.html" />
+    <Content Include="assets\images\landing-page\demo\5.jpg" />
+    <Content Include="assets\images\landing-page\demo\50.html" />
+    <Content Include="assets\images\landing-page\demo\51.html" />
+    <Content Include="assets\images\landing-page\demo\52.html" />
+    <Content Include="assets\images\landing-page\demo\53.html" />
+    <Content Include="assets\images\landing-page\demo\54.html" />
+    <Content Include="assets\images\landing-page\demo\55.html" />
+    <Content Include="assets\images\landing-page\demo\56.html" />
+    <Content Include="assets\images\landing-page\demo\57.html" />
+    <Content Include="assets\images\landing-page\demo\58.html" />
+    <Content Include="assets\images\landing-page\demo\59.html" />
+    <Content Include="assets\images\landing-page\demo\6.jpg" />
+    <Content Include="assets\images\landing-page\demo\60.html" />
+    <Content Include="assets\images\landing-page\demo\61.html" />
+    <Content Include="assets\images\landing-page\demo\62.html" />
+    <Content Include="assets\images\landing-page\demo\63.html" />
+    <Content Include="assets\images\landing-page\demo\64.html" />
+    <Content Include="assets\images\landing-page\demo\65.html" />
+    <Content Include="assets\images\landing-page\demo\66.html" />
+    <Content Include="assets\images\landing-page\demo\67.html" />
+    <Content Include="assets\images\landing-page\demo\68.html" />
+    <Content Include="assets\images\landing-page\demo\69.html" />
+    <Content Include="assets\images\landing-page\demo\7.jpg" />
+    <Content Include="assets\images\landing-page\demo\70.html" />
+    <Content Include="assets\images\landing-page\demo\8.jpg" />
+    <Content Include="assets\images\landing-page\demo\9.jpg" />
+    <Content Include="assets\images\left.png" />
+    <Content Include="assets\images\logo\1.png" />
+    <Content Include="assets\images\logo\2.png" />
+    <Content Include="assets\images\logo\3.png" />
+    <Content Include="assets\images\logo\4.png" />
+    <Content Include="assets\images\logo\5.png" />
+    <Content Include="assets\images\logo\6.png" />
+    <Content Include="assets\images\logo\7.png" />
+    <Content Include="assets\images\logo\8.png" />
+    <Content Include="assets\images\logo\kids\1.png" />
+    <Content Include="assets\images\logo\kids\2.png" />
+    <Content Include="assets\images\logo\kids\3.png" />
+    <Content Include="assets\images\logo\kids\4.png" />
+    <Content Include="assets\images\logo\kids\5.png" />
+    <Content Include="assets\images\logo\kids\6.png" />
+    <Content Include="assets\images\main-banner-bg.jpg" />
+    <Content Include="assets\images\main-banner-bg2.jpg" />
+    <Content Include="assets\images\may-like\1.jpg" />
+    <Content Include="assets\images\may-like\2.jpg" />
+    <Content Include="assets\images\may-like\3.jpg" />
+    <Content Include="assets\images\may-like\4.jpg" />
+    <Content Include="assets\images\mega-menu\1.jpg" />
+    <Content Include="assets\images\mega-menu\2.jpg" />
+    <Content Include="assets\images\mega-menu\3.jpg" />
+    <Content Include="assets\images\mega-menu\4.jpg" />
+    <Content Include="assets\images\mega-menu\5.jpg" />
+    <Content Include="assets\images\mega-menu\6.jpg" />
+    <Content Include="assets\images\mega-menu\mega.png" />
+    <Content Include="assets\images\p1.jpg" />
+    <Content Include="assets\images\payment_cart.png" />
+    <Content Include="assets\images\paypal.png" />
+    <Content Include="assets\images\portfolio\1.jpg" />
+    <Content Include="assets\images\portfolio\10.jpg" />
+    <Content Include="assets\images\portfolio\11.jpg" />
+    <Content Include="assets\images\portfolio\12.jpg" />
+    <Content Include="assets\images\portfolio\13.jpg" />
+    <Content Include="assets\images\portfolio\14.jpg" />
+    <Content Include="assets\images\portfolio\16.jpg" />
+    <Content Include="assets\images\portfolio\17.jpg" />
+    <Content Include="assets\images\portfolio\18.jpg" />
+    <Content Include="assets\images\portfolio\19.jpg" />
+    <Content Include="assets\images\portfolio\2.jpg" />
+    <Content Include="assets\images\portfolio\20.jpg" />
+    <Content Include="assets\images\portfolio\21.jpg" />
+    <Content Include="assets\images\portfolio\22.jpg" />
+    <Content Include="assets\images\portfolio\3.jpg" />
+    <Content Include="assets\images\portfolio\4.jpg" />
+    <Content Include="assets\images\portfolio\5.jpg" />
+    <Content Include="assets\images\portfolio\6.jpg" />
+    <Content Include="assets\images\portfolio\7.jpg" />
+    <Content Include="assets\images\portfolio\8.jpg" />
+    <Content Include="assets\images\portfolio\9.jpg" />
+    <Content Include="assets\images\portfolio\grid\1.jpg" />
+    <Content Include="assets\images\portfolio\grid\10.jpg" />
+    <Content Include="assets\images\portfolio\grid\11.jpg" />
+    <Content Include="assets\images\portfolio\grid\12.jpg" />
+    <Content Include="assets\images\portfolio\grid\2.jpg" />
+    <Content Include="assets\images\portfolio\grid\3.jpg" />
+    <Content Include="assets\images\portfolio\grid\4.jpg" />
+    <Content Include="assets\images\portfolio\grid\5.jpg" />
+    <Content Include="assets\images\portfolio\grid\6.jpg" />
+    <Content Include="assets\images\portfolio\grid\7.jpg" />
+    <Content Include="assets\images\portfolio\grid\8.jpg" />
+    <Content Include="assets\images\portfolio\grid\9.jpg" />
+    <Content Include="assets\images\portfolio\metro\1.jpg" />
+    <Content Include="assets\images\portfolio\metro\10.jpg" />
+    <Content Include="assets\images\portfolio\metro\11.jpg" />
+    <Content Include="assets\images\portfolio\metro\12.jpg" />
+    <Content Include="assets\images\portfolio\metro\13.jpg" />
+    <Content Include="assets\images\portfolio\metro\14.jpg" />
+    <Content Include="assets\images\portfolio\metro\15.jpg" />
+    <Content Include="assets\images\portfolio\metro\16.jpg" />
+    <Content Include="assets\images\portfolio\metro\2.jpg" />
+    <Content Include="assets\images\portfolio\metro\3.jpg" />
+    <Content Include="assets\images\portfolio\metro\4.jpg" />
+    <Content Include="assets\images\portfolio\metro\5.jpg" />
+    <Content Include="assets\images\portfolio\metro\6.jpg" />
+    <Content Include="assets\images\portfolio\metro\7.jpg" />
+    <Content Include="assets\images\portfolio\metro\8.jpg" />
+    <Content Include="assets\images\portfolio\metro\9.jpg" />
+    <Content Include="assets\images\product\1.jpg" />
+    <Content Include="assets\images\product\10.jpg" />
+    <Content Include="assets\images\product\11.jpg" />
+    <Content Include="assets\images\product\12.jpg" />
+    <Content Include="assets\images\product\13.jpg" />
+    <Content Include="assets\images\product\14.jpg" />
+    <Content Include="assets\images\product\15.jpg" />
+    <Content Include="assets\images\product\16.jpg" />
+    <Content Include="assets\images\product\17.jpg" />
+    <Content Include="assets\images\product\18.jpg" />
+    <Content Include="assets\images\product\19.jpg" />
+    <Content Include="assets\images\product\2.jpg" />
+    <Content Include="assets\images\product\20.jpg" />
+    <Content Include="assets\images\product\21.jpg" />
+    <Content Include="assets\images\product\22.jpg" />
+    <Content Include="assets\images\product\23.jpg" />
+    <Content Include="assets\images\product\24.jpg" />
+    <Content Include="assets\images\product\25.jpg" />
+    <Content Include="assets\images\product\26.jpg" />
+    <Content Include="assets\images\product\27.jpg" />
+    <Content Include="assets\images\product\28.jpg" />
+    <Content Include="assets\images\product\29.jpg" />
+    <Content Include="assets\images\product\3.jpg" />
+    <Content Include="assets\images\product\30.jpg" />
+    <Content Include="assets\images\product\31.jpg" />
+    <Content Include="assets\images\product\4.jpg" />
+    <Content Include="assets\images\product\5.jpg" />
+    <Content Include="assets\images\product\6.jpg" />
+    <Content Include="assets\images\product\7.jpg" />
+    <Content Include="assets\images\product\8.jpg" />
+    <Content Include="assets\images\product\9.jpg" />
+    <Content Include="assets\images\product\p-1.jpg" />
+    <Content Include="assets\images\right.png" />
+    <Content Include="assets\images\s-1.png" />
+    <Content Include="assets\images\sb-tool.jpg" />
+    <Content Include="assets\images\sb.jpg" />
+    <Content Include="assets\images\services\1.png" />
+    <Content Include="assets\images\services\2.png" />
+    <Content Include="assets\images\services\3.png" />
+    <Content Include="assets\images\services\4.png" />
+    <Content Include="assets\images\shadow.png" />
+    <Content Include="assets\images\side-banner-kids.jpg" />
+    <Content Include="assets\images\side-banner.jpg" />
+    <Content Include="assets\images\size-chart.jpg" />
+    <Content Include="assets\images\sports\banner\1.jpg" />
+    <Content Include="assets\images\sports\banner\2.jpg" />
+    <Content Include="assets\images\sports\blog\1.jpg" />
+    <Content Include="assets\images\sports\blog\2.jpg" />
+    <Content Include="assets\images\sports\blog\3.jpg" />
+    <Content Include="assets\images\sports\blog\4.jpg" />
+    <Content Include="assets\images\sports\blog\5.jpg" />
+    <Content Include="assets\images\sports\pro\1.jpg" />
+    <Content Include="assets\images\sports\pro\10.jpg" />
+    <Content Include="assets\images\sports\pro\12.jpg" />
+    <Content Include="assets\images\sports\pro\13.jpg" />
+    <Content Include="assets\images\sports\pro\14.jpg" />
+    <Content Include="assets\images\sports\pro\15.jpg" />
+    <Content Include="assets\images\sports\pro\16.jpg" />
+    <Content Include="assets\images\sports\pro\17.jpg" />
+    <Content Include="assets\images\sports\pro\18.jpg" />
+    <Content Include="assets\images\sports\pro\19.jpg" />
+    <Content Include="assets\images\sports\pro\2.jpg" />
+    <Content Include="assets\images\sports\pro\20.jpg" />
+    <Content Include="assets\images\sports\pro\21.jpg" />
+    <Content Include="assets\images\sports\pro\22.jpg" />
+    <Content Include="assets\images\sports\pro\25.jpg" />
+    <Content Include="assets\images\sports\pro\27.jpg" />
+    <Content Include="assets\images\sports\pro\28.jpg" />
+    <Content Include="assets\images\sports\pro\3.jpg" />
+    <Content Include="assets\images\sports\pro\4.jpg" />
+    <Content Include="assets\images\sports\pro\5.jpg" />
+    <Content Include="assets\images\sports\pro\6.jpg" />
+    <Content Include="assets\images\sports\pro\7.jpg" />
+    <Content Include="assets\images\sports\pro\8.jpg" />
+    <Content Include="assets\images\sports\pro\9.jpg" />
+    <Content Include="assets\images\sport_b.jpg" />
+    <Content Include="assets\images\testimonial\1.jpg" />
+    <Content Include="assets\images\testimonial\2.jpg" />
+    <Content Include="assets\images\tools\banner\1.jpg" />
+    <Content Include="assets\images\tools\banner\2.jpg" />
+    <Content Include="assets\images\tools\banner\3.jpg" />
+    <Content Include="assets\images\tools\banner\4.jpg" />
+    <Content Include="assets\images\tools\blog\1.jpg" />
+    <Content Include="assets\images\tools\blog\2.jpg" />
+    <Content Include="assets\images\tools\blog\3.jpg" />
+    <Content Include="assets\images\tools\blog\4.jpg" />
+    <Content Include="assets\images\tools\blog\5.jpg" />
+    <Content Include="assets\images\tools\featured\1.jpg" />
+    <Content Include="assets\images\tools\featured\2.jpg" />
+    <Content Include="assets\images\tools\featured\3.jpg" />
+    <Content Include="assets\images\tools\featured\4.jpg" />
+    <Content Include="assets\images\tools\featured\5.jpg" />
+    <Content Include="assets\images\tools\featured\6.jpg" />
+    <Content Include="assets\images\tools\insta\1.jpg" />
+    <Content Include="assets\images\tools\insta\10.jpg" />
+    <Content Include="assets\images\tools\insta\2.jpg" />
+    <Content Include="assets\images\tools\insta\3.jpg" />
+    <Content Include="assets\images\tools\insta\4.jpg" />
+    <Content Include="assets\images\tools\insta\5.jpg" />
+    <Content Include="assets\images\tools\insta\6.jpg" />
+    <Content Include="assets\images\tools\insta\7.jpg" />
+    <Content Include="assets\images\tools\insta\8.jpg" />
+    <Content Include="assets\images\tools\insta\9.jpg" />
+    <Content Include="assets\images\tools\p1.jpg" />
+    <Content Include="assets\images\tools\pro\1.jpg" />
+    <Content Include="assets\images\tools\pro\10.jpg" />
+    <Content Include="assets\images\tools\pro\12.jpg" />
+    <Content Include="assets\images\tools\pro\13.jpg" />
+    <Content Include="assets\images\tools\pro\14.jpg" />
+    <Content Include="assets\images\tools\pro\15.jpg" />
+    <Content Include="assets\images\tools\pro\16.jpg" />
+    <Content Include="assets\images\tools\pro\17.jpg" />
+    <Content Include="assets\images\tools\pro\19.jpg" />
+    <Content Include="assets\images\tools\pro\21.jpg" />
+    <Content Include="assets\images\tools\pro\3.jpg" />
+    <Content Include="assets\images\tools\pro\4.jpg" />
+    <Content Include="assets\images\tools\pro\5.jpg" />
+    <Content Include="assets\images\tools\pro\6.jpg" />
+    <Content Include="assets\images\tools\pro\7.jpg" />
+    <Content Include="assets\images\tools\pro\8.jpg" />
+    <Content Include="assets\images\tools\pro\9.jpg" />
+    <Content Include="assets\images\vb-fashion.jpg" />
+    <Content Include="assets\js\bootstrap-notify.min.js" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\flip-timer.js" />
+    <Content Include="assets\js\flipclock.js" />
+    <Content Include="assets\js\isotope.min.js" />
+    <Content Include="assets\js\jquery-3.3.1.min.js" />
+    <Content Include="assets\js\jquery.elevatezoom.js" />
+    <Content Include="assets\js\jquery.magnific-popup.js" />
+    <Content Include="assets\js\lazysizes.min.html" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\menu.js" />
+    <Content Include="assets\js\modal.js" />
+    <Content Include="assets\js\popper.min.js" />
+    <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\slick.js" />
+    <Content Include="assets\js\sticky-kit.js" />
+    <Content Include="assets\js\timer.js" />
+    <Content Include="assets\js\zoom-gallery.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.CORE\ECommerce.CORE.csproj">
+      <Project>{FF3470A0-ED77-4EA2-BCE3-45D31649DABF}</Project>
+      <Name>ECommerce.CORE</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61197</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44344/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
