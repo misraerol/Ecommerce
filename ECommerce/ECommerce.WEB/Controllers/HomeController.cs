@@ -1,4 +1,5 @@
 ﻿
+using Ecommerce.WEB.Models.AppUserManagement;
 using ECommerce.CORE.Helper;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ namespace ECommerce.WEB.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Register()
+        {
+            AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
+            return View(appUserCRUDModel);
         }
     }
 }

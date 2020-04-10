@@ -1,26 +1,22 @@
-﻿
-.field-validation-valid {
-    display: none;
-}
-
-
-.validation-summary-errors {
+﻿.field-validation-error {
     color: #e80c4d;
     font-weight: bold;
 }
 
-.validation-summary-valid {
+.field-validation-valid {
     display: none;
 }
 
-.input-validation-error {
-    border: 1px solid #ff0000;
-    height: 100px;
-    background-color: #ffeeee;
+input.input-validation-error {
+    border: 1px solid #e80c4d;
 }
 
-.field-validation-error {
-    color: red;
+.validation-summary-errors {
+    color: #e80c4d;
     font-weight: bold;
-    height: 200px;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
 }

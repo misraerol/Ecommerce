@@ -1,0 +1,83 @@
+﻿@model Ecommerce.WEB.Models.AppUserManagement.AppUserCRUDModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<!--section start-->
+<section class="register-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="title pt-0">create account</h3>
+                <div class="theme-card">
+                    @using (Html.BeginForm("Register","Home",new {@class="theme-form form-group", @id="RegisterForm" }))
+                    {
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="email">Adınız</label>
+                                @Html.TextBoxFor(s => s.FirstName, new { @class = "form-control", required = "" })
+                                @Html.ValidationMessageFor(c => c.FirstName)
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Soyadınız</label>
+                                @Html.TextBoxFor(s => s.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.LastName)
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="email">Mail Adresiniz</label>
+                                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", type = "email" })
+                                @Html.ValidationMessageFor(c => c.Email)
+                            </div>
+                            <div class="col-md-3">
+                                <label for="review">Şifre</label>
+                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", })
+                                @Html.ValidationMessageFor(c => c.Password)
+
+                            </div>
+                            <div class="col-md-3">
+                                <label for="review">Şifre Tekrar</label>
+                                @Html.PasswordFor(s => s.RePassword, new { @class = "form-control", })
+                                @Html.ValidationMessageFor(c => c.RePassword)
+                            </div>
+                            <input type="submit" class="btn btn-solid" value="Kaydol" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div id='app'>
+        <div>
+            <h1>Count is: {{ count }}</h1>
+            <br>
+            <p>
+                <button v-on:click="count++">Increment Count!</button>
+            </p>
+            <br>
+        </div>
+    </div>*@
+<!--Section ends-->
+@section Scripts
+{
+
+
+    @*<script src="https://unpkg.com/vue/dist/vue.js"></script>*@
+    <script>
+        //var vueApp = new Vue({
+        //    el: '#app',
+        //    data: {
+        //        count: 0
+        //    }
+        //})Model
+
+        Jform('#RegisterForm');
+
+
+    </script>
+
+}
