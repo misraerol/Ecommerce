@@ -17,14 +17,14 @@ namespace ECommerce.WEB.Utility.Extension
 	public class MailHelper
 	{
 		private static MailHelper _instance;
-		private string _rootPath = "~/Utility/Extension/Mail/View/";
+		private string _rootPath = "~/Views/Mail/Template/";
 		private string _fileExt = "cshtml";
-		private string _host = "smtp@gmail.com";
+		private string _host = "smtp.gmail.com";
 		private string _port = "587";
 		private string _enableSSL = "true";
-		private string _useDefaultCredentials = "false";
+		private string _useDefaultCredentials = "true";
 		private string _domain = string.Empty;
-		private string _username = "doyounowthese@gmail.com";
+		private string _username = "doyounowthese";
 		private string _password = "ibanez756q7";
 		private string _sendFrom = "doyounowthese@gmail.com";
 		private string _sendName = "E Ticaret";
@@ -102,15 +102,8 @@ namespace ECommerce.WEB.Utility.Extension
 		{
 			using (SmtpClient client = new SmtpClient())
 			{
-				NetworkCredential credential = new NetworkCredential();
-				if (!string.IsNullOrEmpty(_username))
-					credential.UserName = _username;
-				if (!string.IsNullOrEmpty(_password))
-					credential.Password = _password;
-				if (!string.IsNullOrEmpty(_domain))
-					credential.Domain = _domain;
-
-				client.Credentials = credential;
+				NetworkCredential info = new NetworkCredential(_username, _password);
+				client.Credentials = info;
 				if (!string.IsNullOrEmpty(_host))
 					client.Host = _host;
 				if (!string.IsNullOrEmpty(_port))

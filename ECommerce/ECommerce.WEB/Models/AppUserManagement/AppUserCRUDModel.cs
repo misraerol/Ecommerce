@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ecommerce.WEB.Models.AppUserManagement
+namespace ECommerce.WEB.Models.AppUserManagement
 {
     public class AppUserCRUDModel
     {

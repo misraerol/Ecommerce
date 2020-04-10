@@ -1,6 +1,8 @@
 ﻿
-using Ecommerce.WEB.Models.AppUserManagement;
+using ECommerce.WEB.Models.AppUserManagement;
 using ECommerce.CORE.Helper;
+using ECommerce.WEB.Utility.Extension;
+using ECommerce.WEB.Utility.Extension.Mail.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

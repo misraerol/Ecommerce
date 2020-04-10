@@ -910,6 +910,7 @@
     <Compile Include="Utility\Attribute\LoggedUserAttribute.cs" />
     <Compile Include="Utility\Extension\MailBase.cs" />
     <Compile Include="Utility\Extension\MailHelper.cs" />
+    <Compile Include="Utility\Extension\Mail\Model\DefaultMailTemplate.cs" />
     <Compile Include="Utility\UIFramework\Response.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -942,6 +943,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Mail\Template\DefaultMailTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -953,8 +955,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AppUserManagement\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Utility\Extension\Mail\Model\" />
-    <Folder Include="Utility\Extension\Mail\View\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
