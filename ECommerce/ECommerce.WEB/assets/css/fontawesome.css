@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -6,11 +6,12 @@
 /* FONT PATH
  * -------------------------- */
 @font-face {
-  font-family: 'FontAwesome';
-  src: url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("http://themes.pixelstrap.com/bigboost/assets/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
+    font-family: 'FontAwesome';
+    src: url('fontawesome/fontawesome-webfont.eot') format('embedded-opentype');
+    src: url('fontawesome/fontawesome-webfont.eot') format('embedded-opentype') format("embedded-opentype"), url('fontawesome/fontawesome-webfont.woff2') format('woff2'), url('fontawesome/fontawesome-webfont.woff') format('woff'), url('fontawesome/fontawesome-webfont.ttf') format('truetype'), url('fontawesome/fontawesome-webfont.ttf?v=4.7.0#fontawesomeregular') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
