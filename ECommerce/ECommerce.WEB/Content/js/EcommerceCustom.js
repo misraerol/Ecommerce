@@ -16,16 +16,16 @@
                 contentType: false
             }).done(function (result) {
                 btnSubmit.removeAttr("disabled", false);
-                if (result.status === true) {
+                if (result.Status === true) {
                     Swal.fire({
-                        title: result.message,
+                        title: result.Message,
                         icon: 'success',
                         timer: 1000
                     });
 
-                    if (result.redirectUrl != null) {
+                    if (result.RedirectUrl != null) {
                         setTimeout(function () {
-                            window.location.href = result.redirectUrl;
+                            window.location.href = result.RedirectUrl;
                         }, 1000);
                     }
                     else {
@@ -37,7 +37,7 @@
                 }
                 else {
                     Swal.fire({
-                        title: result.message,
+                        title: result.Message,
                         icon: 'error',
                     });
                 }
