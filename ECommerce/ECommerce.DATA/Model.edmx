@@ -1,0 +1,1474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Explanation" Type="nvarchar(max)" />
+          <Property Name="CountyId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="AdminUserId" />
+          </Key>
+          <Property Name="AdminUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="AppUserId" />
+          </Key>
+          <Property Name="AppUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsActivation" Type="bit" Nullable="false" />
+          <Property Name="IsWantNotification" Type="bit" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUserMapAddress">
+          <Key>
+            <PropertyRef Name="AppUserMapAddress" />
+          </Key>
+          <Property Name="AppUserMapAddress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUserMapWish">
+          <Key>
+            <PropertyRef Name="AppUserMapWish" />
+          </Key>
+          <Property Name="AppUserMapWish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="TopCategoryId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountKey">
+          <Key>
+            <PropertyRef Name="DiscountKeyId" />
+          </Key>
+          <Property Name="DiscountKeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GuidKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="ParameterId" />
+          </Key>
+          <Property Name="ParameterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ParameterTypeId" Type="int" Nullable="false" />
+          <Property Name="TypeValue" Type="int" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParameterType">
+          <Key>
+            <PropertyRef Name="ParameterTypeId" />
+          </Key>
+          <Property Name="ParameterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Explanation" Type="nvarchar(max)" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="DiscountRate" Type="money" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="IsShipperPay" Type="bit" Nullable="false" />
+          <Property Name="IsRequiredFields" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMapComment">
+          <Key>
+            <PropertyRef Name="ProductMapComment" />
+          </Key>
+          <Property Name="ProductMapComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Star" Type="tinyint" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMapImage">
+          <Key>
+            <PropertyRef Name="ProductMapImageId" />
+          </Key>
+          <Property Name="ProductMapImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMapProperty">
+          <Key>
+            <PropertyRef Name="ProductMapPropertyId" />
+          </Key>
+          <Property Name="ProductMapPropertyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ParameterId" Type="int" Nullable="false" />
+          <Property Name="PropetyKey" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMapRequiredFields">
+          <Key>
+            <PropertyRef Name="ProductMapRequiredFieldsId" />
+          </Key>
+          <Property Name="ProductMapRequiredFieldsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ParameterTypeId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMapShippers">
+          <Key>
+            <PropertyRef Name="ProductMapShippersId" />
+          </Key>
+          <Property Name="ProductMapShippersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ShipperId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="ShipperId" />
+          </Key>
+          <Property Name="ShipperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SliderId" />
+          </Key>
+          <Property Name="SliderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="RedirectUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserCart">
+          <Key>
+            <PropertyRef Name="UserCartId" />
+          </Key>
+          <Property Name="UserCartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductCount" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Address__AppUser__3D5E1FD2">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__CountyI__3E52440B">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__Addre__412EB0B6">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="AppUserMapAddress" Type="Self.AppUserMapAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="AppUserMapAddress">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__AppUs__6383C8BA">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="AppUserMapWish" Type="Self.AppUserMapWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="AppUserMapWish">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__Produ__6477ECF3">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="AppUserMapWish" Type="Self.AppUserMapWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="AppUserMapWish">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__County__CityId__3A81B327">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="County" Type="Self.County" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="County">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parameter__Param__534D60F1">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="Parameter">
+              <PropertyRef Name="ParameterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Categor__47DBAE45">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__AppUs__60A75C0F">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="ProductMapComment" Type="Self.ProductMapComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="ProductMapComment">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Param__571DF1D5">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="ProductMapRequiredFields" Type="Self.ProductMapRequiredFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="ProductMapRequiredFields">
+              <PropertyRef Name="ParameterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Param__5AEE82B9">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__4AB81AF0">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapImage" Type="Self.ProductMapImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapShippers" Type="Self.ProductMapShippers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapShippers">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__5629CD9C">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapRequiredFields" Type="Self.ProductMapRequiredFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapRequiredFields">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__59FA5E80">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__5FB337D6">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapComment" Type="Self.ProductMapComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapComment">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Shipp__4E88ABD4">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
+          <End Role="ProductMapShippers" Type="Self.ProductMapShippers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="ShipperId" />
+            </Principal>
+            <Dependent Role="ProductMapShippers">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserCart__AppUse__6754599E">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="UserCart">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserCart__Produc__68487DD7">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="UserCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommerceModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppUserMapAddress" EntityType="Self.AppUserMapAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppUserMapWish" EntityType="Self.AppUserMapWish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="County" EntityType="Self.County" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountKey" EntityType="Self.DiscountKey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameter" EntityType="Self.Parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParameterType" EntityType="Self.ParameterType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMapComment" EntityType="Self.ProductMapComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMapImage" EntityType="Self.ProductMapImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMapProperty" EntityType="Self.ProductMapProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMapRequiredFields" EntityType="Self.ProductMapRequiredFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMapShippers" EntityType="Self.ProductMapShippers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCart" EntityType="Self.UserCart" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Address__AppUser__3D5E1FD2" Association="Self.FK__Address__AppUser__3D5E1FD2">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__CountyI__3E52440B" Association="Self.FK__Address__CountyI__3E52440B">
+            <End Role="County" EntitySet="County" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__Addre__412EB0B6" Association="Self.FK__AppUserMa__Addre__412EB0B6">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__AppUs__6383C8BA" Association="Self.FK__AppUserMa__AppUs__6383C8BA">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="AppUserMapWish" EntitySet="AppUserMapWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__Produ__6477ECF3" Association="Self.FK__AppUserMa__Produ__6477ECF3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="AppUserMapWish" EntitySet="AppUserMapWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__County__CityId__3A81B327" Association="Self.FK__County__CityId__3A81B327">
+            <End Role="City" EntitySet="City" />
+            <End Role="County" EntitySet="County" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parameter__Param__534D60F1" Association="Self.FK__Parameter__Param__534D60F1">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="Parameter" EntitySet="Parameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Categor__47DBAE45" Association="Self.FK__Product__Categor__47DBAE45">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__AppUs__60A75C0F" Association="Self.FK__ProductMa__AppUs__60A75C0F">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="ProductMapComment" EntitySet="ProductMapComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Param__571DF1D5" Association="Self.FK__ProductMa__Param__571DF1D5">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Param__5AEE82B9" Association="Self.FK__ProductMa__Param__5AEE82B9">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__4AB81AF0" Association="Self.FK__ProductMa__Produ__4AB81AF0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapImage" EntitySet="ProductMapImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__4D94879B" Association="Self.FK__ProductMa__Produ__4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__5629CD9C" Association="Self.FK__ProductMa__Produ__5629CD9C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__59FA5E80" Association="Self.FK__ProductMa__Produ__59FA5E80">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__5FB337D6" Association="Self.FK__ProductMa__Produ__5FB337D6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapComment" EntitySet="ProductMapComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Shipp__4E88ABD4" Association="Self.FK__ProductMa__Shipp__4E88ABD4">
+            <End Role="Shipper" EntitySet="Shipper" />
+            <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserCart__AppUse__6754599E" Association="Self.FK__UserCart__AppUse__6754599E">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="UserCart" EntitySet="UserCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserCart__Produc__68487DD7" Association="Self.FK__UserCart__Produc__68487DD7">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="UserCart" EntitySet="UserCart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountyId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__Address__AppUser__3D5E1FD2" FromRole="Address" ToRole="AppUser" />
+          <NavigationProperty Name="County" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="Address" ToRole="County" />
+          <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="Address" ToRole="AppUserMapAddress" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="AdminUserId" />
+          </Key>
+          <Property Name="AdminUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="AppUserId" />
+          </Key>
+          <Property Name="AppUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActivation" Type="Boolean" Nullable="false" />
+          <Property Name="IsWantNotification" Type="Boolean" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK__Address__AppUser__3D5E1FD2" FromRole="AppUser" ToRole="Address" />
+          <NavigationProperty Name="AppUserMapWish" Relationship="Self.FK__AppUserMa__AppUs__6383C8BA" FromRole="AppUser" ToRole="AppUserMapWish" />
+          <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__AppUs__60A75C0F" FromRole="AppUser" ToRole="ProductMapComment" />
+          <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="AppUser" ToRole="UserCart" />
+        </EntityType>
+        <EntityType Name="AppUserMapAddress">
+          <Key>
+            <PropertyRef Name="AppUserMapAddress1" />
+          </Key>
+          <Property Name="AppUserMapAddress1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="AppUserMapAddress" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="AppUserMapWish">
+          <Key>
+            <PropertyRef Name="AppUserMapWish1" />
+          </Key>
+          <Property Name="AppUserMapWish1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__AppUserMa__AppUs__6383C8BA" FromRole="AppUserMapWish" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__AppUserMa__Produ__6477ECF3" FromRole="AppUserMapWish" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TopCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__Categor__47DBAE45" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="County" Relationship="Self.FK__County__CityId__3A81B327" FromRole="City" ToRole="County" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="County" ToRole="Address" />
+          <NavigationProperty Name="City" Relationship="Self.FK__County__CityId__3A81B327" FromRole="County" ToRole="City" />
+        </EntityType>
+        <EntityType Name="DiscountKey">
+          <Key>
+            <PropertyRef Name="DiscountKeyId" />
+          </Key>
+          <Property Name="DiscountKeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GuidKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="ParameterId" />
+          </Key>
+          <Property Name="ParameterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParameterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TypeValue" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ParameterType" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="Parameter" ToRole="ParameterType" />
+        </EntityType>
+        <EntityType Name="ParameterType">
+          <Key>
+            <PropertyRef Name="ParameterTypeId" />
+          </Key>
+          <Property Name="ParameterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Parameter" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="ParameterType" ToRole="Parameter" />
+          <NavigationProperty Name="ProductMapRequiredFields" Relationship="Self.FK__ProductMa__Param__571DF1D5" FromRole="ParameterType" ToRole="ProductMapRequiredFields" />
+          <NavigationProperty Name="ProductMapProperty" Relationship="Self.FK__ProductMa__Param__5AEE82B9" FromRole="ParameterType" ToRole="ProductMapProperty" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DiscountRate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="IsShipperPay" Type="Boolean" Nullable="false" />
+          <Property Name="IsRequiredFields" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUserMapWish" Relationship="Self.FK__AppUserMa__Produ__6477ECF3" FromRole="Product" ToRole="AppUserMapWish" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__47DBAE45" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="ProductMapImage" Relationship="Self.FK__ProductMa__Produ__4AB81AF0" FromRole="Product" ToRole="ProductMapImage" />
+          <NavigationProperty Name="ProductMapShippers" Relationship="Self.FK__ProductMa__Produ__4D94879B" FromRole="Product" ToRole="ProductMapShippers" />
+          <NavigationProperty Name="ProductMapRequiredFields" Relationship="Self.FK__ProductMa__Produ__5629CD9C" FromRole="Product" ToRole="ProductMapRequiredFields" />
+          <NavigationProperty Name="ProductMapProperty" Relationship="Self.FK__ProductMa__Produ__59FA5E80" FromRole="Product" ToRole="ProductMapProperty" />
+          <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__Produ__5FB337D6" FromRole="Product" ToRole="ProductMapComment" />
+          <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__Produc__68487DD7" FromRole="Product" ToRole="UserCart" />
+        </EntityType>
+        <EntityType Name="ProductMapComment">
+          <Key>
+            <PropertyRef Name="ProductMapComment1" />
+          </Key>
+          <Property Name="ProductMapComment1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="Byte" Nullable="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__ProductMa__AppUs__60A75C0F" FromRole="ProductMapComment" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__5FB337D6" FromRole="ProductMapComment" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductMapImage">
+          <Key>
+            <PropertyRef Name="ProductMapImageId" />
+          </Key>
+          <Property Name="ProductMapImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__4AB81AF0" FromRole="ProductMapImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductMapProperty">
+          <Key>
+            <PropertyRef Name="ProductMapPropertyId" />
+          </Key>
+          <Property Name="ProductMapPropertyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ParameterId" Type="Int32" Nullable="false" />
+          <Property Name="PropetyKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ParameterType" Relationship="Self.FK__ProductMa__Param__5AEE82B9" FromRole="ProductMapProperty" ToRole="ParameterType" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__59FA5E80" FromRole="ProductMapProperty" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductMapRequiredFields">
+          <Key>
+            <PropertyRef Name="ProductMapRequiredFieldsId" />
+          </Key>
+          <Property Name="ProductMapRequiredFieldsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ParameterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ParameterType" Relationship="Self.FK__ProductMa__Param__571DF1D5" FromRole="ProductMapRequiredFields" ToRole="ParameterType" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__5629CD9C" FromRole="ProductMapRequiredFields" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductMapShippers">
+          <Key>
+            <PropertyRef Name="ProductMapShippersId" />
+          </Key>
+          <Property Name="ProductMapShippersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ShipperId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__4D94879B" FromRole="ProductMapShippers" ToRole="Product" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK__ProductMa__Shipp__4E88ABD4" FromRole="ProductMapShippers" ToRole="Shipper" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="ShipperId" />
+          </Key>
+          <Property Name="ShipperId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductMapShippers" Relationship="Self.FK__ProductMa__Shipp__4E88ABD4" FromRole="Shipper" ToRole="ProductMapShippers" />
+        </EntityType>
+        <EntityType Name="UserCart">
+          <Key>
+            <PropertyRef Name="UserCartId" />
+          </Key>
+          <Property Name="UserCartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCount" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="UserCart" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__UserCart__Produc__68487DD7" FromRole="UserCart" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__Address__AppUser__3D5E1FD2">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__CountyI__3E52440B">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__Addre__412EB0B6">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="AppUserMapAddress" Type="Self.AppUserMapAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="AppUserMapAddress">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__AppUs__6383C8BA">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="AppUserMapWish" Type="Self.AppUserMapWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="AppUserMapWish">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__AppUs__60A75C0F">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="ProductMapComment" Type="Self.ProductMapComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="ProductMapComment">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserCart__AppUse__6754599E">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="UserCart">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__Produ__6477ECF3">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="AppUserMapWish" Type="Self.AppUserMapWish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="AppUserMapWish">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Categor__47DBAE45">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__County__CityId__3A81B327">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="County" Type="Self.County" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="County">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parameter__Param__534D60F1">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="Parameter">
+              <PropertyRef Name="ParameterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Param__571DF1D5">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="ProductMapRequiredFields" Type="Self.ProductMapRequiredFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="ProductMapRequiredFields">
+              <PropertyRef Name="ParameterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Param__5AEE82B9">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterTypeId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__4AB81AF0">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapImage" Type="Self.ProductMapImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__4D94879B">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapShippers" Type="Self.ProductMapShippers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapShippers">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__5629CD9C">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapRequiredFields" Type="Self.ProductMapRequiredFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapRequiredFields">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__59FA5E80">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Produ__5FB337D6">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductMapComment" Type="Self.ProductMapComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductMapComment">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserCart__Produc__68487DD7">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="UserCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Shipp__4E88ABD4">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
+          <End Role="ProductMapShippers" Type="Self.ProductMapShippers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="ShipperId" />
+            </Principal>
+            <Dependent Role="ProductMapShippers">
+              <PropertyRef Name="ShipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" />
+          <EntitySet Name="AppUser" EntityType="Self.AppUser" />
+          <EntitySet Name="AppUserMapAddress" EntityType="Self.AppUserMapAddress" />
+          <EntitySet Name="AppUserMapWish" EntityType="Self.AppUserMapWish" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="County" EntityType="Self.County" />
+          <EntitySet Name="DiscountKey" EntityType="Self.DiscountKey" />
+          <EntitySet Name="Parameter" EntityType="Self.Parameter" />
+          <EntitySet Name="ParameterType" EntityType="Self.ParameterType" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductMapComment" EntityType="Self.ProductMapComment" />
+          <EntitySet Name="ProductMapImage" EntityType="Self.ProductMapImage" />
+          <EntitySet Name="ProductMapProperty" EntityType="Self.ProductMapProperty" />
+          <EntitySet Name="ProductMapRequiredFields" EntityType="Self.ProductMapRequiredFields" />
+          <EntitySet Name="ProductMapShippers" EntityType="Self.ProductMapShippers" />
+          <EntitySet Name="Shipper" EntityType="Self.Shipper" />
+          <EntitySet Name="UserCart" EntityType="Self.UserCart" />
+          <AssociationSet Name="FK__Address__AppUser__3D5E1FD2" Association="Self.FK__Address__AppUser__3D5E1FD2">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__CountyI__3E52440B" Association="Self.FK__Address__CountyI__3E52440B">
+            <End Role="County" EntitySet="County" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__Addre__412EB0B6" Association="Self.FK__AppUserMa__Addre__412EB0B6">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__AppUs__6383C8BA" Association="Self.FK__AppUserMa__AppUs__6383C8BA">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="AppUserMapWish" EntitySet="AppUserMapWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__AppUs__60A75C0F" Association="Self.FK__ProductMa__AppUs__60A75C0F">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="ProductMapComment" EntitySet="ProductMapComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserCart__AppUse__6754599E" Association="Self.FK__UserCart__AppUse__6754599E">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="UserCart" EntitySet="UserCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__Produ__6477ECF3" Association="Self.FK__AppUserMa__Produ__6477ECF3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="AppUserMapWish" EntitySet="AppUserMapWish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Categor__47DBAE45" Association="Self.FK__Product__Categor__47DBAE45">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__County__CityId__3A81B327" Association="Self.FK__County__CityId__3A81B327">
+            <End Role="City" EntitySet="City" />
+            <End Role="County" EntitySet="County" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parameter__Param__534D60F1" Association="Self.FK__Parameter__Param__534D60F1">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="Parameter" EntitySet="Parameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Param__571DF1D5" Association="Self.FK__ProductMa__Param__571DF1D5">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Param__5AEE82B9" Association="Self.FK__ProductMa__Param__5AEE82B9">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__4AB81AF0" Association="Self.FK__ProductMa__Produ__4AB81AF0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapImage" EntitySet="ProductMapImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__4D94879B" Association="Self.FK__ProductMa__Produ__4D94879B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__5629CD9C" Association="Self.FK__ProductMa__Produ__5629CD9C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__59FA5E80" Association="Self.FK__ProductMa__Produ__59FA5E80">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Produ__5FB337D6" Association="Self.FK__ProductMa__Produ__5FB337D6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductMapComment" EntitySet="ProductMapComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserCart__Produc__68487DD7" Association="Self.FK__UserCart__Produc__68487DD7">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="UserCart" EntitySet="UserCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Shipp__4E88ABD4" Association="Self.FK__ProductMa__Shipp__4E88ABD4">
+            <End Role="Shipper" EntitySet="Shipper" />
+            <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
+          </AssociationSet>
+          <EntitySet Name="Slider" EntityType="ECommerceModel.Slider" />
+        </EntityContainer>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SliderId" />
+          </Key>
+          <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RedirectUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ECommerceModelStoreContainer" CdmEntityContainer="ECommerceEntities">
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="ECommerceModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUser">
+            <EntityTypeMapping TypeName="ECommerceModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="AdminUserId" ColumnName="AdminUserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppUser">
+            <EntityTypeMapping TypeName="ECommerceModel.AppUser">
+              <MappingFragment StoreEntitySet="AppUser">
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActivation" ColumnName="IsActivation" />
+                <ScalarProperty Name="IsWantNotification" ColumnName="IsWantNotification" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppUserMapAddress">
+            <EntityTypeMapping TypeName="ECommerceModel.AppUserMapAddress">
+              <MappingFragment StoreEntitySet="AppUserMapAddress">
+                <ScalarProperty Name="AppUserMapAddress1" ColumnName="AppUserMapAddress" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppUserMapWish">
+            <EntityTypeMapping TypeName="ECommerceModel.AppUserMapWish">
+              <MappingFragment StoreEntitySet="AppUserMapWish">
+                <ScalarProperty Name="AppUserMapWish1" ColumnName="AppUserMapWish" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ECommerceModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TopCategoryId" ColumnName="TopCategoryId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="ECommerceModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="County">
+            <EntityTypeMapping TypeName="ECommerceModel.County">
+              <MappingFragment StoreEntitySet="County">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountKey">
+            <EntityTypeMapping TypeName="ECommerceModel.DiscountKey">
+              <MappingFragment StoreEntitySet="DiscountKey">
+                <ScalarProperty Name="DiscountKeyId" ColumnName="DiscountKeyId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="GuidKey" ColumnName="GuidKey" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameter">
+            <EntityTypeMapping TypeName="ECommerceModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameter">
+                <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParameterTypeId" ColumnName="ParameterTypeId" />
+                <ScalarProperty Name="TypeValue" ColumnName="TypeValue" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParameterType">
+            <EntityTypeMapping TypeName="ECommerceModel.ParameterType">
+              <MappingFragment StoreEntitySet="ParameterType">
+                <ScalarProperty Name="ParameterTypeId" ColumnName="ParameterTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ECommerceModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="IsShipperPay" ColumnName="IsShipperPay" />
+                <ScalarProperty Name="IsRequiredFields" ColumnName="IsRequiredFields" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMapComment">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductMapComment">
+              <MappingFragment StoreEntitySet="ProductMapComment">
+                <ScalarProperty Name="ProductMapComment1" ColumnName="ProductMapComment" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMapImage">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductMapImage">
+              <MappingFragment StoreEntitySet="ProductMapImage">
+                <ScalarProperty Name="ProductMapImageId" ColumnName="ProductMapImageId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMapProperty">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductMapProperty">
+              <MappingFragment StoreEntitySet="ProductMapProperty">
+                <ScalarProperty Name="ProductMapPropertyId" ColumnName="ProductMapPropertyId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
+                <ScalarProperty Name="PropetyKey" ColumnName="PropetyKey" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMapRequiredFields">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductMapRequiredFields">
+              <MappingFragment StoreEntitySet="ProductMapRequiredFields">
+                <ScalarProperty Name="ProductMapRequiredFieldsId" ColumnName="ProductMapRequiredFieldsId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ParameterTypeId" ColumnName="ParameterTypeId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMapShippers">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductMapShippers">
+              <MappingFragment StoreEntitySet="ProductMapShippers">
+                <ScalarProperty Name="ProductMapShippersId" ColumnName="ProductMapShippersId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ShipperId" ColumnName="ShipperId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipper">
+            <EntityTypeMapping TypeName="ECommerceModel.Shipper">
+              <MappingFragment StoreEntitySet="Shipper">
+                <ScalarProperty Name="ShipperId" ColumnName="ShipperId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCart">
+            <EntityTypeMapping TypeName="ECommerceModel.UserCart">
+              <MappingFragment StoreEntitySet="UserCart">
+                <ScalarProperty Name="UserCartId" ColumnName="UserCartId" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slider">
+            <EntityTypeMapping TypeName="ECommerceModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="RedirectUrl" ColumnName="RedirectUrl" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SliderId" ColumnName="SliderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

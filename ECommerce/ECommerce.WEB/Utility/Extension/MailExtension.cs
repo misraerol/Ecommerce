@@ -14,9 +14,9 @@ namespace ECommerce.WEB.Utility.Extension
 	/// <summary>
 	/// Mail gönderimi için oluşturulmuş yardımcı sınıf
 	/// </summary>
-	public class MailHelper
+	public class MailExtension
 	{
-		private static MailHelper _instance;
+		private static MailExtension _instance;
 		private string _rootPath = "~/Views/Mail/Template/";
 		private string _fileExt = "cshtml";
 		private string _host = "smtp.gmail.com";
@@ -32,7 +32,7 @@ namespace ECommerce.WEB.Utility.Extension
 		/// <summary>
 		/// Constructor metodudur.
 		/// </summary>
-		protected MailHelper()
+		protected MailExtension()
 		{
 			_templates = new Dictionary<string, string>();
 
@@ -53,11 +53,11 @@ namespace ECommerce.WEB.Utility.Extension
 		/// Singleton için instance metodu
 		/// </summary>
 		/// <returns>Geriye MailHelper instance'ı döndürür.</returns>
-		public static MailHelper Instance()
+		public static MailExtension Instance()
 		{
 			if (_instance == null)
 			{
-				_instance = new MailHelper();
+				_instance = new MailExtension();
 			}
 
 			return _instance;
