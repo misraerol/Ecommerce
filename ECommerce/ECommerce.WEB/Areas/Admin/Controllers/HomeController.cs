@@ -14,5 +14,10 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
