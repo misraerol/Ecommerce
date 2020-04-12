@@ -2,6 +2,7 @@
 using ECommerce.DATA;
 using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement;
 using ECommerce.WEB.Controllers;
+using ECommerce.WEB.Utility.Attribute;
 using ECommerce.WEB.Utility.UIFramework;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,26 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
         {
             adminUserRepository = new AdminUserRepository();
         }
+
+        [LoggedAdmin]
         public ActionResult Index()
         {
             return View();
         }
 
+
         public ActionResult Login()
         {
-            AdminUserLoginCRUDModel adminUserLoginCRUDModel = new AdminUserLoginCRUDModel();
-            return View(adminUserLoginCRUDModel);
+            if (Session["LoggedAdmin"] == null)
+            {
+                AdminUserLoginCRUDModel adminUserLoginCRUDModel = new AdminUserLoginCRUDModel();
+                return View(adminUserLoginCRUDModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+       
         }
 
         [HttpPost]
@@ -57,6 +69,16 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
             return Json(response);
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home",new {area="" });
+        }
+
+        public PartialViewResult _AdminProfile()
+        {
+            return PartialView();
+        }
 
     }
 }

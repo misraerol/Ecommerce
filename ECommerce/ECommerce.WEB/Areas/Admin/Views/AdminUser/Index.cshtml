@@ -1,0 +1,55 @@
+﻿@using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement
+@model List<AdminUserListViewModel>
+@{
+    ViewBag.Title = "Admin Yönetimi";
+}
+ 
+
+<!-- page title area end -->
+<div class="main-content-inner">
+    <div class="row">
+        <!-- data table start -->
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Data Table Default</h4>
+                    <div class="data-tables">
+                        <table id="dataTable" class="text-center">
+                            <thead class="bg-light text-capitalize">
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Oluşturulma Tarihi</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (AdminUserListViewModel appUser in Model)
+                                {
+                                <tr>
+                                    <td>@appUser.Email</td>
+                                    <td>@appUser.CreateDate.ToShortDateString()</td>
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li class="mr-3"><a href="@Url.Action("Edit", "AdminUser", new {id=appUser.AdminUserId })" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li><a href="@Url.Action("Delete", "AdminUser", new {id=appUser.AdminUserId })" class="text-danger"><i class="ti-trash"></i></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- data table end -->
+    </div>
+</div>
+
+
+ 

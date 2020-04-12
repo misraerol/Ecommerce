@@ -19,7 +19,7 @@ namespace ECommerce.WEB.Utility.Attribute
             {
                 if (actionReturnType == "ActionResult")
                 {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Index" },{ "Area","Admin"} });
+                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Login" },{ "Area","Admin"} });
                 }
                 else if (actionReturnType == "JsonResult")
                 {

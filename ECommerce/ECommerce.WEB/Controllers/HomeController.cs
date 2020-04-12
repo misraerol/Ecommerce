@@ -10,12 +10,13 @@ using System.Web;
 using System.Web.Mvc;
 using ECommerce.WEB.Utility.UIFramework;
 using ECommerce.WEB.Utility.Attribute;
+using ECommerce.DATA;
 
 namespace ECommerce.WEB.Controllers
 {
     public class HomeController : BaseController
     {
-        // GET: Home
+ 
         public ActionResult Index()
         {
             return View();
@@ -39,5 +40,6 @@ namespace ECommerce.WEB.Controllers
             };
             return Json(response);
         }
+
     }
 }
