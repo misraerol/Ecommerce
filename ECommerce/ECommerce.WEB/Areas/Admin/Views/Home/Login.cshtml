@@ -1,13 +1,16 @@
-﻿@{ 
+﻿@using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement
+@model AdminUserLoginCRUDModel
+@{
     Layout = null;
 }
+
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin Panel-Giriş Yap</title>
+    <title>Login - srtdash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="~/Themes/AdminAssets/images/icon/favicon.ico">
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/bootstrap.min.css">
@@ -25,6 +28,9 @@
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/responsive.css">
     <!-- modernizr css -->
     <script src="~/Themes/AdminAssets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link href="~/Content/lib/swal/sweetalert2.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
 </head>
 
 <body>
@@ -40,48 +46,40 @@
     <div class="login-area login-bg">
         <div class="container">
             <div class="login-box ptb--100">
-                <form>
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "LoginForm" }))
+                {
                     <div class="login-form-head">
-                        <h4>Sign up</h4>
-                        <p>Hello there, Sign up and Join with Us</p>
+                        <h4>Giriş Yap</h4>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <label for="exampleInputName1">Full Name</label>
-                            <input type="text" id="exampleInputName1">
-                            <i class="ti-user"></i>
-                        </div>
-                        <div class="form-gp">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="exampleInputEmail1">
+                            <label for="Email">Email</label>
+                            @Html.TextBoxFor(s => s.Email, new { type = "email"})
                             <i class="ti-email"></i>
+                            @Html.ValidationMessageFor(s=>s.Email)
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" id="exampleInputPassword1">
+                            <label for="Password">Şifre</label>
+                            @Html.PasswordFor(s => s.Password, new { })
                             <i class="ti-lock"></i>
+                            @Html.ValidationMessageFor(s => s.Password)
                         </div>
-                        <div class="form-gp">
-                            <label for="exampleInputPassword2">Confirm Password</label>
-                            <input type="password" id="exampleInputPassword2">
-                            <i class="ti-lock"></i>
-                        </div>
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
-                            <div class="login-other row mt-4">
-                                <div class="col-6">
-                                    <a class="fb-login" href="#">Sign up with <i class="fa fa-facebook"></i></a>
-                                </div>
-                                <div class="col-6">
-                                    <a class="google-login" href="#">Sign up with <i class="fa fa-google"></i></a>
+                        <div class="row mb-4 rmber-area">
+                            <div class="col-6">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <label class="custom-control-label" for="customControlAutosizing">Beni Hatırla</label>
+                                    @Html.CheckBoxFor(s => s.IsRemember, new { @class = "custom-control-input", id = "customControlAutosizing" })
                                 </div>
                             </div>
+                            <div class="col-6 text-right">
+                                <a href="#">Şifremi Unuttum</a>
+                            </div>
                         </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="login.html">Sign in</a></p>
+                        <div class="submit-btn-area">
+                            <button id="form_submit" type="submit">Giriş Yap <i class="ti-arrow-right"></i></button>
                         </div>
                     </div>
-                </form>
+                }
             </div>
         </div>
     </div>
@@ -99,6 +97,14 @@
     <!-- others plugins -->
     <script src="~/Themes/AdminAssets/js/plugins.js"></script>
     <script src="~/Themes/AdminAssets/js/scripts.js"></script>
+    <script src="~/Content/lib/swal/sweetalert2.js"></script>
+    <script src="~/Content/js/EcommerceCustom.js"></script>
+    <script src="~/Content/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script>
+        Jform('#LoginForm');
+    </script>
 </body>
 
 </html>

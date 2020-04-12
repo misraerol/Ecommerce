@@ -14,7 +14,7 @@ namespace ECommerce.WEB.Utility.Attribute
         {
             string actionReturnType = (filterContext.ActionDescriptor as ReflectedActionDescriptor).MethodInfo.ReturnType.Name;
 
-            var sessionControl = filterContext.HttpContext.Session["LoggedUser"];
+            var sessionControl = filterContext.HttpContext.Session["LoggedAdmin"];
             if (sessionControl == null)
             {
                 if (actionReturnType == "ActionResult")

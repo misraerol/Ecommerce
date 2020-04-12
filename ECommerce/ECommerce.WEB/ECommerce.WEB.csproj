@@ -971,6 +971,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserLoginCRUDModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1042,15 +1043,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Model\" />
     <Folder Include="Controllers\AppUserManagement\" />
     <Folder Include="Uploads\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ECommerce.BIZ\ECommerce.BIZ.csproj">
+      <Project>{A2EDEBA7-9EFB-4D2F-8CC0-A17FDCE37708}</Project>
+      <Name>ECommerce.BIZ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ECommerce.CORE\ECommerce.CORE.csproj">
       <Project>{FF3470A0-ED77-4EA2-BCE3-45D31649DABF}</Project>
       <Name>ECommerce.CORE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ECommerce.DATA\ECommerce.DATA.csproj">
+      <Project>{D5092C6E-9867-4149-B0DC-98EB1388C6D5}</Project>
+      <Name>ECommerce.DATA</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
