@@ -1033,6 +1033,8 @@
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_AdminProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
