@@ -12,7 +12,11 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Data Table Default</h4>
+                    <h4 class="header-title">Yönetici Ekranı</h4>
+                    <a href="@Url.Action("Insert","AdminUser")" class="btn btn-primary float-right">Yönetici Ekle</a>
+                    <br />
+                    <br />
+                    <br />
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
@@ -26,20 +30,20 @@
                             <tbody>
                                 @foreach (AdminUserListViewModel appUser in Model)
                                 {
-                                <tr>
-                                    <td>@appUser.Email</td>
-                                    <td>@appUser.CreateDate.ToShortDateString()</td>
-                                    <td>
-                                        <ul class="d-flex justify-content-center">
-                                            <li class="mr-3"><a href="@Url.Action("Edit", "AdminUser", new {id=appUser.AdminUserId })" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul class="d-flex justify-content-center">
-                                            <li><a href="@Url.Action("Delete", "AdminUser", new {id=appUser.AdminUserId })" class="text-danger"><i class="ti-trash"></i></a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>@appUser.Email</td>
+                                        <td>@appUser.CreateDate.ToShortDateString()</td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li class="mr-3"><a href="@Url.Action("Update", "AdminUser", new {id=appUser.AdminUserId })" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li><a href="@Url.Action("Delete", "AdminUser", new {id=appUser.AdminUserId })" class="text-danger"><i class="ti-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

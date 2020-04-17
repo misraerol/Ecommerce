@@ -44,5 +44,19 @@ namespace ECommerce.BIZ.Repository.AdminUserManagement
             AdminUser adminUser = db.AdminUser.Where(s => s.Email.Equals(email) && s.Password.Equals(password) && s.IsActive && !s.IsDeleted).SingleOrDefault();
             return adminUser;
         }
+
+
+        public bool IsUseEmailAddress(string email)
+        {
+            bool isHave = db.AdminUser.Where(s => s.Email.Equals(email)).Any();
+            return isHave;
+        }
+
+        public AdminUser GetByEmail(string email)
+        {
+            AdminUser adminUser = db.AdminUser.Where(s => s.Email.Equals(email)).SingleOrDefault();
+            return adminUser;
+        }
+
     }
 }

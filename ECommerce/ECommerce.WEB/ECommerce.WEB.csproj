@@ -972,6 +972,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminUserManagement\AdminUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserListViewModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserLoginCRUDModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -1031,6 +1032,8 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
