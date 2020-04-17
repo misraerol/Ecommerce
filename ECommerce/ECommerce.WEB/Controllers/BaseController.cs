@@ -16,6 +16,7 @@ namespace ECommerce.WEB.Controllers
         {
             JsonResult json = new JsonResult();
             json.Data = data;
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return json;
         }
         protected override void Initialize(RequestContext requestContext)
