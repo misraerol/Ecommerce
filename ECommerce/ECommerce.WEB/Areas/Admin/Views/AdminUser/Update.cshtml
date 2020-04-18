@@ -3,7 +3,6 @@
     ViewBag.Title = "Admin Güncelle";
 }
 
-@using (Html.BeginForm("Update", "AdminUser", FormMethod.Post, new { id = "UpdateAdminUser" }))
 {
     @Html.HiddenFor(s=> s.AdminUserId)
     <div class="col-lg-6 col-ml-12">

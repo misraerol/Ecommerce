@@ -972,9 +972,12 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminUserManagement\AdminUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShippersManagement\ShipperController.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserListViewModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserLoginCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperListView.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1035,6 +1038,9 @@
     <Content Include="Areas\Admin\Views\Home\_AdminProfile.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\Insert.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1051,7 +1057,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AppUserManagement\" />
-    <Folder Include="Uploads\" />
+    <Folder Include="Uploads\ShippersLogo\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

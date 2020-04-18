@@ -1,9 +1,8 @@
-﻿@using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement
-@model List<AdminUserListViewModel>
+﻿@using ECommerce.WEB.Areas.Admin.Model.ShippersManagement
+@model List<ShipperListView>
 @{
-    ViewBag.Title = "Admin Yönetimi";
+    ViewBag.Title = "Kargo Yönetimi";
 }
-
 
 <!-- page title area end -->
 <div class="main-content-inner">
@@ -12,8 +11,8 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Yönetici Ekranı</h4>
-                    <a href="@Url.Action("Insert","AdminUser")" class="btn btn-primary float-right">Yönetici Ekle</a>
+                    <h4 class="header-title">Kargo Yönetimi</h4>
+                    <a href="@Url.Action("Insert","Shipper")" class="btn btn-primary float-right">Kargo Ekle</a>
                     <br />
                     <br />
                     <br />
@@ -21,27 +20,28 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th>Email</th>
-                                    <th>Oluşturulma Tarihi</th>
-                                    <th>Düzenle</th>
-                                    <th>Sil</th>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Kargo İsmi</th>
+                                    <th scope="col">Düzenle</th>
+                                    <th scope="col">Sil</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (AdminUserListViewModel appUser in Model)
+                                @foreach (ShipperListView shipper in Model)
                                 {
                                     <tr>
-                                        <td>@appUser.Email</td>
-                                        <td>@appUser.CreateDate.ToShortDateString()</td>
+                                        <td> <img src="~/Uploads/ShippersLogo/@shipper.ImagePath" height="100" width="100" alt="" class="img-responsive" /></td>
+                                        <td> @shipper.Name</td>
                                         <td>
                                             <ul class="d-flex justify-content-center">
                                                 <li class="mr-3">
-                                                <a href="@Url.Action("Update", "AdminUser", new {id=appUser.AdminUserId })" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                                    <a href="@Url.Action("Update", "Shipper", new {id=shipper.ShipperId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                </li>
                                             </ul>
                                         </td>
                                         <td>
                                             <ul class="d-flex justify-content-center">
-                                                <li><a href="@Url.Action("Delete", "AdminUser", new {id=appUser.AdminUserId })" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                <li><a href="@Url.Action("Delete", "Shipper", new {id=shipper.ShipperId})" class="text-danger"><i class="ti-trash"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>

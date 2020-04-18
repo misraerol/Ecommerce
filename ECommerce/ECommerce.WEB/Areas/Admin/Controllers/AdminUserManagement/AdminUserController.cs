@@ -1,6 +1,7 @@
 ﻿using ECommerce.BIZ.Repository.AdminUserManagement;
 using ECommerce.DATA;
 using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement;
+using ECommerce.WEB.Controllers;
 using ECommerce.WEB.Utility.Attribute;
 using ECommerce.WEB.Utility.UIFramework;
 using System;
@@ -12,7 +13,7 @@ using System.Web.Mvc;
 namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 {
     [LoggedAdmin]
-    public class AdminUserController : Controller
+    public class AdminUserController : BaseController
     {
         AdminUserRepository adminUserRepository;
 

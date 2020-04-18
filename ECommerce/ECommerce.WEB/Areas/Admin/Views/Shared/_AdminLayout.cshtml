@@ -75,7 +75,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Kargo Yönetimi</span></a>
                                 <ul class="collapse">
-                                    <li><a href="accordion.html">Kargo</a></li>
+                                    <li><a href="@Url.Action("Index","Shipper", new { area ="Admin"})">Kargo</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -97,7 +97,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i> <span>Kullanıcı Yönetimi</span></a>
                                 <ul class="collapse">
-                                    <li><a href="@Url.Action("Index","AdminUser", new { area = "Admin" })" >Admin Kullanıcıları</a></li>                               
+                                    <li><a href="@Url.Action("Index","AdminUser", new { area = "Admin" })" >Kullanıcılar</a></li>                               
                                 </ul>
                             </li>
                             <li>
