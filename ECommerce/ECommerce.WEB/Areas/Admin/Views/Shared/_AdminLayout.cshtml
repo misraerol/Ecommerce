@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/metisMenu.css">
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/slicknav.min.css">
+    <link href="~/Content/DatePicker/bootstrap-datepicker.min.css" rel="stylesheet" />
     <!-- Start datatable css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
@@ -548,6 +549,13 @@
 
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    <script src="~/Content/DatePicker/bootstrap-datepicker.min.js"></script>
+    <script>
+
+        $('.datepicker').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 
