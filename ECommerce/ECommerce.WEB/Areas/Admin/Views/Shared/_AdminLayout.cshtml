@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/metisMenu.css">
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/Themes/AdminAssets/css/slicknav.min.css">
-    <link href="~/Content/DatePicker/bootstrap-datepicker.min.css" rel="stylesheet" />
     <!-- Start datatable css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
@@ -29,8 +28,8 @@
     <!-- modernizr css -->
     <script src="~/Themes/AdminAssets/js/vendor/modernizr-2.8.3.min.js"></script>
     <link href="~/Content/lib/swal/sweetalert2.css" rel="stylesheet" />
-    <link href="~/Content/datepicker/bootstrap-datepicker3.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -545,17 +544,20 @@
     <script src="~/Content/js/EcommerceCustom.js"></script>
     <script src="~/Content/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-    <script src="~/Content/datepicker/Scripts/bootstrap-datepicker.js"></script>
-    <script src="~/Content/datepicker/Scripts/locales/bootstrap-datepicker.tr.min.js"></script>
+ 
     <script>
 
         $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
+            dateFormat: 'dd/mm/yy',
+            lang: 'tr',
+            timepicker: false,
+            closeOnDateSelect: true,
             
         });
+
     </script>
     @RenderSection("Scripts", required: false)
 </body>

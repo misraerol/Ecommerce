@@ -24,18 +24,18 @@
                             @Html.ValidationMessageFor(s => s.ImagePath)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(s => s.ExpiredDate, new { @class = "col-form-label" })
+                            @Html.LabelFor(s => s.ExpiredDate, "{0:d}", new { @class = "col-form-label" })
 
-                            <input type="text" name="ExpiredDate" class="form-control datepicker" required />
- 
+                            @*<input type="text" name="ExpiredDate" class="form-control datepicker" required />*@
+                            @Html.TextBoxFor(s=>s.ExpiredDate,new { @class = "form-control datepicker", })
+
                             @Html.ValidationMessageFor(s => s.ExpiredDate)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.CretaDate, new { @class = "col-form-label" })
 
-                            <input type="text" name="CretaDate" class="form-control datepicker" required />
-
-                            @*@Html.TextBoxFor(s=>s.CretaDate,new { @class = "form-control datepicker", })*@
+ 
+                            @Html.TextBoxFor(s=>s.CretaDate, "{0:d}", new { @class = "form-control datepicker", })
 
                             @Html.ValidationMessageFor(s => s.CretaDate)
                         </div>

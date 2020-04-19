@@ -11,7 +11,7 @@ namespace ECommerce.WEB.Areas.Admin.Model.SliderManagement
 
         public HttpPostedFileBase ImagePath { get; set; }
 
-        public DateTime ExpiredDate { get; set; }
+        public DateTime? ExpiredDate { get; set; }
 
         public DateTime CretaDate { get; set; }
 
