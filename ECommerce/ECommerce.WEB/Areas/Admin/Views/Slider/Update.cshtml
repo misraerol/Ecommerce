@@ -1,0 +1,58 @@
+﻿@using ECommerce.WEB.Areas.Admin.Model.SliderManagement
+@model SliderCRUDModel
+@{
+    ViewBag.Title = "Slider Güncelleme";
+}
+
+
+@using (Html.BeginForm("Update", "Slider", FormMethod.Post, new { id = "UpdateSlider", @enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(s => s.SliderId)
+    <div class="col-lg-6 col-ml-12">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Kargo Firması Ekle</h4>
+                        <div class="form-group">
+                            @Html.LabelFor(s => s.Title, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.Title, new { @class = "form-control", required = "", placeholder = "İsim" })
+                            @Html.ValidationMessageFor(s => s.Title)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(s => s.ImagePath, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.ImagePath, new { @class = "form-control", placeholder = "Resim", type = "file" })
+                            @Html.ValidationMessageFor(s => s.ImagePath)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(s => s.ExpiredDate, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.ExpiredDate, new { @class = "form-control" , placeholder = "Bitiş Tarihi", type = "date" })
+                            @Html.ValidationMessageFor(s => s.ExpiredDate)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(s => s.CretaDate, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.CretaDate, new { @class = "form-control", placeholder = "Başlangıç Tarihi", type = "datetime" })
+                            @Html.ValidationMessageFor(s => s.CretaDate)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(s => s.RedirectUrl, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.RedirectUrl, new { @class = "form-control", placeholder = "Url" })
+                            @Html.ValidationMessageFor(s => s.RedirectUrl)
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        Jform("#UpdateSlider");
+    </script>
+}
+
