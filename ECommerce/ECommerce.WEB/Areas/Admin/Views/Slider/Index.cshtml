@@ -1,0 +1,63 @@
+﻿@using ECommerce.WEB.Areas.Admin.Model.SliderManagement
+@model List<SliderListView>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="main-content-inner">
+    <div class="row">
+        <!-- data table start -->
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Slider Yönetimi</h4>
+                    <a href="@Url.Action("Insert","Slider")" class="btn btn-primary float-right">Slider Ekle</a>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="data-tables">
+                        <table id="dataTable" class="text-center">
+                            <thead class="bg-light text-capitalize">
+                                <tr>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Resim</th>
+                                    <th scope="col">Bitiş Tarihi</th>
+                                    <th scope="col">Başlangıç Tarihi</th>
+                                    <th scope="col">Url</th>
+                                    <th scope="col">Düzenle</th>
+                                    <th scope="col">Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (SliderListView slider in Model)
+                                {
+                                <tr>
+                                    <td>@slider.Title</td>
+                                    <td> <img src="~/Uploads/SliderImage/@slider.ImagePath" height="100" width="100" alt="" class="img-responsive" /></td>
+                                    <td>@slider.ExpiredDate</td>
+                                    <td>@slider.CretaDate</td>
+                                    <td>@slider.RedirectUrl</td>
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li class="mr-3">
+                                                <a href="@Url.Action("Update", "Slider", new {id=slider.SliderId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li><a href="@Url.Action("Delete", "Slider", new {id=slider.SliderId})" class="text-danger"><i class="ti-trash"></i></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- data table end -->
+    </div>
+</div>
+

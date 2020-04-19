@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.BIZ.Repository.SliderManagement
 {
-    public class SliderManagement : IRepository<Slider>
+    public class SliderRepository : IRepository<Slider>
     {
         ECommerceEntities db;
-        public SliderManagement()
+        public SliderRepository()
         {
             db = new ECommerceEntities();
         }
