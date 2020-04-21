@@ -25,12 +25,12 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.ExpiredDate, new { @class = "col-form-label" })
-                            @Html.TextBoxFor(s => s.ExpiredDate, new { @class = "form-control", required = "", placeholder = "Bitiş Tarihi", type = "date" })
+                            @Html.TextBoxFor(s => s.ExpiredDate, new { @class = "form-control", required = "", placeholder = "Bitiş Tarihi" })
                             @Html.ValidationMessageFor(s => s.ExpiredDate)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.CretaDate, new { @class = "col-form-label" })
-                            @Html.TextBoxFor(s => s.CretaDate, new { @class = "form-control", required = "", placeholder = "Başlangıç Tarihi", type = "datetime" })
+                            @Html.TextBoxFor(s => s.CretaDate, new { @class = "form-control", required = "", placeholder = "Başlangıç Tarihi"})
                             @Html.ValidationMessageFor(s => s.CretaDate)
                         </div>
                         <div class="form-group">

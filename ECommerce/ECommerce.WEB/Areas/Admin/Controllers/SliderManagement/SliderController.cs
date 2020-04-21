@@ -90,11 +90,11 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.SliderManagement
             Slider slider = sliderRepository.GetById(id);
             if(slider != null)
             {
-                slider.Title = sliderCRUDModel.Title;
-                slider.ExpiredDate = sliderCRUDModel.ExpiredDate;
-                slider.CreateDate = sliderCRUDModel.CretaDate;
-                slider.RedirectUrl = sliderCRUDModel.RedirectUrl;
-                slider.SliderId = sliderCRUDModel.SliderId;
+                sliderCRUDModel.Title = slider.Title ;
+                sliderCRUDModel.ExpiredDate = slider.ExpiredDate ;
+                sliderCRUDModel.CretaDate = slider.CreateDate  ;
+                sliderCRUDModel.RedirectUrl = slider.RedirectUrl  ;
+                sliderCRUDModel.SliderId =slider.SliderId  ;
                 return View(sliderCRUDModel);
             }
             return RedirectToAction("Index", "Slider");
