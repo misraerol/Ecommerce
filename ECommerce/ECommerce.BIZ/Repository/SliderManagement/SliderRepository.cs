@@ -38,5 +38,11 @@ namespace ECommerce.BIZ.Repository.SliderManagement
             db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+
+        public List<Slider> GetAllActiveList()
+        {
+            List<Slider> sliderList = db.Slider.Where(s => s.IsActive && !s.IsDeleted && (s.ExpiredDate == null || s.ExpiredDate < DateTime.Now) && s.CreateDate > DateTime.Now).ToList();
+            return sliderList;
+        }
     }
 }
