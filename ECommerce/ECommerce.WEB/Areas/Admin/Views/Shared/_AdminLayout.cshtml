@@ -28,8 +28,8 @@
     <!-- modernizr css -->
     <script src="~/Themes/AdminAssets/js/vendor/modernizr-2.8.3.min.js"></script>
     <link href="~/Content/lib/swal/sweetalert2.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -97,7 +97,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i> <span>Kullanıcı Yönetimi</span></a>
                                 <ul class="collapse">
-                                    <li><a href="@Url.Action("Index","AdminUser", new { area = "Admin" })" >Kullanıcılar</a></li>                               
+                                    <li><a href="@Url.Action("Index","AdminUser", new { area = "Admin" })">Kullanıcılar</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -318,9 +318,9 @@
             </div>
             <!-- page title area end -->
             <div class="main-content-inner">
-               
-                    @RenderBody()
-                
+
+                @RenderBody()
+
             </div>
         </div>
         <!-- main content area end -->
@@ -536,7 +536,6 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
     <!-- Start datatable js -->
-
     <!-- others plugins -->
     <script src="~/Themes/AdminAssets/js/plugins.js"></script>
     <script src="~/Themes/AdminAssets/js/scripts.js"></script>
@@ -545,9 +544,21 @@
     <script src="~/Content/js/EcommerceCustom.js"></script>
     <script src="~/Content/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+ 
+    <script>
+
+        $('.datepicker').datepicker({
+            dateFormat: 'dd/mm/yy',
+            lang: 'tr',
+            timepicker: false,
+            closeOnDateSelect: true,
+            
+        });
+
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 
