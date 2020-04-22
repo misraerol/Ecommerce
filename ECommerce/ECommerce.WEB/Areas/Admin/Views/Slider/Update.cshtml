@@ -13,15 +13,16 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Kargo Firması Ekle</h4>
+                        <h4 class="header-title">Slider Güncelleme</h4>
                         <div class="form-group">
+                           
                             @Html.LabelFor(s => s.Title, new { @class = "col-form-label" })
                             @Html.TextBoxFor(s => s.Title, new { @class = "form-control", required = "", placeholder = "İsim" })
                             @Html.ValidationMessageFor(s => s.Title)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.ImagePath, new { @class = "col-form-label" })
-                            @Html.TextBoxFor(s => s.ImagePath, new { @class = "form-control", placeholder = "Resim", type = "file" })
+                            @Html.TextBoxFor(s => s.ImagePath, new { @class = "form-control",placeholder = "Resim", type = "file" })
                             @Html.ValidationMessageFor(s => s.ImagePath)
                         </div>
                         <div class="form-group">

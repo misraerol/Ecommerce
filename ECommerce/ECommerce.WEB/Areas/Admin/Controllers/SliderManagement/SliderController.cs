@@ -39,6 +39,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.SliderManagement
         {
             SliderCRUDModel sliderCRUDModel = new SliderCRUDModel();
             sliderCRUDModel.CretaDate = DateTime.Now;
+            sliderCRUDModel.ExpiredDate = DateTime.Now;
             return View(sliderCRUDModel);
         }
         [HttpPost]
@@ -50,6 +51,19 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.SliderManagement
             {
                 fileName = FileHelper.GenerateFileName(sliderCRUDModel.ImagePath.FileName);
                 sliderCRUDModel.ImagePath.SaveAs(Server.MapPath("~/Uploads/SliderImage/" + fileName));
+            }
+
+            if (sliderCRUDModel.ExpiredDate != null)
+            {
+                if(sliderCRUDModel.CretaDate > sliderCRUDModel.ExpiredDate.Value)
+                    {
+                    response = new Response()
+                    {
+                        Message = "Bitiş Tarihi Başlangıç Tarihinden Büyük Olamaz",
+                        Status = false,
+                    };
+                    return Json(response);
+                }
             }
             Slider slider = new Slider()
             {
@@ -111,7 +125,21 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.SliderManagement
                 slider.RedirectUrl = sliderCRUDModel.RedirectUrl;
                 slider.ExpiredDate = sliderCRUDModel.ExpiredDate;
                 slider.CreateDate = sliderCRUDModel.CretaDate;
-                if(sliderCRUDModel.ImagePath != null)
+
+                if (sliderCRUDModel.ExpiredDate != null)
+                {
+                    if (sliderCRUDModel.CretaDate > sliderCRUDModel.ExpiredDate.Value )
+                    {
+                        response = new Response()
+                        {
+                            Message = "Bitiş Tarihi Başlangıç Tarihinden Büyük Olamaz",
+                            Status = false,
+                        };
+                        return Json(response);
+                    }
+                }
+
+                if (sliderCRUDModel.ImagePath != null)
                 {
                     if(sliderCRUDModel.ImagePath.FileName != null)
                     {
