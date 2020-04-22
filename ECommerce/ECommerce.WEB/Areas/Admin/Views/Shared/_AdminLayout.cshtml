@@ -30,6 +30,7 @@
     <link href="~/Content/lib/swal/sweetalert2.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/Content/selectize/css/selectize.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -547,7 +548,8 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- 
+
+     <script src="https://selectize.github.io/selectize.js/js/selectize.js"></script>
     <script>
 
         $('.datepicker').datepicker({
@@ -555,9 +557,11 @@
             lang: 'tr',
             timepicker: false,
             closeOnDateSelect: true,
-            
-        });
 
+        });
+        $(function () {
+            $('select').selectize();
+        });
     </script>
     @RenderSection("Scripts", required: false)
 </body>
