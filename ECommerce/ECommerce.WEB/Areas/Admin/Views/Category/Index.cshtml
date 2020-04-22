@@ -1,0 +1,66 @@
+﻿@using ECommerce.WEB.Areas.Admin.Model.CategoryManagement
+@model List<CategoryListView>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="main-content-inner">
+    <div class="row">
+        <!-- data table start -->
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Kategori Yönetimi</h4>
+                    <a href="@Url.Action("Insert","Category")" class="btn btn-primary float-right">Kategori Ekle</a>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="data-tables">
+                        <table id="dataTable" class="text-center">
+                            <thead class="bg-light text-capitalize">
+                                <tr>
+                                    <td>Kategori adı</td>
+                                    <td>Güncelle</td>
+                                    <td>Sil</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CategoryListView category in Model)
+                                {
+                                <tr>
+                                    @if (!category.Name.Contains(">"))
+                                    {
+                                        <td class="bg-warning">@category.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@category.Name</td>
+
+                                    }
+
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li class="mr-3">
+                                                <a href="@Url.Action("Update", "Category", new {id=category.CategoryId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="d-flex justify-content-center">
+                                            <li><a href="@Url.Action("Delete", "Category", new {id=category.CategoryId})" class="text-danger"><i class="ti-trash"></i></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- data table end -->
+    </div>
+</div>
+
+
+

@@ -12,6 +12,8 @@ namespace ECommerce.DATA
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ECommerceEntities : DbContext
     {
@@ -45,5 +47,10 @@ namespace ECommerce.DATA
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<UserCart> UserCart { get; set; }
         public virtual DbSet<Slider> Slider { get; set; }
+    
+        public virtual ObjectResult<RecursiveCategoryList_Result> RecursiveCategoryList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RecursiveCategoryList_Result>("RecursiveCategoryList");
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace ECommerce.WEB
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new ValidateInputAttribute(false));//Validate Input false için yazıldı
         }
  
     }

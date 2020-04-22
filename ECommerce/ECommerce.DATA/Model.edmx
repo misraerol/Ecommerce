@@ -474,6 +474,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="RecursiveCategoryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ECommerceModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
@@ -1167,6 +1168,7 @@
             <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
           </AssociationSet>
           <EntitySet Name="Slider" EntityType="ECommerceModel.Slider" />
+          <FunctionImport Name="RecursiveCategoryList" ReturnType="Collection(ECommerceModel.RecursiveCategoryList_Result)" />
         </EntityContainer>
         <EntityType Name="Slider">
           <Key>
@@ -1181,6 +1183,10 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="RedirectUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="RecursiveCategoryList_Result">
+          <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1448,6 +1454,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RecursiveCategoryList" FunctionName="ECommerceModel.Store.RecursiveCategoryList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceModel.RecursiveCategoryList_Result">
+                <ScalarProperty Name="LastCategoryId" ColumnName="LastCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

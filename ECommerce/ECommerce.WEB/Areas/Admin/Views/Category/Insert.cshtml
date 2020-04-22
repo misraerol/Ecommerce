@@ -1,0 +1,36 @@
+﻿@model ECommerce.WEB.Areas.Admin.Model.CategoryManagement.CategoryCRUDModel
+@{
+    ViewBag.Title = "Kategori Ekle";
+}
+
+
+@using (Html.BeginForm("Insert", "Category", FormMethod.Post, new { @id = "InsertCategory" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(s => s.TopCategoryId, new { @class = "col-form-label" })
+        @Html.DropDownListFor(s => s.TopCategoryId, Model.TopCategoryList, "Seçiniz", new { @class = "custom-select" })
+        @Html.ValidationMessageFor(s => s.TopCategoryId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(s => s.CategoryName, new { @class = "col-form-label" })
+
+        @Html.TextBoxFor(s => s.CategoryName, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(s => s.CategoryName)
+
+    </div>
+    
+    <div class="form-group">
+
+        <input type="submit" class="btn btn-success" />
+    </div>
+
+}
+
+
+@section Scripts{
+    <script>
+        Jform("#InsertCategory");
+    </script>
+}
