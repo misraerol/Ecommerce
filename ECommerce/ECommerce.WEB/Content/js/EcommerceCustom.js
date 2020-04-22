@@ -54,3 +54,21 @@
         }
     });
 }
+
+$('.datepicker').datepicker({
+    dateFormat: 'dd.mm.yy',
+    lang: 'tr',
+    timepicker: false,
+    closeOnDateSelect: true,
+
+});
+$(function () {
+    $('select').selectize();
+});
+
+
+$(function () {
+    $.validator.methods.date = function (value, element) {
+        return this.optional(element) || moment(value, "DD.MM.YYYY", true).isValid();
+    }
+});

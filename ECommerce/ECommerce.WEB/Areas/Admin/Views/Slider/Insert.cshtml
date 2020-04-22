@@ -25,12 +25,12 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.ExpiredDate, new { @class = "col-form-label" })
-                            @Html.TextBoxFor(s => s.ExpiredDate, "{0:d}", new { @class = "form-control datepicker", placeholder = "Bitiş Tarihi" })
+                            @Html.TextBoxFor(s => s.ExpiredDate, "{0:dd.MM.yyyy}", new { @class = "form-control datepicker", placeholder = "Bitiş Tarihi" })
                             @Html.ValidationMessageFor(s => s.ExpiredDate)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(s => s.CretaDate, new { @class = "col-form-label" })
-                            @Html.TextBoxFor(s => s.CretaDate, "{0:d}", new { @class = "form-control datepicker", placeholder = "Başlangıç Tarihi" })
+                            @Html.TextBoxFor(s => s.CretaDate, "{0:dd.MM.yyyy}", new { @class = "form-control datepicker", placeholder = "Başlangıç Tarihi" })
                             @Html.ValidationMessageFor(s => s.CretaDate)
                         </div>
                         <div class="form-group">
