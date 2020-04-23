@@ -3,6 +3,7 @@ using ECommerce.BIZ.Repository.ParameterTypeManagement;
 using ECommerce.DATA;
 using ECommerce.WEB.Areas.Admin.Model.ParameterManagement;
 using ECommerce.WEB.Utility.Attribute;
+using ECommerce.WEB.Utility.UIFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +45,11 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
         }
 
         [HttpPost]
-        public ActionResult InsertProductProperty(ParameterCRUDModel parameterCRUDModel)
+        public JsonResult InsertProductProperty(ParameterCRUDModel parameterCRUDModel)
         {
             ParameterType parameterType = parameterTypeRepository.GetByName(ParameterTypeList.ProductProperty);
 
-            Parameter parameterProductProperty = new Parameter()
+            Parameter parameter = new Parameter()
             {
                 IsActive = true,
                 CreateDate = DateTime.Now,
@@ -57,14 +58,53 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
                 ParameterTypeId= parameterType.ParameterTypeId
             };
 
-            parameterRepository.Insert(parameterProductProperty);
-            return RedirectToAction("Imdex", "ProductPropertyList");
+            parameterRepository.Insert(parameter);
+
+            Response response = new Response()
+            {
+                Message="Kayıt Oluşturuldu",
+                Status=true,
+                RedirectUrl=Url.
+            };
+
         }
 
-        //public ActionResult UpdateProductProperty(int id = 0)
-        //{ 
-        //    Parameter parameter=
-        //}
+        public ActionResult UpdateProductProperty(int id = 0)
+        {
+            Parameter parameter = parameterRepository.GetById(id);
+
+            if (parameter != null)
+            {
+                ParameterCRUDModel parameterCRUDModel = new ParameterCRUDModel()
+                {
+                    Name=parameter.Name,
+                    ParameterId=parameter.ParameterId
+                };
+
+                return View(parameter);
+            }
+            else
+            {
+                return RedirectToAction("ProductPropertyList", "Parameter");
+            }
+        }
+
+        public JsonResult UpdateProductProperty(ParameterCRUDModel parameterCRUDModel)
+        {
+            Parameter parameter = parameterRepository.GetById(parameterCRUDModel.ParameterId);
+
+            parameter.Name = parameterCRUDModel.Name;
+
+            parameterRepository.Update(parameter);
+
+            Response response = new Response()
+            {
+                Message = "Kayıt Güncellendi",
+                Status = true,
+                RedirectUrl = Url.Action("ProductPropertyList", "Parameter")
+            };
+            return Json(response);
+        }
 
 
         #endregion
