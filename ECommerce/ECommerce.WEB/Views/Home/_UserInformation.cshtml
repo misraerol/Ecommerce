@@ -2,16 +2,172 @@
 
 
 @{
-    AppUser appUser = (AppUser)Session["LoginUser"];
+    AppUser appUser = (AppUser)Session["LoggedUser"];
 }
 
-@if (Session["LoginUser"] != null)
+@if (appUser != null)
 {
 
-    <h1 class="up-cls">Kullanıcı = @appUser.FirstName</h1>
-    <li><a href="@Url.Action("Logout","Home")">Çıkış yap</a></li>
+    <div class="nav-icon">
+        <ul>
+            <li class="onhover-div setting-icon">
+                <div>
+                    <img src="~/Themes/assets/images/icon/settings.png" class=" img-fluid setting-img" alt="">
+                    <i class="fa fa-sliders mobile-icon"></i>
+                </div>
+                <div class="show-div setting">
+                    <h6>language</h6>
+                    <ul>
+                        <li><a href="#">english</a> </li>
+                        <li><a href="#">french</a> </li>
+                    </ul>
+                    <h6>currency</h6>
+                    <ul class="list-inline">
+                        <li><a href="#">euro</a> </li>
+                        <li><a href="#">rupees</a> </li>
+                        <li><a href="#">pound</a> </li>
+                        <li><a href="#">doller</a> </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="onhover-div pr-0 search-3">
+                <div onclick="openSearch()">
+                    <i class="ti-search mobile-icon-search mobile-icon"></i>
+                </div>
+                <div id="search-overlay" class="search-overlay">
+                    <div>
+                        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+                        <div class="overlay-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="onhover-div wishlist-icon" onclick="openWishlist()">
+                <img src="~/Themes/assets/images/icon/l-2/wishlist.png" alt="" class="wishlist-img">
+                <i class="ti-heart mobile-icon"></i>
+                <div class="wishlist icon-detail">
+                    <h6 class="up-cls"><span>3 item</span></h6>
+                    <h6><a href="#">wish list</a></h6>
+                </div>
+            </li>
+            <li class="onhover-div user-icon">
+                <img src="~/Themes/assets/images/icon/l-2/user.png" alt="" class="user-img">
+                <i class="ti-user mobile-icon"></i>
+                <div class="wishlist icon-detail">
+
+                    <h6 class="up-cls"><span>Hesabım</span></h6>
+                    <h6><a href="@Url.Action("Profile","User")">@appUser.FirstName</a></h6>
+                    <div class="show-div setting">
+                        <h6>İşlemler</h6>
+                        <ul>
+                            <li><a href="@Url.Action("Logout","Home")">Çıkış Yap</a> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </li>
+            <li class="onhover-div cart-icon" onclick="openCart()">
+                <img src="~/Themes/assets/images/icon/l-2/cart.png" alt="" class="cart-image">
+                <i class="ti-shopping-cart mobile-icon"></i>
+                <div class="cart  icon-detail">
+                    <h6 class="up-cls"><span>3 item</span></h6>
+                    <h6><a href="#">my cart</a></h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
 }
 else
 {
-    <h6><a href="@Url.Action("Login","Home")">Giriş Yap veya üye ol</a></h6>
+    <div class="nav-icon">
+        <ul>
+            <li class="onhover-div setting-icon">
+                <div>
+                    <img src="~/Themes/assets/images/icon/settings.png" class=" img-fluid setting-img" alt="">
+                    <i class="fa fa-sliders mobile-icon"></i>
+                </div>
+                <div class="show-div setting">
+                    <h6>language</h6>
+                    <ul>
+                        <li><a href="#">english</a> </li>
+                        <li><a href="#">french</a> </li>
+                    </ul>
+                    <h6>currency</h6>
+                    <ul class="list-inline">
+                        <li><a href="#">euro</a> </li>
+                        <li><a href="#">rupees</a> </li>
+                        <li><a href="#">pound</a> </li>
+                        <li><a href="#">doller</a> </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="onhover-div pr-0 search-3">
+                <div onclick="openSearch()">
+                    <i class="ti-search mobile-icon-search mobile-icon"></i>
+                </div>
+                <div id="search-overlay" class="search-overlay">
+                    <div>
+                        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+                        <div class="overlay-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="onhover-div wishlist-icon" onclick="openWishlist()">
+                <img src="~/Themes/assets/images/icon/l-2/wishlist.png" alt="" class="wishlist-img">
+                <i class="ti-heart mobile-icon"></i>
+                <div class="wishlist icon-detail">
+                    <h6 class="up-cls"><span>3 item</span></h6>
+                    <h6><a href="#">wish list</a></h6>
+                </div>
+            </li>
+            <li class="onhover-div user-icon">
+                <img src="~/Themes/assets/images/icon/l-2/user.png" alt="" class="user-img">
+                <i class="ti-user mobile-icon"></i>
+                <div class="wishlist icon-detail">
+
+                    <h6 class="up-cls">Hesabım</h6>
+                    <h6><a href="@Url.Action("Login","Home")">Kayıt Ol veya Giriş Yap</a></h6>
+
+                </div>
+            </li>
+            <li class="onhover-div cart-icon" onclick="openCart()">
+                <img src="~/Themes/assets/images/icon/l-2/cart.png" alt="" class="cart-image">
+                <i class="ti-shopping-cart mobile-icon"></i>
+                <div class="cart  icon-detail">
+                    <h6 class="up-cls"><span>3 item</span></h6>
+                    <h6><a href="#">my cart</a></h6>
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+
 }
