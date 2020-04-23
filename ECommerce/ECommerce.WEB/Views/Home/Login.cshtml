@@ -1,0 +1,66 @@
+﻿@using ECommerce.WEB.Models.AppUserManagement
+@model AppUserCRUDModel
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "LoginHome" }))
+{
+    <!-- breadcrumb start -->
+    <section class="breadcrumb-section section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title">
+                        <h2>Üye Girişi</h2>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb End -->
+    <!--section start-->
+    <section class="login-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="title">Login</h3>
+                    <div class="theme-card">
+                        <form class="theme-form">
+                            <div class="form-group">
+                                @Html.LabelFor(s => s.Email, new { @class = "col-form-label" })
+                                @Html.TextBoxFor(s => s.Email, new { @class = "form-control", type = "email" })
+                                @Html.ValidationMessageFor(c => c.Email)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(s => s.Password, new { @class = "col-form-label" })
+                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", })
+                                @Html.ValidationMessageFor(c => c.Password)
+                            </div><input type="submit" class="btn btn-solid" value="Giriş Yap">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 right-login">
+                    <h3 class="title">Yeni Üye</h3>
+                    <div class="theme-card authentication-right">
+                        <h6 class="title-font">Üye Ol</h6>
+                        <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop.
+                        To start shopping click register.</p><a href="@Url.Action("Register","Home")" class="btn btn-solid">Kayıt Ol</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+}
+@section Scripts{
+    <script>
+        Jform("#LoginHome");
+    </script>
+    }

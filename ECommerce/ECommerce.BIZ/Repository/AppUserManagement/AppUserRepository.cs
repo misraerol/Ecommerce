@@ -41,6 +41,16 @@ namespace ECommerce.BIZ.Repository.AppUserManagement
             db.SaveChanges();
         }
 
+        public bool AnyUserEmail(string email)
+        {
+            bool anyUserEmail = db.AppUser.Where(s => s.Email.Equals(email)).Any();
+            return anyUserEmail;
+        }
+        public AppUser GetByEmailAndPassword(string email , string password)
+        {
+            AppUser appUser = db.AppUser.Where(s => s.Email.Equals(email) && s.Password.Equals(password)).SingleOrDefault();
+            return appUser;
+        }
 
     }
 }
