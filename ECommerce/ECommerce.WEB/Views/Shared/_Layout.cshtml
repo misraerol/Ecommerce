@@ -602,12 +602,13 @@
                                                 <h6><a href="#">wish list</a></h6>
                                             </div>
                                         </li>
-                                        <li class="onhover-div user-icon" onclick="openAccount()">
+                                        <li class="onhover-div user-icon" >
                                             <img src="~/Themes/assets/images/icon/l-2/user.png" alt="" class="user-img">
                                             <i class="ti-user mobile-icon"></i>
                                             <div class="wishlist icon-detail">
-                                                <h6 class="up-cls"><span>my account</span></h6>
-                                                <h6><a href="#">login/sign up</a></h6>
+                                               
+                                                @Html.Action("_UserInformation","Home") 
+                                                
                                             </div>
                                         </li>
                                         <li class="onhover-div cart-icon" onclick="openCart()">

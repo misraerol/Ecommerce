@@ -1,0 +1,17 @@
+﻿@using ECommerce.DATA
+
+
+@{
+    AppUser appUser = (AppUser)Session["LoginUser"];
+}
+
+@if (Session["LoginUser"] != null)
+{
+
+    <h1 class="up-cls">Kullanıcı = @appUser.FirstName</h1>
+    <li><a href="@Url.Action("Logout","Home")">Çıkış yap</a></li>
+}
+else
+{
+    <h6><a href="@Url.Action("Login","Home")">Giriş Yap veya üye ol</a></h6>
+}

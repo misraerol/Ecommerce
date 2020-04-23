@@ -140,6 +140,11 @@ namespace ECommerce.WEB.Controllers
             }).ToList();
             return PartialView(sliderViewModel);
         }
+        public PartialViewResult _UserInformation()
+        {
 
+                return PartialView();
+ 
+        }
     }
 }
