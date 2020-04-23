@@ -64,9 +64,9 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
             {
                 Message="Kayıt Oluşturuldu",
                 Status=true,
-                RedirectUrl=Url.
+                RedirectUrl=Url.Action("InsertProductProperty","Parameter")
             };
-
+            return Json(response);
         }
 
         public ActionResult UpdateProductProperty(int id = 0)
