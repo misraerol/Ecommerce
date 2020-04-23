@@ -1,17 +1,18 @@
 ﻿@using ECommerce.WEB.Areas.Admin.Model.ParameterManagement
 @model ParameterCRUDModel
 @{
-    ViewBag.Title = "Ürün Özelliği Ekle";
+    ViewBag.Title = "Ürün Özelliği Güncelle";
 }
 
-@using (Html.BeginForm("InsertProductProperty", "Parameter", FormMethod.Post, new { id = "InsertProductProperty", @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateProductProperty", "Parameter", FormMethod.Post, new { id = "UpdateProductProperty", @enctype = "multipart/form-data" }))
 {
+    @Html.HiddenFor(s=>s.ParameterId)
     <div class="col-lg-6 col-ml-12">
         <div class="row">
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Ürün Özelliği Ekle</h4>
+                        <h4 class="header-title">Ürün Özelliği Güncelle</h4>
                         <div class="form-group">
                             <label class="col-form-label">Ürün Özelliği</label>
                             @Html.TextBoxFor(s => s.Name, new { @class = "form-control", required = "", placeholder = "İsim" })
@@ -30,7 +31,7 @@
 
 @section Scripts{
     <script>
-        Jform("#InsertProductProperty");
+        Jform("#UpdateProductProperty");
     </script>
 }
 

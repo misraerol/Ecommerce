@@ -34,7 +34,13 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
 
         public ActionResult ProductPropertyList()
         {
-            return View();
+            List<ParameterListView> parameterList = parameterRepository.GetAllListByParameterTypeName(ParameterTypeList.ProductProperty).Select(a=> new ParameterListView()
+            {
+                Name=a.Name,
+                ParameterId=a.ParameterId
+            }).ToList();
+
+            return View(parameterList);
         }
 
         [HttpGet]
@@ -47,6 +53,9 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
         [HttpPost]
         public JsonResult InsertProductProperty(ParameterCRUDModel parameterCRUDModel)
         {
+            Response response;
+
+
             ParameterType parameterType = parameterTypeRepository.GetByName(ParameterTypeList.ProductProperty);
 
             Parameter parameter = new Parameter()
@@ -55,20 +64,32 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
                 CreateDate = DateTime.Now,
                 IsDeleted = false,
                 Name = parameterCRUDModel.Name,
-                ParameterTypeId= parameterType.ParameterTypeId
+                ParameterTypeId = parameterType.ParameterTypeId
             };
+
+            Parameter controlParameter = parameterRepository.GetByParameterNameAndParameterTypeId(parameterCRUDModel.Name, parameterType.ParameterTypeId);
+
+            if (controlParameter != null)
+            {
+                response = new Response()
+                {
+                    Message = "Bu Kayıt Daha Önce Oluşturulmuş",
+                    Status = false,
+                };
+                return Json(response);
+            }
 
             parameterRepository.Insert(parameter);
 
-            Response response = new Response()
+            response = new Response()
             {
-                Message="Kayıt Oluşturuldu",
-                Status=true,
-                RedirectUrl=Url.Action("InsertProductProperty","Parameter")
+                Message = "Kayıt Oluşturuldu",
+                Status = true,
+                RedirectUrl = Url.Action("ProductPropertyList", "Parameter")
             };
             return Json(response);
         }
-
+        [HttpGet]
         public ActionResult UpdateProductProperty(int id = 0)
         {
             Parameter parameter = parameterRepository.GetById(id);
@@ -77,27 +98,44 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
             {
                 ParameterCRUDModel parameterCRUDModel = new ParameterCRUDModel()
                 {
-                    Name=parameter.Name,
-                    ParameterId=parameter.ParameterId
+                    Name = parameter.Name,
+                    ParameterId = parameter.ParameterId
                 };
 
-                return View(parameter);
+                return View(parameterCRUDModel);
             }
             else
             {
                 return RedirectToAction("ProductPropertyList", "Parameter");
             }
         }
-
+        [HttpPost]
         public JsonResult UpdateProductProperty(ParameterCRUDModel parameterCRUDModel)
         {
+            Response response;
             Parameter parameter = parameterRepository.GetById(parameterCRUDModel.ParameterId);
 
             parameter.Name = parameterCRUDModel.Name;
 
+            Parameter controlParameter = parameterRepository.GetByParameterNameAndParameterTypeId(parameterCRUDModel.Name, parameter.ParameterTypeId);
+
+            if (controlParameter != null)
+            {
+                if (controlParameter.ParameterId != parameter.ParameterId)
+                {
+                    response = new Response()
+                    {
+                        Message = "Bu Kayıt Kullanılmaktadır.",
+                        Status = false,
+                    };
+                    return Json(response);
+                }
+            }
+
+
             parameterRepository.Update(parameter);
 
-            Response response = new Response()
+            response = new Response()
             {
                 Message = "Kayıt Güncellendi",
                 Status = true,
@@ -106,6 +144,20 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ParameterManagement
             return Json(response);
         }
 
+
+        public ActionResult DeleteProductProperty(int id = 0)
+        {
+            Parameter parameter = parameterRepository.GetById(id);
+
+            if (parameter != null)
+            {
+                parameter.IsDeleted = true;
+
+                parameterRepository.Update(parameter);
+            }
+
+            return RedirectToAction("ProductPropertyList", "Parameter");
+        }
 
         #endregion
 
