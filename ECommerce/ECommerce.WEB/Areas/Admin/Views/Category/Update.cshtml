@@ -1,14 +1,14 @@
-﻿@model ECommerce.WEB.Areas.Admin.Model.CategoryManagement.CategoryCRUDModel
+﻿@using ECommerce.WEB.Areas.Admin.Model.CategoryManagement
+@model CategoryCRUDModel
 @{
-    ViewBag.Title = "Kategori Ekle";
+    ViewBag.Title = "Kategori Düzenle";
 }
- 
- 
 
-@using (Html.BeginForm("Insert", "Category", FormMethod.Post, new { @id = "InsertCategory" }))
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post, new { @id = "UpdateCategory" }))
 {
 
-
+    @Html.HiddenFor(s=> s.CategoryId)
 
     <div class="form-group">
 
@@ -35,9 +35,9 @@
 
 
 @section Scripts{
-     <script>
+    <script>
 
-        Jform("#InsertCategory");
+        Jform("#UpdateCategory");
 
 
     </script>
