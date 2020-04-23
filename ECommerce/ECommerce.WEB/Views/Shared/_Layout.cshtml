@@ -37,6 +37,8 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 <body>
 
@@ -1072,23 +1074,24 @@
     <!-- footer section end -->
     <!--modal popup start-->
     @*<div class="modal fade bd-example-modal-lg theme-modal newsletter-popup" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="modal-bg">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <div class="offer-content">
-                                        <h2>good thing</h2>
-                                        <h4>come to those who sign up for our newsleeter</h4>
-                                        <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                                            <div class="form-group mx-sm-3">
-                                                <input type="text" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
-                                                <button type="submit" class="btn btn-solid" id="mc-submit">subscribe</button>
-                                            </div>
-                                        </form>
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="modal-bg">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <div class="offer-content">
+                                            <h2>good thing</h2>
+                                            <h4>come to those who sign up for our newsleeter</h4>
+                                            <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                                                <div class="form-group mx-sm-3">
+                                                    <input type="text" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
+                                                    <button type="submit" class="btn btn-solid" id="mc-submit">subscribe</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1096,8 +1099,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <!--modal popup end-->
     <!-- Add to cart bar -->
     <div id="cart_side" class="add_to_cart right">
@@ -1919,10 +1921,10 @@
     <script src="https://kit.fontawesome.com/8b6c9abf6b.js" crossorigin="anonymous"></script>
     <script src="~/Themes/assets/js/modal.js"></script>
     <script src="~/Content/lib/swal/sweetalert2.js"></script>
-    <script src="~/Content/js/EcommerceCustom.js"></script>
     <script src="~/Content/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Content/js/EcommerceCustom.js"></script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
     @RenderSection("Scripts", required: false)

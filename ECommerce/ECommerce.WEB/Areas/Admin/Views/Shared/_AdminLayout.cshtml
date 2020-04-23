@@ -552,7 +552,10 @@
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <script>
 
- 
+        $(function () {
+            $('select').selectize();
+        });
+
     </script>
     <script src="~/Content/js/EcommerceCustom.js"></script>
     @RenderSection("Scripts", required: false)

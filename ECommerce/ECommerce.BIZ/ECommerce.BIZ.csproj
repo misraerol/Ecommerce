@@ -56,6 +56,9 @@
     <Compile Include="Repository\AdminUserManagement\AdminUserRepository.cs" />
     <Compile Include="Repository\AppUserManagement\AppUserRepository.cs" />
     <Compile Include="Repository\CategoryManagement\CategoryRepository.cs" />
+    <Compile Include="Repository\ParameterManagement\ParameterRepository.cs" />
+    <Compile Include="Repository\ParameterTypeManagement\ParameterTypeList.cs" />
+    <Compile Include="Repository\ParameterTypeManagement\ParameterTypeRepository.cs" />
     <Compile Include="Repository\ShippersManagement\ShippersRepository.cs" />
     <Compile Include="Repository\SliderManagement\SliderRepository.cs" />
   </ItemGroup>

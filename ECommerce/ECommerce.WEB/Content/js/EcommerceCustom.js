@@ -62,9 +62,6 @@ $('.datepicker').datepicker({
     closeOnDateSelect: true,
 
 });
-$(function () {
-    $('select').selectize();
-});
 
 
 $(function () {
