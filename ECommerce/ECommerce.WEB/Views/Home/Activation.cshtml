@@ -1,0 +1,40 @@
+﻿@model bool
+@{
+    ViewBag.Title = "Activation";
+}
+
+
+@if (Model)
+{
+    <!-- section start -->
+    <section class="p-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="error-section">
+                        <h3>Aktivasyon Tamamlandı</h3>
+                        <a href="@Url.Action("Index","Home")" class="btn btn-solid">Anasayfa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+}
+else
+{
+    <!-- section start -->
+    <section class="p-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="error-section">
+                        <h3>Aktivasyon Daha Önce Yapılmış</h3>
+                        <a href="@Url.Action("Index","Home")" class="btn btn-solid">Anasayfa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+}

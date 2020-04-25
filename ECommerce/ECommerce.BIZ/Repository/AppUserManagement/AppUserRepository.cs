@@ -46,6 +46,12 @@ namespace ECommerce.BIZ.Repository.AppUserManagement
             bool anyUserEmail = db.AppUser.Where(s => s.Email.Equals(email)).Any();
             return anyUserEmail;
         }
+
+        public AppUser GetByActivationCode(string activationCode)
+        {
+            AppUser appUser = db.AppUser.Where(s => s.IsActive && !s.IsDeleted && !s.IsActivation && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
+            return appUser;
+        }
         public AppUser GetByEmailAndPassword(string email , string password)
         {
             AppUser appUser = db.AppUser.Where(s => s.Email.Equals(email) && s.Password.Equals(password)).SingleOrDefault();

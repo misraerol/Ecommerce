@@ -8,6 +8,11 @@ namespace ECommerce.WEB.Utility.Extension
 {
 	public class MailBase
 	{
+		public string CustomerName { get; set; }
+
+		public string Message { get; set; }
+
+		public string RedirectUrl { get; set; }
 
 		public MailBase()
 		{

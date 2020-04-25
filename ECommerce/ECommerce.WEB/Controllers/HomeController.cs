@@ -58,6 +58,9 @@ namespace ECommerce.WEB.Controllers
                     Status = false
                 };
             }
+
+            string activationKey = Guid.NewGuid().ToString();
+
             AppUser appUser = new AppUser()
             {
                 Password = appUserCRUDModel.Password,
@@ -67,11 +70,26 @@ namespace ECommerce.WEB.Controllers
                 FirstName = appUserCRUDModel.FirstName,
                 LastName = appUserCRUDModel.LastName,
                 IsWantNotification = appUserCRUDModel.IsWantNotification,
-                IsActivation = true,
+                IsActivation = false,
                 IsActive = true,
-                IsDeleted = false
+                IsDeleted = false,
+                ActivationCode = activationKey,
             };
             appUserRepository.Insert(appUser);
+
+
+            #region Mail
+            MailExtension mailExtension = MailExtension.Instance();
+
+            mailExtension.Send(appUserCRUDModel.Email, "Aktivasyon Maili", "DefaultMailTemplate", new DefaultMailTemplate()
+            {
+                CustomerName = StringHelper.Combine(' ', appUser.FirstName, appUser.LastName),
+                RedirectUrl = Url.Action("Activation", "Home", new { activationCode = activationKey }),
+                Message = "Üyelik işlemini tamamlamanız için aktivasyon yapmanız gerekmektedir."
+            });
+
+            #endregion Mail
+
             response = new Response()
             {
                 Message = "Kayıt Başarılı",
@@ -87,8 +105,11 @@ namespace ECommerce.WEB.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
+            return View(appUserCRUDModel);
         }
+
+
         [HttpPost]
         public ActionResult Login(AppUserCRUDModel appUserCRUDModel)
         {
@@ -130,6 +151,28 @@ namespace ECommerce.WEB.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Activation(string activationCode)
+        {
+            bool status = false;
+
+            if (!string.IsNullOrEmpty(activationCode))
+            {
+                AppUser appUser = appUserRepository.GetByActivationCode(activationCode);
+
+                if (appUser != null)
+                {
+                    appUser.IsActivation = true;
+
+                    appUserRepository.Update(appUser);
+
+                    status = true;
+
+                    Session.Add("LoggedUser", appUser);
+                }
+            }
+            return View(status);
+        }
+
         public PartialViewResult _Slider()
         {
             List<SliderViewModel> sliderViewModel = sliderRepository.GetAllActiveList().Select(s => new SliderViewModel()
@@ -143,8 +186,8 @@ namespace ECommerce.WEB.Controllers
         public PartialViewResult _UserInformation()
         {
 
-                return PartialView();
- 
+            return PartialView();
+
         }
     }
 }

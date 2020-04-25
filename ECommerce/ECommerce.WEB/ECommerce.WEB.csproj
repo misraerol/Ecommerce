@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\mail.css" />
     <Content Include="Content\css\select2\i18n\af.js" />
     <Content Include="Content\css\select2\i18n\ar.js" />
     <Content Include="Content\css\select2\i18n\az.js" />
@@ -162,6 +163,17 @@
     <Content Include="Content\css\select2\select2.js" />
     <Content Include="Content\css\select2\select2.min.css" />
     <Content Include="Content\css\select2\select2.min.js" />
+    <Content Include="Content\mailImg\arrow-right-gray.png" />
+    <Content Include="Content\mailImg\cta-5-image-1.jpg" />
+    <Content Include="Content\mailImg\ecommerce-5-image-1.jpg" />
+    <Content Include="Content\mailImg\ecommerce-5-image-2.jpg" />
+    <Content Include="Content\mailImg\ecommerce-5-image-3.jpg" />
+    <Content Include="Content\mailImg\ecommerce-5-image-4.jpg" />
+    <Content Include="Content\mailImg\facebook-gray.png" />
+    <Content Include="Content\mailImg\instagram-gray.png" />
+    <Content Include="Content\mailImg\logo-dark.png" />
+    <Content Include="Content\mailImg\pinterest-gray.png" />
+    <Content Include="Content\mailImg\twitter-gray.png" />
     <Content Include="Content\selectize\css\selectize.bootstrap2.css" />
     <Content Include="Content\selectize\css\selectize.bootstrap3.css" />
     <Content Include="Content\selectize\css\selectize.css" />
@@ -1193,6 +1205,7 @@
     <Content Include="Views\Home\_Slider.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\_UserInformation.cshtml" />
+    <Content Include="Views\Home\Activation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

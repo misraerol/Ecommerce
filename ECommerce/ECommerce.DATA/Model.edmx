@@ -44,6 +44,7 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ActivationCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -623,6 +624,7 @@
           <NavigationProperty Name="AppUserMapWish" Relationship="Self.FK__AppUserMa__AppUs__6383C8BA" FromRole="AppUser" ToRole="AppUserMapWish" />
           <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__AppUs__60A75C0F" FromRole="AppUser" ToRole="ProductMapComment" />
           <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="AppUser" ToRole="UserCart" />
+          <Property Name="ActivationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -1222,6 +1224,7 @@
           <EntitySetMapping Name="AppUser">
             <EntityTypeMapping TypeName="ECommerceModel.AppUser">
               <MappingFragment StoreEntitySet="AppUser">
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
