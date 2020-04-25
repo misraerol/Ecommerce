@@ -13,6 +13,10 @@ using ECommerce.DATA;
 using ECommerce.BIZ.Repository.SliderManagement;
 using ECommerce.WEB.Models.SliderManagement;
 using ECommerce.BIZ.Repository.AppUserManagement;
+using ECommerce.BIZ.Repository.CategoryManagement;
+using ECommerce.WEB.Areas.Admin.Model.CategoryManagement;
+using ECommerce.BIZ.Repository.ParameterManagement;
+using ECommerce.BIZ.Repository.ParameterTypeManagement;
 
 namespace ECommerce.WEB.Controllers
 {
@@ -20,10 +24,14 @@ namespace ECommerce.WEB.Controllers
     {
         SliderRepository sliderRepository;
         AppUserRepository appUserRepository;
+        CategoryRepository categoryRepository;
+        ParameterRepository parameterRepository;
         public HomeController()
         {
             sliderRepository = new SliderRepository();
             appUserRepository = new AppUserRepository();
+            categoryRepository = new CategoryRepository();
+            parameterRepository = new ParameterRepository();
         }
         public ActionResult Index()
         {
@@ -34,6 +42,11 @@ namespace ECommerce.WEB.Controllers
         {
             AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
             appUserCRUDModel.BirthDate = DateTime.Now.AddYears(-20);
+            appUserCRUDModel.ParameterGenderTypeList = parameterRepository.GetAllListByParameterTypeName(ParameterTypeList.GenderType).Select(s => new CustomSelectList()
+            {
+                Id=s.ParameterId,
+                Name=s.Name
+            }).ToList();
             return View(appUserCRUDModel);
         }
 
@@ -74,6 +87,7 @@ namespace ECommerce.WEB.Controllers
                 IsActive = true,
                 IsDeleted = false,
                 ActivationCode = activationKey,
+                ParameterGenderId= appUserCRUDModel.ParameterGenderId,
             };
             appUserRepository.Insert(appUser);
 
@@ -188,6 +202,18 @@ namespace ECommerce.WEB.Controllers
 
             return PartialView();
 
+        }
+
+        public PartialViewResult _Category()
+        {
+            List<CategoryListView> categoryList = categoryRepository.GetAllMainCategory().Select(a=>new CategoryListView()
+            {
+                CategoryId=a.CategoryId,
+                Name=a.Name,
+                TopCategoryId=a.TopCategoryId
+            }).ToList();
+
+            return PartialView(categoryList);
         }
     }
 }

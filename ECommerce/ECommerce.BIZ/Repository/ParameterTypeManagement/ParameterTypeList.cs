@@ -18,5 +18,10 @@ namespace ECommerce.BIZ.Repository.ParameterTypeManagement
         /// </summary>
         public static string ProductProperty= "ProductProperty";
 
+        /// <summary>
+        /// Cinsiyet Tipi
+        /// </summary>
+        public static string GenderType= "GenderType";
+
     }
 }

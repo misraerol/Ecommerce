@@ -1128,6 +1128,7 @@
     <Compile Include="Utility\Extension\MailBase.cs" />
     <Compile Include="Utility\Extension\MailExtension.cs" />
     <Compile Include="Utility\Extension\Mail\Model\DefaultMailTemplate.cs" />
+    <Compile Include="Utility\UIFramework\CustomSelectList.cs" />
     <Compile Include="Utility\UIFramework\Response.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1206,6 +1207,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\_UserInformation.cshtml" />
     <Content Include="Views\Home\Activation.cshtml" />
+    <Content Include="Views\Home\_Category.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1216,6 +1218,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AppUserManagement\" />
+    <Folder Include="Models\CategoryManagement\" />
     <Folder Include="Uploads\ShippersLogo\" />
     <Folder Include="Uploads\SliderImage\" />
     <Folder Include="Views\Base\" />

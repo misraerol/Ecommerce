@@ -10,5 +10,7 @@ namespace ECommerce.WEB.Areas.Admin.Model.CategoryManagement
         public Nullable<int> CategoryId { get; set; }
 
         public string Name { get; set; }
+
+        public int TopCategoryId { get; set; }
     }
 }

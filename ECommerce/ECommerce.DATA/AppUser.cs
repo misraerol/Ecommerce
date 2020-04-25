@@ -35,6 +35,7 @@ namespace ECommerce.DATA
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public string ActivationCode { get; set; }
+        public int ParameterGenderId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
@@ -44,5 +45,6 @@ namespace ECommerce.DATA
         public virtual ICollection<ProductMapComment> ProductMapComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCart> UserCart { get; set; }
+        public virtual Parameter Parameter { get; set; }
     }
 }

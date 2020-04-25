@@ -45,6 +45,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="ActivationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParameterGenderId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -268,6 +269,18 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUser__Paramet__1AD3FDA4">
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="AppUser">
+              <PropertyRef Name="ParameterGenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -505,6 +518,10 @@
             <End Role="County" EntitySet="County" />
             <End Role="Address" EntitySet="Address" />
           </AssociationSet>
+          <AssociationSet Name="FK__AppUser__Paramet__1AD3FDA4" Association="Self.FK__AppUser__Paramet__1AD3FDA4">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="AppUser" EntitySet="AppUser" />
+          </AssociationSet>
           <AssociationSet Name="FK__AppUserMa__Addre__412EB0B6" Association="Self.FK__AppUserMa__Addre__412EB0B6">
             <End Role="Address" EntitySet="Address" />
             <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
@@ -625,6 +642,8 @@
           <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__AppUs__60A75C0F" FromRole="AppUser" ToRole="ProductMapComment" />
           <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="AppUser" ToRole="UserCart" />
           <Property Name="ActivationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParameterGenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parameter" Relationship="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" FromRole="AppUser" ToRole="Parameter" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -710,6 +729,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ParameterType" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="Parameter" ToRole="ParameterType" />
+          <NavigationProperty Name="AppUser" Relationship="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" FromRole="Parameter" ToRole="AppUser" />
         </EntityType>
         <EntityType Name="ParameterType">
           <Key>
@@ -1171,6 +1191,10 @@
           </AssociationSet>
           <EntitySet Name="Slider" EntityType="ECommerceModel.Slider" />
           <FunctionImport Name="RecursiveCategoryList" ReturnType="Collection(ECommerceModel.RecursiveCategoryList_Result)" />
+          <AssociationSet Name="FK__AppUser__Paramet__1AD3FDA4" Association="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="AppUser" EntitySet="AppUser" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Slider">
           <Key>
@@ -1189,6 +1213,18 @@
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" />
         </ComplexType>
+        <Association Name="FK__AppUser__Paramet__1AD3FDA4">
+          <End Type="ECommerceModel.Parameter" Role="Parameter" Multiplicity="1" />
+          <End Type="ECommerceModel.AppUser" Role="AppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="AppUser">
+              <PropertyRef Name="ParameterGenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1224,6 +1260,7 @@
           <EntitySetMapping Name="AppUser">
             <EntityTypeMapping TypeName="ECommerceModel.AppUser">
               <MappingFragment StoreEntitySet="AppUser">
+                <ScalarProperty Name="ParameterGenderId" ColumnName="ParameterGenderId" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

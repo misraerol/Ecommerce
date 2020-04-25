@@ -14,6 +14,12 @@ namespace ECommerce.DATA
     
     public partial class Parameter
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Parameter()
+        {
+            this.AppUser = new HashSet<AppUser>();
+        }
+    
         public int ParameterId { get; set; }
         public string Name { get; set; }
         public int ParameterTypeId { get; set; }
@@ -23,5 +29,7 @@ namespace ECommerce.DATA
         public bool IsDeleted { get; set; }
     
         public virtual ParameterType ParameterType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AppUser> AppUser { get; set; }
     }
 }

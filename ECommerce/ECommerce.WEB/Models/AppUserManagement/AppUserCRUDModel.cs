@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.WEB.Utility.UIFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -36,5 +37,12 @@ namespace ECommerce.WEB.Models.AppUserManagement
         [DisplayName("Kampanya ve duyurulardan haberdar olmak istiyorum")]
         [Required]
         public bool IsWantNotification { get; set; }
+
+        [DisplayName("Cinsiyet")]
+        [Required]
+        public int ParameterGenderId { get; set; }
+
+
+        public List<CustomSelectList> ParameterGenderTypeList { get; set; }
     }
 }

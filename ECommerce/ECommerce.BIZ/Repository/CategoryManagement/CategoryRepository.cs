@@ -51,5 +51,7 @@ namespace ECommerce.BIZ.Repository.CategoryManagement
         {
             return db.RecursiveCategoryList().ToList();
         }
+
+
     }
 }
