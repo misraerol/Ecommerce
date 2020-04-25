@@ -215,5 +215,11 @@ namespace ECommerce.WEB.Controllers
 
             return PartialView(categoryList);
         }
+
+        public ActionResult GetParentCategory(int id=0)
+        {
+            return View();
+        }
+
     }
 }
