@@ -52,6 +52,11 @@ namespace ECommerce.BIZ.Repository.CategoryManagement
             return db.RecursiveCategoryList().ToList();
         }
 
+        public List<Category> GetAllByTopCategoryId(int categoryId)
+        {
+            List<Category> categoryList = db.Category.Where(s => s.TopCategoryId == categoryId).ToList();
+            return categoryList;
+        }
 
     }
 }

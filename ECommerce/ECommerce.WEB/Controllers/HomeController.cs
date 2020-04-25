@@ -44,8 +44,8 @@ namespace ECommerce.WEB.Controllers
             appUserCRUDModel.BirthDate = DateTime.Now.AddYears(-20);
             appUserCRUDModel.ParameterGenderTypeList = parameterRepository.GetAllListByParameterTypeName(ParameterTypeList.GenderType).Select(s => new CustomSelectList()
             {
-                Id=s.ParameterId,
-                Name=s.Name
+                Id = s.ParameterId,
+                Name = s.Name
             }).ToList();
             return View(appUserCRUDModel);
         }
@@ -87,7 +87,7 @@ namespace ECommerce.WEB.Controllers
                 IsActive = true,
                 IsDeleted = false,
                 ActivationCode = activationKey,
-                ParameterGenderId= appUserCRUDModel.ParameterGenderId,
+                ParameterGenderId = appUserCRUDModel.ParameterGenderId,
             };
             appUserRepository.Insert(appUser);
 
@@ -206,19 +206,53 @@ namespace ECommerce.WEB.Controllers
 
         public PartialViewResult _Category()
         {
-            List<CategoryListView> categoryList = categoryRepository.GetAllMainCategory().Select(a=>new CategoryListView()
+            List<CategoryListView> categoryList = categoryRepository.GetAllMainCategory().Select(a => new CategoryListView()
+            {
+                CategoryId = a.CategoryId,
+                Name = a.Name,
+                TopCategoryId = a.TopCategoryId
+            }).ToList();
+
+            return PartialView(categoryList);
+        }
+
+
+        public ActionResult GetAllCategory()
+        {
+
+            List<CategoryListView> categoryList = categoryRepository.GetAllMainCategory().Select(a => new CategoryListView()
+            {
+                CategoryId = a.CategoryId,
+                Name = a.Name,
+                TopCategoryId = a.TopCategoryId
+            }).ToList();
+
+            Response<List<CategoryListView>> response = new Response<List<CategoryListView>>()
+            {
+                Data=categoryList,
+                Message="Başarılı",
+                Status=true
+            };
+            return Json(response);
+        }
+
+        public ActionResult GetParentCategory(int id = 0)
+        {
+            List<CategoryListView> categoryList = categoryRepository.GetAllByTopCategoryId(id).Select(a=> new CategoryListView()
             {
                 CategoryId=a.CategoryId,
                 Name=a.Name,
                 TopCategoryId=a.TopCategoryId
             }).ToList();
 
-            return PartialView(categoryList);
-        }
+            Response<List<CategoryListView>> response = new Response<List<CategoryListView>>()
+            {
+                Data = categoryList,
+                Message = "Başarılı",
+                Status = true
+            };
 
-        public ActionResult GetParentCategory(int id=0)
-        {
-            return View();
+            return Json(response);
         }
 
     }

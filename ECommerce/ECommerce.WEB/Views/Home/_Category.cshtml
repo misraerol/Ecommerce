@@ -4,44 +4,9 @@
 
 
 
-@section Scripts
-{
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <script>
-        new Vue({
-
-            el: "#CategoryApp",
-            data: {
-                firstName: "",
-                lastName: ""
-            },
-            methods: {
-                sendToServer: function () {
-
-                    axios({
-                        method: 'post',
-                        url: '/home/index',
-                        data: {
-                            "firstName": this.firstName,
-                            "lastName": this.lastName
-                        }
-                    }).then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-            }
-        });
-    </script>
-
-}
 
 
-<div class="content-header">
+<div class="content-header" id="CategoryApp">
     <div class="left-section">
         <div class="header-top">
             <div class="navbar">
@@ -197,45 +162,25 @@
                     <i class="ti-menu-alt"></i>
                 </div>
                 <ul id="main-menu" class="sm  pixelstrap sm-horizontal">
+                    <li>
+                        <div class="mobile-back text-right">
+                            Back<i class="fa fa-angle-right pl-2" aria-hidden="true"></i>
+                        </div>
+                    </li>
+                    <li v-for="(tb,index) in categoryList" :key="tb.CategoryId">
+                        <a href="#" v-on:click="CategoryClick(tb)" v-on:mouseover="GetParent(tb.CategoryId)">{{tb.Name}}</a>
+                        <ul>
+                            <li v-for="(tbSub,index) in parentCategoryList" :key="tbSub.CategoryId">
+                                <a href="#" v-on:click="CategoryClick(tbSub)" v-on:mouseover="GetSubParent(tbSub.CategoryId)">{{tbSub.Name}} </a>
+                                <ul>
+                                    <li v-for="(tbSubParent,index) in parentSubCategoryList" :key="tbSubParent.CategoryId">
+                                        <a href="" v-on:click="CategoryClick(tbSubParent)" v-on:mouseover="">{{tbSubParent.Name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
 
-                    @foreach (CategoryListView category in Model)
-                    {
-                        <li>
-                            <a href="#">@category.Name</a>
-                            <ul>
-                                <li>
-                                    <a href="#">sidebar</a>
-                                    <ul>
-                                        <li><a href="product-page.html">left sidebar</a></li>
-                                        <li><a href="product-page(right-sidebar).html">right sidebar</a></li>
-                                        <li><a href="product-page(no-sidebar).html">no sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">thumbnail image</a>
-                                    <ul>
-                                        <li><a href="product-page(left-image).html">left image</a></li>
-                                        <li><a href="product-page(right-image).html">right image</a></li>
-                                        <li><a href="product-page(image-outside).html">image outside </a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">three column</a>
-                                    <ul>
-                                        <li><a href="product-page(3-col-left).html">thumbnail left</a></li>
-                                        <li><a href="product-page(3-col-right).html">thumbnail right</a></li>
-                                        <li><a href="product-page(3-column).html">thubnail bottom</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="product-page(4-image).html">four image </a></li>
-                                <li><a href="product-page(sticky).html">sticky</a></li>
-                                <li><a href="product-page(accordian).html">accordian</a></li>
-                                <li><a href="product-page(bundle).html">bundle</a></li>
-                                <li><a href="product-page(image-swatch).html">image swatch </a></li>
-                                <li><a href="product-page(vertical-tab).html">vertical tab</a></li>
-                            </ul>
-                        </li>
-                    }
                     <li class="mega" id="hover-cls">
                         <a href="#">Mega menu</a>
                         <ul class="mega-menu feature-menu full-mega-menu">
@@ -417,3 +362,39 @@
     </div>
 </div>
 
+
+
+
+
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios@0.2.1/dist/axios.js"></script>
+<script>
+
+        new Vue({
+
+            el: "#CategoryApp",
+            data:{
+                categoryList: [],
+                active: false,
+                parentCategoryList:[],
+                parentSubCategoryList: [],
+                parent:false
+            },
+            methods: {
+                GetParent(e) {
+                    axios.get('@Url.Action("GetParentCategory", "Home")?id='+e).then(response => (this.parentCategoryList = response.Data))
+                },
+                 GetSubParent(e) {
+                     axios.get('@Url.Action("GetParentCategory", "Home")?id=' + e).then(response => (this.parentSubCategoryList = response.Data))
+                     this.parent = true;
+                },
+                CategoryClick(e) {
+                    window.location.href=('@Url.Action("Category","Product")?id=' + e.CategoryId);
+                }
+            },
+            mounted() {
+                axios.get('@Url.Action("GetAllCategory","Home")').then(response => (this.categoryList = response.Data))
+            }
+        });
+</script>
