@@ -1,0 +1,112 @@
+﻿@using ECommerce.WEB.Models.AddressManagament
+@model AddressCRUDModel
+@{
+    ViewBag.Title = "Adres Düzenleme";
+}
+
+@using (Html.BeginForm("Update", "Address", FormMethod.Post, new { @id = "UpdateAdress" }))
+{
+    @Html.Action("_ProfileInfo", "AppUser")
+    <!-- section start -->
+    <section class="section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                    <div class="dashboard-left">
+                        <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                        <div class="block-content">
+                            <ul>
+                                <li class="active"><a href="@Url.Action("Index","AppUser")">Kullanıcı Bilgilerim</a></li>
+                                <li><a href="@Url.Action("Index","Address")">Adres Bilgilerim</a></li>
+                                <li><a href="#">Siparişlerim</a></li>
+                                <li><a href="#">Beğendiklerim</a></li>
+                                <li><a href="#">İndirim Kuponlarım</a></li>
+                                <li><a href="#">Kayıtlı Kredi Kartlarım</a></li>
+                                <li><a href="#">Yardım</a></li>
+                                <li class="last"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="dashboard-right">
+                        <div class="dashboard">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3 class="title pt-0">Teslimat Adresim</h3>
+                                        <form class="theme-form">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.NameSurname, new { @class = "col-form-label" })
+                                                    @Html.TextBoxFor(s => s.NameSurname, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(s => s.NameSurname)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.Phone, new { @class = "col-form-label" })
+                                                    @Html.TextBoxFor(s => s.Phone, new { @class = "form-control", onkeydown = "javascript:backspacerDOWN(this,event);", onkeyup = "javascript:backspacerUP(this,event);" })
+                                                    @Html.ValidationMessageFor(s => s.Phone)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.CityId, new { @class = "col-form-label" })
+                                                    @Html.DropDownListFor(s => s.CityId, Model.CityList, string.Empty, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(s => s.CityId)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.CountyId, new { @class = "col-form-label" })
+                                                    @Html.DropDownListFor(s => s.CountyId, Model.CountyList, string.Empty, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(s => s.CountyId)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.Explanation, new { @class = "col-form-label" })
+                                                    @Html.TextBoxFor(s => s.Explanation, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(s => s.Explanation)
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(s => s.Title, new { @class = "col-form-label" })
+                                                    @Html.TextBoxFor(s => s.Title, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(s => s.Title)
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button class="btn btn-sm btn-solid" type="submit">Kaydet</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#txtphone').keydown(function (e) {
+            if (e.shiftKey || e.ctrlKey || e.altKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+
+</script>
+<script src="~/Themes/assets/js/phone.js"></script>
+
+@section Scripts{
+    <script>
+        Jform("#UpdateAddress");
+    </script>
+}
+

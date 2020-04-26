@@ -28,6 +28,8 @@ namespace ECommerce.DATA
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public string Phone { get; set; }
+        public string NameSurname { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual County County { get; set; }

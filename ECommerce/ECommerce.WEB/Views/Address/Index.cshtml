@@ -1,0 +1,105 @@
+﻿@using ECommerce.WEB.Models.AddressManagament
+@model List<AddressListView>
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Action("_ProfileInfo", "AppUser")
+<!-- section start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                <div class="dashboard-left">
+                    <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                    <div class="block-content">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("Index","AppUser")">Kullanıcı Bilgilerim</a></li>
+                            <li><a href="@Url.Action("Index","Address")">Adres Bilgilerim</a></li>
+                            <li><a href="#">Siparişlerim</a></li>
+                            <li><a href="#">Beğendiklerim</a></li>
+                            <li><a href="#">İndirim Kuponlarım</a></li>
+                            <li><a href="#">Kayıtlı Kredi Kartlarım</a></li>
+                            <li><a href="#">Yardım</a></li>
+                            <li class="last"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-right">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table cart-table table-responsive-xs">
+                                        <thead>
+                                            <tr class="table-head">
+
+                                                <th scope="col">Adres Adı</th>
+                                                <th scope="col">Ad, Soyad</th>
+                                                <th scope="col">Telefon</th>
+                                                <th scope="col">İl</th>
+                                                <th scope="col">İlçe</th>
+                                                <th scope="col">Adres</th>
+                                                <th scope="col">Düzenle</th>
+                                                <th scope="col">Sil</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (AddressListView address in Model)
+                                            {
+
+                                                <tr>
+
+                                                    <td>
+                                                        <h4>@address.Title</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>@address.NameSurname</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>@address.Phone</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>@address.CityName</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>@address.CountyName</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>@address.Explanation</h4>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="d-flex ">
+                                                            <li>
+                                                                <a href="@Url.Action("Update", "Address", new {id=address.AddressId })" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="d-flex">
+                                                            <li><a href="@Url.Action("Delete", "Address", new {id=address.AddressId })" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row cart-buttons">
+                        <div class="col-12 float-right"><a href="@Url.Action("Insert","Address")" class="btn btn-solid btn-sm">Adres Ekle</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

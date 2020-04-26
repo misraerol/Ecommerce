@@ -52,10 +52,34 @@ namespace ECommerce.BIZ.Repository.AppUserManagement
             AppUser appUser = db.AppUser.Where(s => s.IsActive && !s.IsDeleted && !s.IsActivation && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
             return appUser;
         }
-        public AppUser GetByEmailAndPassword(string email , string password)
+        public AppUser GetByEmailAndPassword(string email, string password)
         {
             AppUser appUser = db.AppUser.Where(s => s.Email.Equals(email) && s.Password.Equals(password)).SingleOrDefault();
             return appUser;
+        }
+        public void InsertAppUserMapAddress(AppUserMapAddress entity)
+        {
+           
+            db.AppUserMapAddress.Add(entity);
+            db.SaveChanges();
+        }
+        public List<Address> GetAllAddress(int appUserId)
+        {
+            List<AppUserMapAddress> appUserMapAddressesList = db.AppUserMapAddress.Where(s => s.IsActive && !s.IsDeleted&& s.AppUserId==appUserId).ToList();
+            List<Address> addressList = appUserMapAddressesList.Select(s => s.Address).ToList();
+            return addressList;
+        }
+      
+
+        public AppUserMapAddress GetByUserMapAddress(int id)
+        {
+            AppUserMapAddress appUserMapAddress = db.AppUserMapAddress.Where(s => s.AddressId == id && s.IsActive && !s.IsDeleted).SingleOrDefault();
+            return appUserMapAddress;
+        }
+        public void UpdateAppUserMapAddress(AppUserMapAddress entity)
+        {
+            db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
         }
 
     }

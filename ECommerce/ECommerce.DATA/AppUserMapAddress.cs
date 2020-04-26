@@ -19,7 +19,9 @@ namespace ECommerce.DATA
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public int AppUserId { get; set; }
     
         public virtual Address Address { get; set; }
+        public virtual AppUser AppUser { get; set; }
     }
 }

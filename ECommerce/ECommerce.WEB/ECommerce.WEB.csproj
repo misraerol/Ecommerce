@@ -1054,6 +1054,7 @@
     <Content Include="Themes\assets\js\main.js" />
     <Content Include="Themes\assets\js\menu.js" />
     <Content Include="Themes\assets\js\modal.js" />
+    <Content Include="Themes\assets\js\phone.js" />
     <Content Include="Themes\assets\js\popper.min.js" />
     <Content Include="Themes\assets\js\script.js" />
     <Content Include="Themes\assets\js\slick.js" />
@@ -1114,11 +1115,15 @@
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperListView.cs" />
     <Compile Include="Areas\Admin\Model\SliderManagement\SliderCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\SliderManagement\SliderListView.cs" />
+    <Compile Include="Controllers\AddressManagement\AddressController.cs" />
+    <Compile Include="Controllers\AppUserManagement\AppUserController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressManagament\AddressCRUDModel.cs" />
+    <Compile Include="Models\AddressManagament\AddressListView.cs" />
     <Compile Include="Models\AppUserManagement\AppUserCRUDModel.cs" />
     <Compile Include="Models\AppUserManagement\LoggedUser.cs" />
     <Compile Include="Models\SliderManagement\SliderViewModel.cs" />
@@ -1208,6 +1213,12 @@
     <Content Include="Views\Home\_UserInformation.cshtml" />
     <Content Include="Views\Home\Activation.cshtml" />
     <Content Include="Views\Home\_Category.cshtml" />
+    <Content Include="Views\AppUser\UserProfile.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Address\Insert.cshtml" />
+    <Content Include="Views\AppUser\Index.cshtml" />
+    <Content Include="Views\AppUser\_ProfileInfo.cshtml" />
+    <Content Include="Views\Address\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1217,7 +1228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\AppUserManagement\" />
     <Folder Include="Models\CategoryManagement\" />
     <Folder Include="Uploads\ShippersLogo\" />
     <Folder Include="Uploads\SliderImage\" />

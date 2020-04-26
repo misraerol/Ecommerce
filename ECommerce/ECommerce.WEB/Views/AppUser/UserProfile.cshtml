@@ -1,0 +1,89 @@
+﻿@using ECommerce.DATA
+
+
+@{
+    AppUser appUser = (AppUser)Session["LoggedUser"];
+}
+
+@using (Html.BeginForm("UserProfile", "AppUser", FormMethod.Post))
+{
+    @Html.Action("_ProfileInfo","AppUser")
+ 
+    <!-- section start -->
+    <section class="section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                    <div class="dashboard-left">
+                        <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                        <div class="block-content">
+                            <ul>
+                                <li class="active"><a href="@Url.Action("Index","AppUser")">Kullanıcı Bilgilerim</a></li>
+                                <li><a href="@Url.Action("Index","Address")">Adres Bilgilerim</a></li>
+                                <li><a href="#">Siparişlerim</a></li>
+                                <li><a href="#">Beğendiklerim</a></li>
+                                <li><a href="#">İndirim Kuponlarım</a></li>
+                                <li><a href="#">Kayıtlı Kredi Kartlarım</a></li>
+                                <li><a href="#">Yardım</a></li>
+                                <li class="last"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="dashboard-right">
+                        <div class="dashboard">
+                            <div class="page-title">
+                                <h2>Kullanıcı Bilgilerim</h2>
+                            </div>
+                            <div class="welcome-msg">
+                                <p>Merhaba @appUser.FirstName</p>
+                                <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
+                            </div>
+                            <div class="box-account box-info">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="box">
+                                            <div class="box-title">
+                                                <h3>Üyelik Bilgilerim</h3><a href="#">Edit</a>
+                                            </div>
+                                            <div class="box-content">
+                                                <div>
+                                                    @appUser.FirstName
+                                                    @appUser.LastName
+                                                </div>
+                                                <h6>@appUser.Email</h6>
+                                                <h6><a href="#">Şifre değiştir</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="box">
+                                            <div class="box-title">
+                                                <h3>Adres Bilgilerim</h3><a href="@Url.Action("Index","Adress")">Düzenle</a>
+                                            </div>
+                                            <div class="row">
+                                                @*<div class="col-sm-6">
+                                                        <h6>Fatura Adresi</h6><address><br><a href="#">Edit Address</a></address>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <h6>Kargo Adresi</h6><address>You have not set a default shipping address.<br><a href="#">Edit Address</a></address>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+}

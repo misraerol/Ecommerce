@@ -45,6 +45,7 @@
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Shipp__4E88ABD4" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ECommerceModel.Slider" Width="1.5" PointX="7.375" PointY="0.75" />
         <AssociationConnector Association="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" />
+        <AssociationConnector Association="ECommerceModel.FK__AppUserMa__AppUs__2739D489" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

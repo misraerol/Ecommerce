@@ -1,0 +1,29 @@
+﻿
+@using ECommerce.DATA
+
+
+@{
+    AppUser appUser = (AppUser)Session["LoggedUser"];
+}
+<!-- breadcrumb start -->
+<section class="breadcrumb-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title">
+                    <h2>Hesabım</h2>
+
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        @appUser.FirstName
+                        @appUser.LastName
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb End -->

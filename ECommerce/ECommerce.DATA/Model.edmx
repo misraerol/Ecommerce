@@ -17,6 +17,8 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameSurname" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -56,6 +58,7 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AppUserMapWish">
           <Key>
@@ -296,6 +299,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__AppUserMa__AppUs__2739D489">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="AppUserMapAddress" Type="Self.AppUserMapAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="AppUserMapAddress">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__AppUserMa__AppUs__6383C8BA">
           <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
           <End Role="AppUserMapWish" Type="Self.AppUserMapWish" Multiplicity="*" />
@@ -526,6 +541,10 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
           </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__AppUs__2739D489" Association="Self.FK__AppUserMa__AppUs__2739D489">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
+          </AssociationSet>
           <AssociationSet Name="FK__AppUserMa__AppUs__6383C8BA" Association="Self.FK__AppUserMa__AppUs__6383C8BA">
             <End Role="AppUser" EntitySet="AppUser" />
             <End Role="AppUserMapWish" EntitySet="AppUserMapWish" />
@@ -610,6 +629,8 @@
           <NavigationProperty Name="AppUser" Relationship="Self.FK__Address__AppUser__3D5E1FD2" FromRole="Address" ToRole="AppUser" />
           <NavigationProperty Name="County" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="Address" ToRole="County" />
           <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="Address" ToRole="AppUserMapAddress" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -644,6 +665,7 @@
           <Property Name="ActivationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParameterGenderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Parameter" Relationship="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" FromRole="AppUser" ToRole="Parameter" />
+          <NavigationProperty Name="AppUserMapAddress" Relationship="ECommerceModel.FK__AppUserMa__AppUs__2739D489" FromRole="AppUser" ToRole="AppUserMapAddress" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -655,6 +677,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="AppUserMapAddress" ToRole="Address" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="ECommerceModel.FK__AppUserMa__AppUs__2739D489" FromRole="AppUserMapAddress" ToRole="AppUser" />
         </EntityType>
         <EntityType Name="AppUserMapWish">
           <Key>
@@ -1195,6 +1219,10 @@
             <End Role="Parameter" EntitySet="Parameter" />
             <End Role="AppUser" EntitySet="AppUser" />
           </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__AppUs__2739D489" Association="ECommerceModel.FK__AppUserMa__AppUs__2739D489">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Slider">
           <Key>
@@ -1225,6 +1253,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__AppUserMa__AppUs__2739D489">
+          <End Type="ECommerceModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="ECommerceModel.AppUserMapAddress" Role="AppUserMapAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="AppUserMapAddress">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1234,6 +1274,8 @@
           <EntitySetMapping Name="Address">
             <EntityTypeMapping TypeName="ECommerceModel.Address">
               <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1279,6 +1321,7 @@
           <EntitySetMapping Name="AppUserMapAddress">
             <EntityTypeMapping TypeName="ECommerceModel.AppUserMapAddress">
               <MappingFragment StoreEntitySet="AppUserMapAddress">
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="AppUserMapAddress1" ColumnName="AppUserMapAddress" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
