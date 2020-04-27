@@ -4,43 +4,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace ECommerce.WEB.Models.AppUserManagement
 {
-    public class AppUserCRUDModel
+    public class AppUserUpdateView
     {
-       
+        public int AppUserId { get; set; }
+
         [DisplayName("Email")]
-        [Required]
         public string Email { get; set; }
 
         [DisplayName("Adı")]
-        [Required]
         public string FirstName { get; set; }
 
         [DisplayName("Soyadı")]
-        [Required]
         public string LastName { get; set; }
 
-        [DisplayName("Şifre")]
-        [Required]
+
+        [DisplayName("Eski Şifre")]
         public string Password { get; set; }
 
-        [DisplayName("Şifre Tekrar")]
-        [Required]
-        public string RePassword { get; set; }
+
+        [DisplayName("Yeni Şifre")]
+        public string NewPassword { get; set; }
+
+
+        [DisplayName("Yeni Şifre Tekrar")]
+        public string NewRePassword { get; set; }
 
         [DisplayName("Doğum Tarihi")]
-        [Required]
         public DateTime BirthDate { get; set; }
 
-        [DisplayName("Kampanya ve duyurulardan haberdar olmak istiyorum")]
-        [Required]
-        public bool IsWantNotification { get; set; }
 
         [DisplayName("Cinsiyet")]
-        [Required]
         public int ParameterGenderId { get; set; }
 
 

@@ -17,18 +17,7 @@
                     <div class="account-sidebar"><a class="popup-btn">my account</a></div>
                     <div class="dashboard-left">
                         <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
-                        <div class="block-content">
-                            <ul>
-                                <li class="active"><a href="@Url.Action("Index","AppUser")">Kullanıcı Bilgilerim</a></li>
-                                <li><a href="@Url.Action("Index","Address")">Adres Bilgilerim</a></li>
-                                <li><a href="#">Siparişlerim</a></li>
-                                <li><a href="#">Beğendiklerim</a></li>
-                                <li><a href="#">İndirim Kuponlarım</a></li>
-                                <li><a href="#">Kayıtlı Kredi Kartlarım</a></li>
-                                <li><a href="#">Yardım</a></li>
-                                <li class="last"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
-                            </ul>
-                        </div>
+                        @Html.Action("_MenuInfo", "AppUser")
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -47,7 +36,7 @@
                                     <div class="col-sm-6">
                                         <div class="box">
                                             <div class="box-title">
-                                                <h3>Üyelik Bilgilerim</h3><a href="#">Edit</a>
+                                                <h3>Üyelik Bilgilerim</h3><a href="@Url.Action("UpdateUser","AppUser")">Düzenle</a>
                                             </div>
                                             <div class="box-content">
                                                 <div>
@@ -55,14 +44,14 @@
                                                     @appUser.LastName
                                                 </div>
                                                 <h6>@appUser.Email</h6>
-                                                <h6><a href="#">Şifre değiştir</a></h6>
+                                                <h6><a href="@Url.Action("UpdateUser","AppUser")">Şifre değiştir</a></h6>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="box">
                                             <div class="box-title">
-                                                <h3>Adres Bilgilerim</h3><a href="@Url.Action("Index","Adress")">Düzenle</a>
+                                                <h3>Adres Bilgilerim</h3><a href="@Url.Action("Index","Address")">Düzenle</a>
                                             </div>
                                             <div class="row">
                                                 @*<div class="col-sm-6">

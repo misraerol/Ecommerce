@@ -63,7 +63,7 @@ namespace ECommerce.WEB.Controllers
                     Status = false,
                 };
             }
-            if (appUserCRUDModel.Password == appUserCRUDModel.RePassword)
+            if (appUserCRUDModel.Password != appUserCRUDModel.RePassword)
             {
                 response = new Response()
                 {

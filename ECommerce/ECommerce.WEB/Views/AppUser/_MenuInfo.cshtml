@@ -1,0 +1,20 @@
+﻿
+@using ECommerce.DATA
+
+
+@{
+    AppUser appUser = (AppUser)Session["LoggedUser"];
+}
+
+<div class="block-content">
+    <ul>
+        <li class="active"><a href="@Url.Action("UpdateUser","AppUser", new { id=appUser.AppUserId})">Kullanıcı Bilgilerim</a></li>
+        <li><a href="@Url.Action("Index","Address")">Adres Bilgilerim</a></li>
+        <li><a href="#">Siparişlerim</a></li>
+        <li><a href="#">Beğendiklerim</a></li>
+        <li><a href="#">İndirim Kuponlarım</a></li>
+        <li><a href="#">Kayıtlı Kredi Kartlarım</a></li>
+        <li><a href="#">Yardım</a></li>
+        <li class="last"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
+    </ul>
+</div>
