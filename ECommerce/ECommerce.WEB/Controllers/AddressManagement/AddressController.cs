@@ -102,6 +102,9 @@ namespace ECommerce.WEB.Controllers.AddressManagement
             Address address = userMapAddress.Address;
             if(address != null)
             {
+                List<City> cityList = cityCountyRepository.GetAllCity();
+                addressCRUDModel.CityList = new SelectList(cityList, "CityId", "Name");
+                addressCRUDModel.CountyList = new SelectList(string.Empty);
                 addressCRUDModel.AddressId = address.AddressId;
                 addressCRUDModel.CityId = address.County.CityId;
                 addressCRUDModel.CountyId = address.CountyId;
@@ -120,6 +123,7 @@ namespace ECommerce.WEB.Controllers.AddressManagement
         [HttpPost]
         public ActionResult Update(AddressCRUDModel addressCRUDModel)
         {
+            AppUser appUser = (AppUser)Session["LoggedUser"];
             Response response;
             AppUserMapAddress userMapAddress = appUserRepository.GetByUserMapAddress(addressCRUDModel.AddressId);
             Address address = userMapAddress.Address;
@@ -138,6 +142,8 @@ namespace ECommerce.WEB.Controllers.AddressManagement
                     RedirectUrl = Url.Action("Index", "Address"),
                     Status = true
                 };
+            
+                appUserRepository.UpdateAppUserMapAddress(userMapAddress);
             }
             else
             {
@@ -156,5 +162,7 @@ namespace ECommerce.WEB.Controllers.AddressManagement
             SelectList listItems = new SelectList(countyList, "CountyId", "Name");
             return Json(listItems);
         }
+
+       
     }
 }

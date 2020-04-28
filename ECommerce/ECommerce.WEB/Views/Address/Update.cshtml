@@ -5,14 +5,14 @@
 }
 
 @using (Html.BeginForm("Update", "Address", FormMethod.Post, new { @id = "UpdateAdress" }))
-{
+{@Html.HiddenFor(s=> s.AddressId)
     @Html.Action("_ProfileInfo", "AppUser")
     <!-- section start -->
     <section class="section-b-space">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                    <div class="account-sidebar"><a class="popup-btn">Hesabım</a></div>
                     <div class="dashboard-left">
                         <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
                         @Html.Action("_MenuInfo", "AppUser")
@@ -76,9 +76,9 @@
 
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
-        $('#txtphone').keydown(function (e) {
+        $('#Phone').keydown(function (e) {
             if (e.shiftKey || e.ctrlKey || e.altKey) {
                 e.preventDefault();
             } else {
@@ -91,11 +91,32 @@
     });
 
 </script>
-<script src="~/Themes/assets/js/phone.js"></script>
+<script src="~/Themes/assets/js/phone.js"></script>*@
 
 @section Scripts{
     <script>
-        Jform("#UpdateAddress");
-    </script>
-}
 
+    $(document).ready(function () {
+        $("#CityId").change(function () {
+            //alert("Değişti");
+            $("#CountyId").empty();
+            $.ajax({
+                url:'@Url.Action("GetAllCity", "Address")',
+                data: { id: $("#CityId").val() },
+                type: 'Post',
+                dataType: 'json',
+                success: function (counties) {
+                    //alert("Test");
+                    $.each(counties, function (i, counties) {
+                        //alert("Test");
+                        $("#CountyId").append('<option value="' + counties.Value + '">' + counties.Text + '</option>');
+                    });
+                }
+            });
+
+        });
+    });
+
+        Jform("#UpdateAdress");
+    </script>
+    }

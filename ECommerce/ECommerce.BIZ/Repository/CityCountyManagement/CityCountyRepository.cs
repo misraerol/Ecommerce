@@ -17,22 +17,26 @@ namespace ECommerce.BIZ.Repository.CityCountyManagement
         }
         public List<County> GetAll()
         {
-            throw new NotImplementedException();
+            List<County> counties = db.County.Where(s => s.IsActive && !s.IsDeleted).ToList();
+            return counties;
         }
 
         public County GetById(int id)
         {
-            throw new NotImplementedException();
+            County county = db.County.Where(s => s.IsActive && !s.IsDeleted && s.CountyId == id).SingleOrDefault();
+            return county;
         }
 
         public void Insert(County entity)
         {
-            throw new NotImplementedException();
+            db.County.Add(entity);
+            db.SaveChanges();
         }
 
         public void Update(County entity)
         {
-            throw new NotImplementedException();
+            db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
         }
 
         public List<County> GetAllByCityId(int cityId)
@@ -47,6 +51,7 @@ namespace ECommerce.BIZ.Repository.CityCountyManagement
 
             return cityList;
         }
+   
 
     }
 }
