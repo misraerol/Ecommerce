@@ -6,26 +6,25 @@
 
 
 <!-- section start -->
-    @Html.Action("_ProfileInfo", "AppUser")
-    @Html.HiddenFor(s => s.AppUserId)
-    <section class="section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="account-sidebar"><a class="popup-btn">my account</a></div>
-                    <div class="dashboard-left">
-                        <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
-                        @Html.Action("_MenuInfo", "AppUser")
-                    </div>
+@Html.Action("_ProfileInfo", "AppUser")
+<section class="section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="account-sidebar"><a class="popup-btn">my account</a></div>
+                <div class="dashboard-left">
+                    <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                    @Html.Action("_MenuInfo", "AppUser")
                 </div>
-                <div class="col-lg-9">
-                    <div class="dashboard-right">
-                        <div class="dashboard">
-                            <div class="container">
-                                @using (Html.BeginForm("UpdateUser", "AppUser", FormMethod.Post, new { id = "UpdateAppUser" }))
-                                { 
-
-                                    <!-- personal deatail section start -->
+            </div>
+            <div class="col-lg-9">
+                <div class="dashboard-right">
+                    <div class="dashboard">
+                        <div class="container">
+                            @using (Html.BeginForm("UpdateUser", "AppUser", FormMethod.Post, new { id = "UpdateAppUser" }))
+                            {
+                                @Html.HiddenFor(s => s.AppUserId)
+                                <!-- personal deatail section start -->
                                 <section class="contact-page register-page">
                                     <div class="container">
                                         <div class="row">
@@ -80,29 +79,29 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <h3 class="title pt-0">Şifre Güncelleme</h3>
-                                                <form class="theme-form">
-                                                    <div class="form-row">
-                                                        <div class="col-md-12">
-                                                            @Html.LabelFor(s => s.Password, new { @class = "col-form-label" })
-                                                            @Html.PasswordFor(s => s.Password, new { @class = "form-control", })
-                                                            @Html.ValidationMessageFor(c => c.Password)
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            @Html.LabelFor(s => s.NewPassword, new { @class = "col-form-label" })
-                                                            @Html.PasswordFor(s => s.NewPassword, new { @class = "form-control", })
-                                                            @Html.ValidationMessageFor(c => c.NewPassword)
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            @Html.LabelFor(s => s.NewRePassword, new { @class = "col-form-label" })
-                                                            @Html.PasswordFor(s => s.NewRePassword, new { @class = "form-control", })
-                                                            @Html.ValidationMessageFor(c => c.NewRePassword)
-                                                        </div>
+
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        @Html.LabelFor(s => s.Password, new { @class = "col-form-label" })
+                                                        @Html.PasswordFor(s => s.Password, new { @class = "form-control", })
+                                                        @Html.ValidationMessageFor(c => c.Password)
                                                     </div>
-                                                    <br />
-                                                    <div class="col-12 float-left">
-                                                        <button class="btn btn-sm btn-solid" type="submit">Güncelle</button>
+                                                    <div class="col-md-12">
+                                                        @Html.LabelFor(s => s.NewPassword, new { @class = "col-form-label" })
+                                                        @Html.PasswordFor(s => s.NewPassword, new { @class = "form-control", })
+                                                        @Html.ValidationMessageFor(c => c.NewPassword)
                                                     </div>
-                                                </form>
+                                                    <div class="col-md-12">
+                                                        @Html.LabelFor(s => s.NewRePassword, new { @class = "col-form-label" })
+                                                        @Html.PasswordFor(s => s.NewRePassword, new { @class = "form-control", })
+                                                        @Html.ValidationMessageFor(c => c.NewRePassword)
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="col-12 float-left">
+                                                    <button class="btn btn-sm btn-solid" type="submit">Güncelle</button>
+                                                </div>
+
                                             </div>
 
                                         </div>
@@ -110,19 +109,19 @@
                                 </section>
 
                                 <!-- Section ends -->
-                                }
-                            </div>
-
+                            }
                         </div>
-                        <div class="row cart-buttons">
 
-                        </div>
+                    </div>
+                    <div class="row cart-buttons">
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- section end -->
+    </div>
+</section>
+<!-- section end -->
 
 @section Scripts{
     <script>
