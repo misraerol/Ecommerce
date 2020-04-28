@@ -4,13 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AppUserId" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="150" />
           <Property Name="Explanation" Type="nvarchar(max)" />
           <Property Name="CountyId" Type="int" Nullable="false" />
@@ -251,18 +250,6 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Address__AppUser__3D5E1FD2">
-          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="AppUserId" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="AppUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Address__CountyI__3E52440B">
           <End Role="County" Type="Self.County" Multiplicity="1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
@@ -525,10 +512,6 @@
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCart" EntityType="Self.UserCart" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Address__AppUser__3D5E1FD2" Association="Self.FK__Address__AppUser__3D5E1FD2">
-            <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
           <AssociationSet Name="FK__Address__CountyI__3E52440B" Association="Self.FK__Address__CountyI__3E52440B">
             <End Role="County" EntitySet="County" />
             <End Role="Address" EntitySet="Address" />
@@ -610,7 +593,8 @@
             <End Role="UserCart" EntitySet="UserCart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -619,18 +603,16 @@
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AppUserId" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountyId" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AppUser" Relationship="Self.FK__Address__AppUser__3D5E1FD2" FromRole="Address" ToRole="AppUser" />
-          <NavigationProperty Name="County" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="Address" ToRole="County" />
-          <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="Address" ToRole="AppUserMapAddress" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NameSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="County" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="Address" ToRole="County" />
+          <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="Address" ToRole="AppUserMapAddress" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -658,14 +640,13 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Address" Relationship="Self.FK__Address__AppUser__3D5E1FD2" FromRole="AppUser" ToRole="Address" />
+          <Property Name="ActivationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParameterGenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parameter" Relationship="Self.FK__AppUser__Paramet__1AD3FDA4" FromRole="AppUser" ToRole="Parameter" />
+          <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__AppUs__2739D489" FromRole="AppUser" ToRole="AppUserMapAddress" />
           <NavigationProperty Name="AppUserMapWish" Relationship="Self.FK__AppUserMa__AppUs__6383C8BA" FromRole="AppUser" ToRole="AppUserMapWish" />
           <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__AppUs__60A75C0F" FromRole="AppUser" ToRole="ProductMapComment" />
           <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="AppUser" ToRole="UserCart" />
-          <Property Name="ActivationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParameterGenderId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Parameter" Relationship="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" FromRole="AppUser" ToRole="Parameter" />
-          <NavigationProperty Name="AppUserMapAddress" Relationship="ECommerceModel.FK__AppUserMa__AppUs__2739D489" FromRole="AppUser" ToRole="AppUserMapAddress" />
         </EntityType>
         <EntityType Name="AppUserMapAddress">
           <Key>
@@ -676,9 +657,9 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Address" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="AppUserMapAddress" ToRole="Address" />
           <Property Name="AppUserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AppUser" Relationship="ECommerceModel.FK__AppUserMa__AppUs__2739D489" FromRole="AppUserMapAddress" ToRole="AppUser" />
+          <NavigationProperty Name="Address" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="AppUserMapAddress" ToRole="Address" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__AppUserMa__AppUs__2739D489" FromRole="AppUserMapAddress" ToRole="AppUser" />
         </EntityType>
         <EntityType Name="AppUserMapWish">
           <Key>
@@ -752,8 +733,8 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="Self.FK__AppUser__Paramet__1AD3FDA4" FromRole="Parameter" ToRole="AppUser" />
           <NavigationProperty Name="ParameterType" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="Parameter" ToRole="ParameterType" />
-          <NavigationProperty Name="AppUser" Relationship="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" FromRole="Parameter" ToRole="AppUser" />
         </EntityType>
         <EntityType Name="ParameterType">
           <Key>
@@ -875,6 +856,19 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ProductMapShippers" Relationship="Self.FK__ProductMa__Shipp__4E88ABD4" FromRole="Shipper" ToRole="ProductMapShippers" />
         </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SliderId" />
+          </Key>
+          <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RedirectUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="UserCart">
           <Key>
             <PropertyRef Name="UserCartId" />
@@ -889,18 +883,6 @@
           <NavigationProperty Name="AppUser" Relationship="Self.FK__UserCart__AppUse__6754599E" FromRole="UserCart" ToRole="AppUser" />
           <NavigationProperty Name="Product" Relationship="Self.FK__UserCart__Produc__68487DD7" FromRole="UserCart" ToRole="Product" />
         </EntityType>
-        <Association Name="FK__Address__AppUser__3D5E1FD2">
-          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="AppUserId" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="AppUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Address__CountyI__3E52440B">
           <End Role="County" Type="Self.County" Multiplicity="1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
@@ -922,6 +904,30 @@
             </Principal>
             <Dependent Role="AppUserMapAddress">
               <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUser__Paramet__1AD3FDA4">
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="AppUser">
+              <PropertyRef Name="ParameterGenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppUserMa__AppUs__2739D489">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="AppUserMapAddress" Type="Self.AppUserMapAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="AppUserMapAddress">
+              <PropertyRef Name="AppUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1136,17 +1142,22 @@
           <EntitySet Name="ProductMapRequiredFields" EntityType="Self.ProductMapRequiredFields" />
           <EntitySet Name="ProductMapShippers" EntityType="Self.ProductMapShippers" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" />
           <EntitySet Name="UserCart" EntityType="Self.UserCart" />
-          <AssociationSet Name="FK__Address__AppUser__3D5E1FD2" Association="Self.FK__Address__AppUser__3D5E1FD2">
-            <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
           <AssociationSet Name="FK__Address__CountyI__3E52440B" Association="Self.FK__Address__CountyI__3E52440B">
             <End Role="County" EntitySet="County" />
             <End Role="Address" EntitySet="Address" />
           </AssociationSet>
           <AssociationSet Name="FK__AppUserMa__Addre__412EB0B6" Association="Self.FK__AppUserMa__Addre__412EB0B6">
             <End Role="Address" EntitySet="Address" />
+            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUser__Paramet__1AD3FDA4" Association="Self.FK__AppUser__Paramet__1AD3FDA4">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="AppUser" EntitySet="AppUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppUserMa__AppUs__2739D489" Association="Self.FK__AppUserMa__AppUs__2739D489">
+            <End Role="AppUser" EntitySet="AppUser" />
             <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
           </AssociationSet>
           <AssociationSet Name="FK__AppUserMa__AppUs__6383C8BA" Association="Self.FK__AppUserMa__AppUs__6383C8BA">
@@ -1213,58 +1224,12 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
           </AssociationSet>
-          <EntitySet Name="Slider" EntityType="ECommerceModel.Slider" />
           <FunctionImport Name="RecursiveCategoryList" ReturnType="Collection(ECommerceModel.RecursiveCategoryList_Result)" />
-          <AssociationSet Name="FK__AppUser__Paramet__1AD3FDA4" Association="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4">
-            <End Role="Parameter" EntitySet="Parameter" />
-            <End Role="AppUser" EntitySet="AppUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AppUserMa__AppUs__2739D489" Association="ECommerceModel.FK__AppUserMa__AppUs__2739D489">
-            <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="AppUserMapAddress" EntitySet="AppUserMapAddress" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Slider">
-          <Key>
-            <PropertyRef Name="SliderId" />
-          </Key>
-          <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="RedirectUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <ComplexType Name="RecursiveCategoryList_Result">
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" />
         </ComplexType>
-        <Association Name="FK__AppUser__Paramet__1AD3FDA4">
-          <End Type="ECommerceModel.Parameter" Role="Parameter" Multiplicity="1" />
-          <End Type="ECommerceModel.AppUser" Role="AppUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Parameter">
-              <PropertyRef Name="ParameterId" />
-            </Principal>
-            <Dependent Role="AppUser">
-              <PropertyRef Name="ParameterGenderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AppUserMa__AppUs__2739D489">
-          <End Type="ECommerceModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="ECommerceModel.AppUserMapAddress" Role="AppUserMapAddress" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="AppUserId" />
-            </Principal>
-            <Dependent Role="AppUserMapAddress">
-              <PropertyRef Name="AppUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1274,16 +1239,15 @@
           <EntitySetMapping Name="Address">
             <EntityTypeMapping TypeName="ECommerceModel.Address">
               <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Explanation" ColumnName="Explanation" />
                 <ScalarProperty Name="CountyId" ColumnName="CountyId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1302,8 +1266,6 @@
           <EntitySetMapping Name="AppUser">
             <EntityTypeMapping TypeName="ECommerceModel.AppUser">
               <MappingFragment StoreEntitySet="AppUser">
-                <ScalarProperty Name="ParameterGenderId" ColumnName="ParameterGenderId" />
-                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1315,18 +1277,20 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="ParameterGenderId" ColumnName="ParameterGenderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AppUserMapAddress">
             <EntityTypeMapping TypeName="ECommerceModel.AppUserMapAddress">
               <MappingFragment StoreEntitySet="AppUserMapAddress">
-                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="AppUserMapAddress1" ColumnName="AppUserMapAddress" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1510,6 +1474,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Slider">
+            <EntityTypeMapping TypeName="ECommerceModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="SliderId" ColumnName="SliderId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RedirectUrl" ColumnName="RedirectUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserCart">
             <EntityTypeMapping TypeName="ECommerceModel.UserCart">
               <MappingFragment StoreEntitySet="UserCart">
@@ -1520,20 +1498,6 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Slider">
-            <EntityTypeMapping TypeName="ECommerceModel.Slider">
-              <MappingFragment StoreEntitySet="Slider">
-                <ScalarProperty Name="RedirectUrl" ColumnName="RedirectUrl" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="SliderId" ColumnName="SliderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

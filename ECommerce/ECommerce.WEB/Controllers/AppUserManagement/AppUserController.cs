@@ -29,22 +29,27 @@ namespace ECommerce.WEB.Controllers.AppUserManagement
         }
 
         [HttpGet]
-        public ActionResult UpdateUser(int id = 0)
+        public ActionResult UpdateUser()
         {
             AppUserUpdateView appUserUpdateView = new AppUserUpdateView();
-            AppUser appUser = appUserRepository.GetById(id);
+            AppUser appuserSession = (AppUser)Session["LoggedUser"];
+            AppUser appUser = appUserRepository.GetById(appuserSession.AppUserId);
             if (appUser != null)
             {
-                appUserUpdateView.FirstName = appUser.FirstName;
-                appUserUpdateView.LastName = appUser.LastName;
-                appUserUpdateView.Email = appUser.Email;
-                appUserUpdateView.BirthDate = appUser.BirthDate;
-                appUserUpdateView.Password = appUser.Password;
                 appUserUpdateView.ParameterGenderTypeList = parameterRepository.GetAllListByParameterTypeName(ParameterTypeList.GenderType).Select(s => new CustomSelectList()
                 {
                     Id = s.ParameterId,
                     Name = s.Name
                 }).ToList();
+
+                appUserUpdateView.AppUserId = appuserSession.AppUserId;
+                appUserUpdateView.FirstName = appUser.FirstName;
+                appUserUpdateView.LastName = appUser.LastName;
+                appUserUpdateView.Email = appUser.Email;
+                appUserUpdateView.BirthDate = appUser.BirthDate;
+                appUserUpdateView.Password = appUser.Password;
+                appUserUpdateView.ParameterGenderId = appUser.ParameterGenderId;
+              
             }
             return View(appUserUpdateView);
         }

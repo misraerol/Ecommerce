@@ -21,7 +21,6 @@ namespace ECommerce.DATA
         }
     
         public int AddressId { get; set; }
-        public int AppUserId { get; set; }
         public string Title { get; set; }
         public string Explanation { get; set; }
         public int CountyId { get; set; }
@@ -31,7 +30,6 @@ namespace ECommerce.DATA
         public string Phone { get; set; }
         public string NameSurname { get; set; }
     
-        public virtual AppUser AppUser { get; set; }
         public virtual County County { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUserMapAddress> AppUserMapAddress { get; set; }

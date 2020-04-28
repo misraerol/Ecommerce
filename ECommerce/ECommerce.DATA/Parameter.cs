@@ -28,8 +28,8 @@ namespace ECommerce.DATA
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual ParameterType ParameterType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUser> AppUser { get; set; }
+        public virtual ParameterType ParameterType { get; set; }
     }
 }

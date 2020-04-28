@@ -45,8 +45,8 @@ namespace ECommerce.DATA
         public virtual DbSet<ProductMapRequiredFields> ProductMapRequiredFields { get; set; }
         public virtual DbSet<ProductMapShippers> ProductMapShippers { get; set; }
         public virtual DbSet<Shipper> Shipper { get; set; }
-        public virtual DbSet<UserCart> UserCart { get; set; }
         public virtual DbSet<Slider> Slider { get; set; }
+        public virtual DbSet<UserCart> UserCart { get; set; }
     
         public virtual ObjectResult<RecursiveCategoryList_Result> RecursiveCategoryList()
         {

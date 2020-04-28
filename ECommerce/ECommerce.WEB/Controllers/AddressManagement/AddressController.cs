@@ -47,6 +47,10 @@ namespace ECommerce.WEB.Controllers.AddressManagement
         public ActionResult Insert()
         {
             AddressCRUDModel addressCRUDModel = new AddressCRUDModel();
+
+            List<City> cityList = cityCountyRepository.GetAllCity();
+            addressCRUDModel.CityList =new SelectList(cityList,"CityId","Name");
+            addressCRUDModel.CountyList = new SelectList(string.Empty);
             return View(addressCRUDModel);
         }
         [HttpPost]
@@ -61,7 +65,9 @@ namespace ECommerce.WEB.Controllers.AddressManagement
                 CreateDate = DateTime.Now,
                 CountyId = addressCRUDModel.CountyId,
                 IsActive = true,
-                IsDeleted = false
+                IsDeleted = false,
+                NameSurname=addressCRUDModel.NameSurname,
+                Phone=addressCRUDModel.Phone
             };
             AppUserMapAddress appUserMapAddress = new AppUserMapAddress()
             {
@@ -146,19 +152,9 @@ namespace ECommerce.WEB.Controllers.AddressManagement
 
         public ActionResult GetAllCity(int id = 0)
         {
-            List<CityCountyListView> cityCountyList = cityCountyRepository.GetAllByCityId(id).Select(s => new CityCountyListView()
-            {
-                CityId = s.CityId,
-                Name = s.Name,
-                CountyId = s.CountyId
-            }).ToList();
-            Response<List<CityCountyListView>> response = new Response<List<CityCountyListView>>()
-            {
-                Data = cityCountyList,
-                Message = "Başarılı",
-                Status = true,
-            };
-            return Json(response);
+            List<County> countyList = cityCountyRepository.GetAllByCityId(id);
+            SelectList listItems = new SelectList(countyList, "CountyId", "Name");
+            return Json(listItems);
         }
     }
 }

@@ -5,8 +5,7 @@
 }
 
 
-@using (Html.BeginForm("UpdateUser", "AppUser", FormMethod.Post, new { id = "UpdateUser" }))
-{<!-- section start -->
+<!-- section start -->
     @Html.Action("_ProfileInfo", "AppUser")
     @Html.HiddenFor(s => s.AppUserId)
     <section class="section-b-space">
@@ -23,8 +22,10 @@
                     <div class="dashboard-right">
                         <div class="dashboard">
                             <div class="container">
+                                @using (Html.BeginForm("UpdateUser", "AppUser", FormMethod.Post, new { id = "UpdateAppUser" }))
+                                { 
 
-                                <!-- personal deatail section start -->
+                                    <!-- personal deatail section start -->
                                 <section class="contact-page register-page">
                                     <div class="container">
                                         <div class="row">
@@ -55,16 +56,19 @@
                                                         <div class="col-md-12">
                                                             @Html.LabelFor(s => s.ParameterGenderId, new { @class = "col-form-label" })
                                                             <ul>
-                                                                @*@foreach (var parameter in Model.ParameterGenderTypeList)
-                                                                    {
-                                                                        <li>
-                                                                            <div class="radio-option">
-                                                                                @Html.LabelForModel(parameter.Name, new { @class = "col-form-label", @for = parameter.Name })
-                                                                                @Html.RadioButtonFor(s => s.ParameterGenderId, parameter.Id, new { id = parameter.Name })
-                                                                                @Html.ValidationMessageFor(c => c.ParameterGenderId)
-                                                                            </div>
-                                                                        </li>
-                                                                    }*@
+
+
+                                                                @foreach (var parameter in Model.ParameterGenderTypeList)
+                                                                {
+
+                                                                    <li>
+                                                                        <div class="radio-option">
+                                                                            @Html.LabelForModel(parameter.Name, new { @class = "col-form-label", @for = parameter.Name })
+                                                                            @Html.RadioButtonFor(s => s.ParameterGenderId, parameter.Id, new { id = parameter.Id })
+                                                                            @Html.ValidationMessageFor(c => c.ParameterGenderId)
+                                                                        </div>
+                                                                    </li>
+                                                                }
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -104,8 +108,11 @@
                                         </div>
                                     </div>
                                 </section>
+
                                 <!-- Section ends -->
+                                }
                             </div>
+
                         </div>
                         <div class="row cart-buttons">
 
@@ -116,10 +123,10 @@
         </div>
     </section>
     <!-- section end -->
-}
+
 @section Scripts{
     <script>
-        Jform("UpdateUser")
+        Jform("#UpdateAppUser")
     </script>
 }
 

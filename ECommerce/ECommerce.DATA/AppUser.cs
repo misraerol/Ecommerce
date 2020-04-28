@@ -17,11 +17,10 @@ namespace ECommerce.DATA
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AppUser()
         {
-            this.Address = new HashSet<Address>();
+            this.AppUserMapAddress = new HashSet<AppUserMapAddress>();
             this.AppUserMapWish = new HashSet<AppUserMapWish>();
             this.ProductMapComment = new HashSet<ProductMapComment>();
             this.UserCart = new HashSet<UserCart>();
-            this.AppUserMapAddress = new HashSet<AppUserMapAddress>();
         }
     
         public int AppUserId { get; set; }
@@ -38,16 +37,14 @@ namespace ECommerce.DATA
         public string ActivationCode { get; set; }
         public int ParameterGenderId { get; set; }
     
+        public virtual Parameter Parameter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Address { get; set; }
+        public virtual ICollection<AppUserMapAddress> AppUserMapAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUserMapWish> AppUserMapWish { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapComment> ProductMapComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCart> UserCart { get; set; }
-        public virtual Parameter Parameter { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AppUserMapAddress> AppUserMapAddress { get; set; }
     }
 }

@@ -40,5 +40,13 @@ namespace ECommerce.BIZ.Repository.CityCountyManagement
             List<County> counties = db.County.Where(s => s.CityId == cityId).ToList();
             return counties;
         }
+
+        public List<City> GetAllCity()
+        {
+            List<City> cityList = db.City.Where(s => s.IsActive && !s.IsDeleted).ToList();
+
+            return cityList;
+        }
+
     }
 }
