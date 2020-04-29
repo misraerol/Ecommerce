@@ -155,6 +155,7 @@ namespace ECommerce.WEB.Controllers
                     HttpCookie cookie = new HttpCookie("AppUser");
                     cookie["email"] = appUserCRUDModel.Email;
                     cookie["password"] = appUserCRUDModel.Password;
+                    cookie.Expires = DateTime.Now.AddYears(1);
 
                     Response.Cookies.Add(cookie);
                 }
@@ -182,6 +183,16 @@ namespace ECommerce.WEB.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
+ 
+            HttpCookie cookie = Request.Cookies["AppUser"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                cookie.Values["email"] = string.Empty;
+                cookie.Values["password"] = string.Empty;
+                Response.Cookies.Add(cookie);
+
+            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -219,9 +230,7 @@ namespace ECommerce.WEB.Controllers
         }
         public PartialViewResult _UserInformation()
         {
-
             return PartialView();
-
         }
 
         public PartialViewResult _Category()

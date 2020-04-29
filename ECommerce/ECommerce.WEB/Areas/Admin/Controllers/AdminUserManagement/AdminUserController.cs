@@ -15,7 +15,6 @@ using System.Web.Mvc;
 
 namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 {
-    [LoggedAdmin]
     public class AdminUserController : BaseController
     {
         AdminUserRepository adminUserRepository;
@@ -25,7 +24,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             adminUserRepository = new AdminUserRepository();
         }
 
-
+        [LoggedAdmin]
         public ActionResult Index()
         {
 
@@ -38,14 +37,14 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 
             return View(adminUserList);
         }
-
+        [LoggedAdmin]
         [HttpGet]
         public ActionResult Insert()
         {
             AdminUserCRUDModel adminUserCRUDModel = new AdminUserCRUDModel();
             return View(adminUserCRUDModel);
         }
-
+        [LoggedAdmin]
         [HttpPost]
         public ActionResult Insert(AdminUserCRUDModel adminUserCRUDModel)
         {
@@ -99,7 +98,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
             return Json(response);
         }
-
+        [LoggedAdmin]
         [HttpGet]
         public ActionResult Update(int id = 0)
         {
@@ -119,6 +118,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
         }
 
+        [LoggedAdmin]
         [HttpPost]
         public ActionResult Update(AdminUserCRUDModel adminUserCRUDModel)
         {
@@ -175,6 +175,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
         }
 
         [HttpGet]
+        [LoggedAdmin]
         public ActionResult Delete(int id = 0)
         {
             AdminUser adminUser = adminUserRepository.GetById(id);
