@@ -51,6 +51,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 
             if (!isHaveEmail)
             {
+                string activationKey = Guid.NewGuid().ToString();
                 AdminUser adminUser = new AdminUser()
                 {
                     Email = adminUserCRUDModel.Email,
@@ -67,6 +68,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                     Status = true,
                     RedirectUrl = Url.Action("Index", "AdminUser")
                 };
+
             }
             else
             {
@@ -117,7 +119,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 else
                 {
                     //Daha önce kullanımlış
-                    if(adminUser.Email== adminUserEmail.Email)
+                    if (adminUser.Email == adminUserEmail.Email)
                     {
                         //Email adresinde değişiklik yapılmamışsa buraya düşer aynı mail adresi ise sorun çıkarmayacak
                         adminUser.Email = adminUserCRUDModel.Email;
@@ -130,7 +132,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                         response = new Response()
                         {
                             Message = "Yazmış olduğunuz mail adresi bir başka kullanıcı tarafından kullanılmaktadır. ",
-                            Status =false
+                            Status = false
                         };
                         return Json(response);
                     }
@@ -148,7 +150,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 {
                     Message = "Kayıt bulunamadı",
                     Status = false
-                }; 
+                };
             }
             return Json(response);
         }
@@ -157,12 +159,12 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
         public ActionResult Delete(int id = 0)
         {
             AdminUser adminUser = adminUserRepository.GetById(id);
-            if(adminUser != null)
+            if (adminUser != null)
             {
                 adminUser.IsActive = false;
                 adminUser.IsDeleted = true;
                 adminUserRepository.Update(adminUser);
-              
+
             }
             return RedirectToAction("Index", "AdminUser");
         }

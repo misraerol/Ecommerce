@@ -43,7 +43,10 @@ namespace ECommerce.WEB.Models.AppUserManagement
         [Required]
         public int ParameterGenderId { get; set; }
 
-
         public List<CustomSelectList> ParameterGenderTypeList { get; set; }
+
+        [DisplayName("Beni Hatırla")]
+    
+        public bool RememberMe { get; set; }
     }
 }

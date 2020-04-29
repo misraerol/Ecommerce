@@ -115,11 +115,21 @@ namespace ECommerce.WEB.Controllers
 
         public ActionResult Login()
         {
-            if (Session["LoggedUser"] != null)
+            AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
+            AppUser appUser = (AppUser)Session["LoggedUser"];
+            if (appUser != null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
+            if (Request.Cookies["AppUser"] != null)
+            {
+                HttpCookie cookie = Request.Cookies["AppUser"];
+
+                appUserCRUDModel.Email= cookie["email"];
+                appUserCRUDModel.Password= cookie["password"];
+                Session.Add("LoggedUser", appUser);
+
+            }
             return View(appUserCRUDModel);
         }
 
@@ -138,6 +148,15 @@ namespace ECommerce.WEB.Controllers
                         Message = "Aktivasyon Yapılmadı",
                         Status = false
                     };
+
+                }
+                if (appUserCRUDModel.RememberMe)
+                {
+                    HttpCookie cookie = new HttpCookie("AppUser");
+                    cookie["email"] = appUserCRUDModel.Email;
+                    cookie["password"] = appUserCRUDModel.Password;
+
+                    Response.Cookies.Add(cookie);
                 }
                 Session.Add("LoggedUser", appUser);
                 response = new Response()
@@ -146,6 +165,7 @@ namespace ECommerce.WEB.Controllers
                     Status = true,
                     RedirectUrl = Url.Action("Index", "Home")
                 };
+
             }
             else
             {
@@ -229,20 +249,20 @@ namespace ECommerce.WEB.Controllers
 
             Response<List<CategoryListView>> response = new Response<List<CategoryListView>>()
             {
-                Data=categoryList,
-                Message="Başarılı",
-                Status=true
+                Data = categoryList,
+                Message = "Başarılı",
+                Status = true
             };
             return Json(response);
         }
 
         public ActionResult GetParentCategory(int id = 0)
         {
-            List<CategoryListView> categoryList = categoryRepository.GetAllByTopCategoryId(id).Select(a=> new CategoryListView()
+            List<CategoryListView> categoryList = categoryRepository.GetAllByTopCategoryId(id).Select(a => new CategoryListView()
             {
-                CategoryId=a.CategoryId,
-                Name=a.Name,
-                TopCategoryId=a.TopCategoryId
+                CategoryId = a.CategoryId,
+                Name = a.Name,
+                TopCategoryId = a.TopCategoryId
             }).ToList();
 
             Response<List<CategoryListView>> response = new Response<List<CategoryListView>>()

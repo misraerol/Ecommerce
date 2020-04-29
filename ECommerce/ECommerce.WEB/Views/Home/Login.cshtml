@@ -40,9 +40,19 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(s => s.Password, new { @class = "col-form-label" })
-                                @Html.PasswordFor(s => s.Password, new { @class = "form-control", })
+                                @Html.TextBoxFor(s => s.Password, new { @class = "form-control",type="password" })
                                 @Html.ValidationMessageFor(c => c.Password)
-                            </div><input type="submit" class="btn btn-solid" value="Giriş Yap">
+                            </div>
+                            <div>
+
+                                @Html.CheckBoxFor(s => s.RememberMe ,new { @class = ""})
+                                @Html.LabelFor(s => s.RememberMe, new { @class = "col-check-label" })
+                                @Html.ValidationMessageFor(s => s.RememberMe)
+                            </div>
+                            <br />
+                            <div>
+                                <input type="submit" class="btn btn-solid" value="Giriş Yap">
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -50,8 +60,10 @@
                     <h3 class="title">Yeni Üye</h3>
                     <div class="theme-card theme-form ">
                         <h6 class="title-font">Üye Ol</h6>
-                        <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop.
-                        To start shopping click register.</p><a href="@Url.Action("Register","Home")" class="btn btn-solid">Üye Ol</a>
+                        <p>
+                            Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop.
+                            To start shopping click register.
+                        </p><a href="@Url.Action("Register","Home")" class="btn btn-solid">Üye Ol</a>
                     </div>
                 </div>
             </div>
@@ -63,4 +75,4 @@
     <script>
         Jform("#LoginHome");
     </script>
-    }
+}
