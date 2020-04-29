@@ -1,8 +1,11 @@
 ﻿using ECommerce.BIZ.Repository.AdminUserManagement;
+using ECommerce.CORE.Helper;
 using ECommerce.DATA;
 using ECommerce.WEB.Areas.Admin.Model.AdminUserManagement;
 using ECommerce.WEB.Controllers;
 using ECommerce.WEB.Utility.Attribute;
+using ECommerce.WEB.Utility.Extension;
+using ECommerce.WEB.Utility.Extension.Mail.Model;
 using ECommerce.WEB.Utility.UIFramework;
 using System;
 using System.Collections.Generic;
@@ -56,12 +59,28 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 {
                     Email = adminUserCRUDModel.Email,
                     CreateDate = DateTime.Now,
-                    IsActive = true,
+                    IsActive = false,
                     IsDeleted = false,
+                    ActivationCode = activationKey,
+                    IsActivation = false,
                     Password = adminUserCRUDModel.Password
                 };
 
                 adminUserRepository.Insert(adminUser);
+
+                #region Mail
+                MailExtension mailExtension = MailExtension.Instance();
+                mailExtension.Send(adminUserCRUDModel.Email, "Aktivasyon Maili", "DefaultMailTemplate", new DefaultMailTemplate()
+                {
+                    CustomerName =StringHelper.Combine(' ',adminUser.Email,string.Empty),
+                    RedirectUrl=Url.Action("ActivationCode","AdminUser", new { activationCode =activationKey }),
+                    Message = "Üyelik işlemini tamamlamanız için aktivasyon yapmanız gerekmektedir."
+
+                });
+                #endregion Mail
+
+
+
                 response = new Response()
                 {
                     Message = "Kayıt Başarılı",
@@ -167,6 +186,23 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 
             }
             return RedirectToAction("Index", "AdminUser");
+        }
+        public ActionResult ActivationCode(string activationCode)
+        {
+            bool status = false;
+            if (!string.IsNullOrEmpty(activationCode))
+            {
+                AdminUser adminUser = adminUserRepository.GetByActivationCode(activationCode);
+                if (adminUser != null)
+                {
+                    adminUser.IsActivation = true;
+                    adminUser.IsActive = true;
+                    adminUserRepository.Update(adminUser);
+                    status = true;
+                    Session.Add("LoggedAdmin", adminUser);
+                }
+            }
+            return View(status);
         }
     }
 }
