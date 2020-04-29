@@ -1204,6 +1204,7 @@
     <Content Include="Areas\Admin\Views\Parameter\InsertProductProperty.cshtml" />
     <Content Include="Areas\Admin\Views\Parameter\ProductPropertyList.cshtml" />
     <Content Include="Areas\Admin\Views\Parameter\UpdateProductProperty.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\ActivationCode.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

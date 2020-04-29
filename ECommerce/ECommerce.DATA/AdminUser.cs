@@ -20,5 +20,7 @@ namespace ECommerce.DATA
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<bool> IsActivation { get; set; }
+        public string ActivationCode { get; set; }
     }
 }
