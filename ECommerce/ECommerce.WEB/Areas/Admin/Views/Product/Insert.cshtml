@@ -1,0 +1,145 @@
+﻿@model ECommerce.WEB.Areas.Admin.Model.ProductManagement.ProductCRUDModel
+@{
+    ViewBag.Title = "Ürün Ekle";
+}
+<link href="~/Content/editor/css/suneditor.min.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("Insert", "Category", FormMethod.Post, new { @id = "InsertCategory" }))
+{
+
+
+    <!-- basic form start -->
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Basic form</h4>
+                <form>
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.Name, new { @class = "col-form-label" })
+
+                        @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+                        <small id="emailHelp" class="form-text text-muted">
+                            Ürünün Adı
+                        </small>
+                        @Html.ValidationMessageFor(s => s.Name)
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.ShortName, new { @class = "col-form-label" })
+
+                        @Html.TextBoxFor(s => s.ShortName, new { @class = "form-control" })
+                        <small id="emailHelp" class="form-text text-muted">
+                            Ürünün Kısa Adı
+                        </small>
+                        @Html.ValidationMessageFor(s => s.Name)
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.Amount, new { @class = "col-form-label" })
+
+                        @Html.TextBoxFor(s => s.Amount, new { @class = "form-control", type = "number", step = "any" })
+                        <small id="emailHelp" class="form-text text-muted">
+                            Ürün Tutarı
+                        </small>
+                        @Html.ValidationMessageFor(s => s.Amount)
+
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.DiscountRate, new { @class = "col-form-label" })
+
+                        @Html.TextBoxFor(s => s.DiscountRate, new { @class = "form-control", type = "number", step = "any" })
+                        <small id="emailHelp" class="form-text text-muted">
+                            İndirim % Olarak Giriniz
+                        </small>
+                        @Html.ValidationMessageFor(s => s.Amount)
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.Explanation, new { @class = "col-form-label" })
+                        <!-- Tab content -->
+                        <div id="classic" class="tabcontent" style="display: block;">
+                            <div class="inline-margin"></div>
+                            @Html.TextAreaFor(s => s.Explanation)
+                            @*<textarea id="editor_classic" style="display:none;">
+                                </textarea>*@
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-success" value="Kaydet" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- basic form end -->
+
+
+
+}
+
+
+@section Scripts{
+
+    <script src="~/Content/editor/suneditor.min.js"></script>
+    <script src="~/Content/editor/codemirror.min.js"></script>
+    <script src="~/Content/editor/htmlmixed.js"></script>
+    <script src="~/Content/editor/xml.js"></script>
+    <script src="~/Content/editor/css.js"></script>
+    <!-- KaTeX -->
+    <script src="~/Content/editor/katex.min.js"></script>
+    <script>
+
+        Jform("#InsertCategory");
+
+        SUNEDITOR.create('Explanation', {
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            popupDisplay: 'full',
+            charCounter: true,
+            maxCharCount: @int.MaxValue,
+            charCounterLabel: 'Karakter :',
+            buttonList: [
+                ['undo', 'redo'],
+                ['font', 'fontSize', 'formatBlock'],
+                ['paragraphStyle', 'blockquote'],
+                ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+                ['fontColor', 'hiliteColor', 'textStyle'],
+                ['removeFormat'],
+                ['outdent', 'indent'],
+                ['align', 'horizontalRule', 'list', 'lineHeight'],
+                ['table', 'link', 'image', 'video', 'math'],
+                ['fullScreen', 'showBlocks', 'codeView'],
+                ['preview', 'print'],
+                ['save', 'template'],
+            ],
+            placeholder: 'Buraya ürün hakkında bişeyler yazabilirsin...',
+            templates: [
+                {
+                    name: 'Template-1',
+                    html: '<p>HTML source1</p>'
+                },
+                {
+                    name: 'Template-2',
+                    html: '<p>HTML source2</p>'
+                }
+            ],
+            codeMirror: CodeMirror,
+            katex: katex
+        });
+
+    </script>
+ 
+}

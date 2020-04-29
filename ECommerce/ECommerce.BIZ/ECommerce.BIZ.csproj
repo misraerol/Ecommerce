@@ -60,6 +60,7 @@
     <Compile Include="Repository\ParameterManagement\ParameterRepository.cs" />
     <Compile Include="Repository\ParameterTypeManagement\ParameterTypeList.cs" />
     <Compile Include="Repository\ParameterTypeManagement\ParameterTypeRepository.cs" />
+    <Compile Include="Repository\ProductManagement\ProductRepository.cs" />
     <Compile Include="Repository\ShippersManagement\ShippersRepository.cs" />
     <Compile Include="Repository\SliderManagement\SliderRepository.cs" />
   </ItemGroup>

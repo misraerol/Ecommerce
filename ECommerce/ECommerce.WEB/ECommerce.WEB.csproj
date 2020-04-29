@@ -163,6 +163,13 @@
     <Content Include="Content\css\select2\select2.js" />
     <Content Include="Content\css\select2\select2.min.css" />
     <Content Include="Content\css\select2\select2.min.js" />
+    <Content Include="Content\editor\codemirror.min.js" />
+    <Content Include="Content\editor\css.js" />
+    <Content Include="Content\editor\css\suneditor.min.css" />
+    <Content Include="Content\editor\htmlmixed.js" />
+    <Content Include="Content\editor\katex.min.js" />
+    <Content Include="Content\editor\suneditor.min.js" />
+    <Content Include="Content\editor\xml.js" />
     <Content Include="Content\mailImg\arrow-right-gray.png" />
     <Content Include="Content\mailImg\cta-5-image-1.jpg" />
     <Content Include="Content\mailImg\ecommerce-5-image-1.jpg" />
@@ -225,6 +232,10 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\touchspin\jquery.bootstrap-touchspin.css" />
+    <Content Include="Content\touchspin\jquery.bootstrap-touchspin.js" />
+    <Content Include="Content\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Content\touchspin\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Themes\AdminAssets\css\bootstrap.min.css" />
@@ -1102,6 +1113,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryManagement\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ParameterManagement\ParameterController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductManagement\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShippersManagement\ShipperController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderManagement\SliderController.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserCRUDModel.cs" />
@@ -1111,6 +1123,7 @@
     <Compile Include="Areas\Admin\Model\CategoryManagement\CategoryListView.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterListView.cs" />
+    <Compile Include="Areas\Admin\Model\ProductManagement\ProductCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperListView.cs" />
     <Compile Include="Areas\Admin\Model\SliderManagement\SliderCRUDModel.cs" />
@@ -1204,6 +1217,7 @@
     <Content Include="Areas\Admin\Views\Parameter\InsertProductProperty.cshtml" />
     <Content Include="Areas\Admin\Views\Parameter\ProductPropertyList.cshtml" />
     <Content Include="Areas\Admin\Views\Parameter\UpdateProductProperty.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Insert.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
