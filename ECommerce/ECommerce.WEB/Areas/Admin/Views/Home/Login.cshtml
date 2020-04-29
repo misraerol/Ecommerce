@@ -53,22 +53,21 @@
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <label for="Email">Email</label>
+                            @Html.LabelFor(s=> s.Email, new { @class ="col-form-label"})
                             @Html.TextBoxFor(s => s.Email, new { type = "email"})
-                            <i class="ti-email"></i>
                             @Html.ValidationMessageFor(s=>s.Email)
                         </div>
                         <div class="form-gp">
-                            <label for="Password">Şifre</label>
-                            @Html.PasswordFor(s => s.Password, new { })
-                            <i class="ti-lock"></i>
+                            @Html.LabelFor(s => s.Password, new { @class = "col-form-label" })
+                            @Html.TextBoxFor(s => s.Password, new { @class = "form-control", type = "password" })
                             @Html.ValidationMessageFor(s => s.Password)
                         </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <label class="custom-control-label" for="customControlAutosizing">Beni Hatırla</label>
-                                    @Html.CheckBoxFor(s => s.IsRemember, new { @class = "custom-control-input", id = "customControlAutosizing" })
+                                    @Html.CheckBoxFor(s => s.IsRemember, new { @class = "custom-control-input" })
+                                    @Html.LabelFor(s => s.IsRemember, new { @class = "custom-control-label" })
+                                    @Html.ValidationMessageFor(s => s.IsRemember)
                                 </div>
                             </div>
                             <div class="col-6 text-right">

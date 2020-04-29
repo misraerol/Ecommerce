@@ -61,7 +61,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                     IsActive = false,
                     IsDeleted = false,
                     ActivationCode = activationKey,
-                    IsActivation = false,
+                   
                     Password = adminUserCRUDModel.Password
                 };
 
@@ -196,7 +196,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 AdminUser adminUser = adminUserRepository.GetByActivationCode(activationCode);
                 if (adminUser != null)
                 {
-                    adminUser.IsActivation = true;
+                   
                     adminUser.IsActive = true;
                     adminUserRepository.Update(adminUser);
                     status = true;

@@ -30,16 +30,22 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
 
         public ActionResult Login()
         {
-            if (Session["LoggedAdmin"] == null)
+            AdminUserLoginCRUDModel adminUserLoginCRUDModel = new AdminUserLoginCRUDModel();
+            AdminUser adminUser = adminUserRepository.GetByEmailAndPassword(adminUserLoginCRUDModel.Email, adminUserLoginCRUDModel.Password);
+            if (adminUser  != null)
             {
-                AdminUserLoginCRUDModel adminUserLoginCRUDModel = new AdminUserLoginCRUDModel();
-                return View(adminUserLoginCRUDModel);
+                 return RedirectToAction("Index", "Home");
+                
             }
-            else
+           if(Request.Cookies["AdminUser"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                HttpCookie cookie = Request.Cookies["AdminUser"];
+
+                adminUserLoginCRUDModel.Email = cookie["email"];
+                adminUserLoginCRUDModel.Password = cookie["password"];
+                Session.Add("LoggedUser", adminUser);
             }
-       
+       return View(adminUserLoginCRUDModel);
         }
 
         [HttpPost]
@@ -49,6 +55,23 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
             AdminUser adminUser = adminUserRepository.GetByEmailAndPassword(adminUserLoginCRUDModel.Email, adminUserLoginCRUDModel.Password);
             if(adminUser != null)
             {
+                if (!adminUser.IsActive)
+                {
+                    response = new Response()
+                    {
+                        Message = "Aktivasyon Yapılmadı",
+                        Status = false
+                    };
+                }
+                if (adminUserLoginCRUDModel.IsRemember)
+                {
+                    HttpCookie cookie = new HttpCookie("AdminUser");
+                    cookie["email"] = adminUserLoginCRUDModel.Email;
+                    cookie["password"] = adminUserLoginCRUDModel.Password;
+                    cookie.Expires = DateTime.Now.AddYears(1);
+
+                    Response.Cookies.Add(cookie);
+                }
                 Session.Add("LoggedAdmin", adminUser);
 
                 response = new Response()
@@ -72,6 +95,16 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
+
+            HttpCookie cookie = Request.Cookies["AppUser"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                cookie.Values["email"] = string.Empty;
+                cookie.Values["password"] = string.Empty;
+                Response.Cookies.Add(cookie);
+
+            }
             return RedirectToAction("Index", "Home",new {area="" });
         }
 
