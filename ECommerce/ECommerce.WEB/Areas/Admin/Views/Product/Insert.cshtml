@@ -1,16 +1,18 @@
 ﻿@model ECommerce.WEB.Areas.Admin.Model.ProductManagement.ProductCRUDModel
+@using ECommerce.CORE.Helper
 @{
     ViewBag.Title = "Ürün Ekle";
+    var data = Html.Raw(JsonHelper.Convert(Model));
 }
 <link href="~/Content/editor/css/suneditor.min.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm("Insert", "Category", FormMethod.Post, new { @id = "InsertCategory" }))
+@using (Html.BeginForm("Insert", "Product", FormMethod.Post, new { @id = "InsertCategory" }))
 {
 
 
     <!-- basic form start -->
-    <div class="col-12 mt-5">
+    <div class="col-12 mt-5" id="ProductApp">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Ürün Ekle</h4>
@@ -67,8 +69,67 @@
                         @Html.LabelFor(s => s.CategoryId, new { @class = "col-form-label" })
                         @Html.DropDownListFor(s => s.CategoryId, Model.CategoryList, string.Empty, new { @class = "form-control" })
                         @Html.ValidationMessageFor(s => s.CategoryId)
+                    </div>
+
+                    <div class="form-group">
+                        <button id="cloneProperty" type="button">Ekle</button>
+                        <div class="form-row">
+
+                            <tr v-for="(Pmc, PmcIndex) in ProductMapPropertyCRUDModel" :key="Pmc.PrmProductPropertyId">
+                                @*<td>
+                                    @Html.LabelFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().PrmProductPropertyId, new Dictionary<string, object> {
+                                   { "v-bind:id", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                    { "v-bind:name", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                    { "class", "col-form-label" },
+                                   })
+
+                                    @Html.DropDownListFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().PrmProductPropertyId, Model.PrdouctPropertyList, string.Empty, new Dictionary<string, object> {
+                                    { "id","PrmProductPropertyId" },
+                                    { "v-bind:id", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                    { "v-bind:name", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                    { "class", "form-control" },
+                                    { ":class", "isEmpty(Pmc.PrmProductPropertyId)" },
+                                    { ":options", "ProductMapPropertyCRUDModel" },
+                                    { "data-placeholder", string.Empty },
+                                    { "data-allow-clear", true },
+                                    { "data-ajax-cache", "false" },
+                                    { "v-model", "Pmc.PrmProductPropertyId" },
+                                })
+                                    @Html.ValidationMessageFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().PrmProductPropertyId, string.Empty, new Dictionary<string, object> {
+                                   { "v-bind:id", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                    { "v-bind:name", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].PrmProductPropertyId'" },
+                                   })
+                                </td>
+
+                                <td>
+                                    @Html.TextBoxFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().Value, new Dictionary<string, object> {
+                                     { "class", "col-form-label" },
+                                     { ":class", "isEmpty(Pmc.Value)" },
+                                     { "v-bind:id", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].Value'" },
+                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + PmcIndex + '].Value'" },
+                                     { "v-model", "Pmc.Value" },
+                                       { "readonly", "readonly" },
+                                 })
+                                    @Html.TextBoxFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().Value, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().Value)
+                                </td>*@
 
 
+                            </tr>
+                            @*<div id="productProperty">
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(s => s.ProductMapPropertyCRUDModel[i].PrmProductPropertyId, new { @class = "col-form-label" })
+                                        @Html.DropDownListFor(s => s.ProductMapPropertyCRUDModel[i].PrmProductPropertyId, Model.PrdouctPropertyList, string.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(s => s.ProductMapPropertyCRUDModel[i].PrmProductPropertyId)
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        @Html.LabelFor(s => s.ProductMapPropertyCRUDModel[i].Value, new { @class = "col-form-label" })
+                                        @Html.TextBoxFor(s => s.ProductMapPropertyCRUDModel[i].Value, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(s => s.ProductMapPropertyCRUDModel[i].Value)
+                                    </div>
+                                </div>*@
+
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -82,11 +143,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.ProductImageList, new { @class = "col-form-label" })
+                        @Html.TextBoxFor(s => s.ProductImageList, new { @type = "File", multiple = "" })
+                    </div>
+
+
 
                     <div class="form-group">
-
                         <input type="submit" class="btn btn-success" value="Kaydet" />
+
                     </div>
+
+
 
                 </form>
             </div>
@@ -101,6 +170,9 @@
 
 @section Scripts{
 
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.2.1/dist/axios.js"></script>
     <script src="~/Content/editor/suneditor.min.js"></script>
     <script src="~/Content/editor/codemirror.min.js"></script>
     <script src="~/Content/editor/htmlmixed.js"></script>
@@ -149,6 +221,32 @@
             katex: katex
         });
 
+
+          var data = @(data);
+        data.PropertyModel = [];
+
+       new Vue({
+
+            el: "#ProductApp",
+           data: data,
+           methods: {
+               isEmpty: function (value) {
+                   return value == null || value === '' || value == 'undefined' || value == undefined || (Array.isArray(value) && value.length == 0) ? 'empty' : '';
+               },
+            },
+            mounted() {
+            }
+       });
+
+
+
     </script>
- 
+
+
+
+
 }
+
+
+
+
