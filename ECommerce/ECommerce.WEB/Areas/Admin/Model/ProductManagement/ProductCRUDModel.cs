@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
 {
@@ -32,5 +33,9 @@ namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
 
         [DisplayName("Ürün Resimleri")]
         public List<HttpPostedFileBase> ProductImageList { get; set; }
+
+
+
+        public SelectList CategoryList { get; set; }
     }
 }

@@ -69,7 +69,6 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
                     cookie["email"] = adminUserLoginCRUDModel.Email;
                     cookie["password"] = adminUserLoginCRUDModel.Password;
                     cookie.Expires = DateTime.Now.AddYears(1);
-
                     Response.Cookies.Add(cookie);
                 }
                 Session.Add("LoggedAdmin", adminUser);
@@ -96,7 +95,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
         {
             Session.Abandon();
 
-            HttpCookie cookie = Request.Cookies["AppUser"];
+            HttpCookie cookie = Request.Cookies["AdminUser"];
             if (cookie != null)
             {
                 cookie.Expires = DateTime.Now.AddDays(-1);

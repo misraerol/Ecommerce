@@ -13,7 +13,7 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Basic form</h4>
+                <h4 class="header-title">Ürün Ekle</h4>
                 <form>
 
                     <div class="form-group">
@@ -58,6 +58,15 @@
                             İndirim % Olarak Giriniz
                         </small>
                         @Html.ValidationMessageFor(s => s.Amount)
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(s => s.CategoryId, new { @class = "col-form-label" })
+                        @Html.DropDownListFor(s => s.CategoryId, Model.CategoryList, string.Empty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.CategoryId)
 
 
                     </div>

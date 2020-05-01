@@ -1,4 +1,5 @@
-﻿using ECommerce.BIZ.Repository.AppUserManagement;
+﻿using ECommerce.BIZ.Repository.AdminUserManagement;
+using ECommerce.BIZ.Repository.AppUserManagement;
 using ECommerce.DATA;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,26 @@ namespace ECommerce.WEB
                         if (appUser != null)
                         {
                             Session.Add("LoggedUser", appUser);
+
+                        }
+                    }
+                }
+                if (HttpContext.Current.Session["LoggedAdmin"] == null)
+                {
+                    HttpCookie cookie = HttpContext.Current.Request.Cookies["AdminUser"];
+                    if (cookie != null)
+                    {
+                        AdminUserRepository adminUserRepository  = new AdminUserRepository();
+
+                        string email = cookie.Values["email"];
+
+                        string password = cookie.Values["password"];
+
+                        AdminUser adminUser = adminUserRepository.GetByEmailAndPassword(email, password);
+
+                        if (adminUser != null)
+                        {
+                            Session.Add("LoggedAdmin", adminUser);
 
                         }
                     }
