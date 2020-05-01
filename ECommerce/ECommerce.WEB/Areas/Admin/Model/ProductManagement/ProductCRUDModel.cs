@@ -27,15 +27,34 @@ namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
         [DisplayName("Kategorisi")]
         public int CategoryId { get; set; }
 
+        [DisplayName("Kargo Firması")]
+        public int ShipperId { get; set; }
+
+        public bool IsShipperFree { get; set; }
+
+        public decimal ShipperAmount { get; set; }
+
         [DisplayName("Kargo Ücreti var mı ?")]
         public bool IsShipperPay { get; set; }
-
 
         [DisplayName("Ürün Resimleri")]
         public List<HttpPostedFileBase> ProductImageList { get; set; }
 
-
+        public List<ProductMapPropertyCRUDModel> ProductMapPropertyCRUDModel { get; set; }
 
         public SelectList CategoryList { get; set; }
+        public SelectList ShipperList { get; set; }
+        public SelectList PrdouctPropertyList { get; set; }
+    }
+
+
+    public class ProductMapPropertyCRUDModel
+    {
+        public int ProductMapPropertyId { get; set; }
+
+        [DisplayName("Özellik")]
+        public string Value { get; set; }
+        [DisplayName("Ürün Özelliği")]
+        public int PrmProductPropertyId { get; set; }
     }
 }
