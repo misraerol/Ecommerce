@@ -1119,6 +1119,7 @@
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserListViewModel.cs" />
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserLoginCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserUpdatePasswordModel.cs" />
     <Compile Include="Areas\Admin\Model\CategoryManagement\CategoryCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\CategoryManagement\CategoryListView.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterCRUDModel.cs" />
@@ -1219,6 +1220,7 @@
     <Content Include="Areas\Admin\Views\Parameter\UpdateProductProperty.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\ActivationCode.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\UpdatePassword.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
