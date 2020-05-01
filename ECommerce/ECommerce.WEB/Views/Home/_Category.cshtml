@@ -174,7 +174,7 @@
                                 <a href="#" v-on:click="CategoryClick(tbSub)" v-on:mouseover="GetSubParent(tbSub.CategoryId)">{{tbSub.Name}} </a>
                                 <ul>
                                     <li v-for="(tbSubParent,index) in parentSubCategoryList" :key="tbSubParent.CategoryId">
-                                        <a href="" v-on:click="CategoryClick(tbSubParent)" v-on:mouseover="">{{tbSubParent.Name}}</a>
+                                        <a href="" v-on:click="CategoryClick(tbSubParent)">{{tbSubParent.Name}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -387,6 +387,7 @@
                 },
                  GetSubParent(e) {
                      axios.get('@Url.Action("GetParentCategory", "Home")?id=' + e).then(response => (this.parentSubCategoryList = response.Data))
+                     this.parentSubCategoryList = [];
                      this.parent = true;
                 },
                 CategoryClick(e) {

@@ -44,5 +44,17 @@ namespace ECommerce.BIZ.Repository.DiscountKeyManagement
             db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+
+
+        public void UpdateMany(List<DiscountKey> entity)
+        {
+            foreach (DiscountKey discountKey in entity)
+            {
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.SaveChanges();
+
+        }
+
     }
 }
