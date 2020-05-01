@@ -121,16 +121,11 @@ namespace ECommerce.WEB.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (Request.Cookies["AppUser"] != null)
+            else
             {
-                HttpCookie cookie = Request.Cookies["AppUser"];
-
-                appUserCRUDModel.Email= cookie["email"];
-                appUserCRUDModel.Password= cookie["password"];
-                Session.Add("LoggedUser", appUser);
-
+                return View(appUserCRUDModel);
             }
-            return View(appUserCRUDModel);
+
         }
 
 
@@ -183,7 +178,7 @@ namespace ECommerce.WEB.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
- 
+
             HttpCookie cookie = Request.Cookies["AppUser"];
             if (cookie != null)
             {

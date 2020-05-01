@@ -189,7 +189,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             return RedirectToAction("Index", "AdminUser");
         }
 
-        [LoggedAdmin]
+        
         public ActionResult ActivationCode(string activationCode)
         {
             bool status = false;
@@ -207,7 +207,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
             return View(status);
         }
-        [LoggedAdmin]
+       
         [HttpGet]
         public ActionResult UpdatePassword()
         {
@@ -227,7 +227,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
 
         }
-        [LoggedAdmin]
+    
         [HttpPost]
         public ActionResult UpdatePassword(AdminUserUpdatePasswordModel adminUserUpdatePasswordModel)
         {
