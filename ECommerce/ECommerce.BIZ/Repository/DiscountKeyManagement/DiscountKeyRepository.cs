@@ -50,7 +50,7 @@ namespace ECommerce.BIZ.Repository.DiscountKeyManagement
         {
             foreach (DiscountKey discountKey in entity)
             {
-                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(discountKey).State = System.Data.Entity.EntityState.Modified;
             }
             db.SaveChanges();
 
