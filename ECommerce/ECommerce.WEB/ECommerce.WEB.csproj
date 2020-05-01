@@ -1111,6 +1111,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminUserManagement\AdminUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryManagement\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountKeyManagement\DiscountKeyController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ParameterManagement\ParameterController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductManagement\ProductController.cs" />
@@ -1122,6 +1123,8 @@
     <Compile Include="Areas\Admin\Model\AdminUserManagement\AdminUserUpdatePasswordModel.cs" />
     <Compile Include="Areas\Admin\Model\CategoryManagement\CategoryCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\CategoryManagement\CategoryListView.cs" />
+    <Compile Include="Areas\Admin\Model\DiscountKeyManagement\DiscountKeyCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\DiscountKeyManagement\DiscountKeyListViewModel.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterListView.cs" />
     <Compile Include="Areas\Admin\Model\ProductManagement\ProductCRUDModel.cs" />
@@ -1221,6 +1224,9 @@
     <Content Include="Areas\Admin\Views\AdminUser\ActivationCode.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Insert.cshtml" />
     <Content Include="Areas\Admin\Views\AdminUser\UpdatePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountKey\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountKey\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountKey\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
