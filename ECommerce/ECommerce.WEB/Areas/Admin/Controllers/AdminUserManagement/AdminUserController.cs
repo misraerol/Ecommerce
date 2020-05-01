@@ -61,7 +61,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                     IsActive = false,
                     IsDeleted = false,
                     ActivationCode = activationKey,
-                   
+
                     Password = adminUserCRUDModel.Password
                 };
 
@@ -71,8 +71,8 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 MailExtension mailExtension = MailExtension.Instance();
                 mailExtension.Send(adminUserCRUDModel.Email, "Aktivasyon Maili", "DefaultMailTemplate", new DefaultMailTemplate()
                 {
-                    CustomerName =StringHelper.Combine(' ',adminUser.Email,string.Empty),
-                    RedirectUrl=Url.Action("ActivationCode","AdminUser", new { activationCode =activationKey }),
+                    CustomerName = StringHelper.Combine(' ', adminUser.Email, string.Empty),
+                    RedirectUrl = Url.Action("ActivationCode", "AdminUser", new { activationCode = activationKey }),
                     Message = "Üyelik işlemini tamamlamanız için aktivasyon yapmanız gerekmektedir."
 
                 });
@@ -82,7 +82,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
 
                 response = new Response()
                 {
-                    Message = "Kayıt Başarılı",
+                    Message = "Aktivasyondan onaylandıktan sonra kayıt gerçekleşecektir.",
                     Status = true,
                     RedirectUrl = Url.Action("Index", "AdminUser")
                 };
@@ -188,6 +188,8 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
             return RedirectToAction("Index", "AdminUser");
         }
+
+        
         public ActionResult ActivationCode(string activationCode)
         {
             bool status = false;
@@ -196,7 +198,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 AdminUser adminUser = adminUserRepository.GetByActivationCode(activationCode);
                 if (adminUser != null)
                 {
-                   
+
                     adminUser.IsActive = true;
                     adminUserRepository.Update(adminUser);
                     status = true;
@@ -204,6 +206,35 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
                 }
             }
             return View(status);
+        }
+       
+        [HttpGet]
+        public ActionResult UpdatePassword()
+        {
+            AdminUser adminUserSession = (AdminUser)Session["LoggedAdmin"];
+             AdminUserUpdatePasswordModel adminUserUpdatePasswordModel = new AdminUserUpdatePasswordModel();
+            AdminUser adminUser = adminUserRepository.GetById(adminUserSession.AdminUserId);
+            if (adminUser != null)
+            {
+
+                adminUserUpdatePasswordModel.AdminUserId = adminUser.AdminUserId;
+                adminUserUpdatePasswordModel.Password = adminUser.Password;
+                return View(adminUserUpdatePasswordModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "AdminUser");
+            }
+
+        }
+    
+        [HttpPost]
+        public ActionResult UpdatePassword(AdminUserUpdatePasswordModel adminUserUpdatePasswordModel)
+        {
+            AdminUser adminUser = adminUserRepository.GetById(adminUserUpdatePasswordModel.AdminUserId);
+            adminUser.Password = adminUserUpdatePasswordModel.Password;
+            adminUserRepository.Update(adminUser);
+            return RedirectToAction("Index", "AdminUser");
         }
     }
 }

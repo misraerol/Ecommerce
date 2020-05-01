@@ -27,25 +27,19 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
             return View();
         }
 
-
+        [HttpGet]
         public ActionResult Login()
         {
             AdminUserLoginCRUDModel adminUserLoginCRUDModel = new AdminUserLoginCRUDModel();
-            AdminUser adminUser = adminUserRepository.GetByEmailAndPassword(adminUserLoginCRUDModel.Email, adminUserLoginCRUDModel.Password);
-            if (adminUser  != null)
+            AdminUser adminUser = (AdminUser)Session["LoggedAdmin"];
+            if(adminUser != null)
             {
-                 return RedirectToAction("Index", "Home");
-                
+                return RedirectToAction("Index", "Home");
             }
-           if(Request.Cookies["AdminUser"] != null)
+            else
             {
-                HttpCookie cookie = Request.Cookies["AdminUser"];
-
-                adminUserLoginCRUDModel.Email = cookie["email"];
-                adminUserLoginCRUDModel.Password = cookie["password"];
-                Session.Add("LoggedUser", adminUser);
+                return View(adminUserLoginCRUDModel);
             }
-       return View(adminUserLoginCRUDModel);
         }
 
         [HttpPost]
@@ -53,7 +47,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
         {
             Response response;
             AdminUser adminUser = adminUserRepository.GetByEmailAndPassword(adminUserLoginCRUDModel.Email, adminUserLoginCRUDModel.Password);
-            if(adminUser != null)
+            if (adminUser != null)
             {
                 if (!adminUser.IsActive)
                 {
@@ -75,9 +69,9 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
 
                 response = new Response()
                 {
-                    Message="Giriş Yapıldı",
-                    RedirectUrl=Url.Action("Index","Home",new {Area="Admin" }),
-                    Status=true
+                    Message = "Giriş Yapıldı",
+                    RedirectUrl = Url.Action("Index", "Home", new { Area = "Admin" }),
+                    Status = true
                 };
             }
             else
@@ -104,13 +98,13 @@ namespace ECommerce.WEB.Areas.Admin.Controllers
                 Response.Cookies.Add(cookie);
 
             }
-            return RedirectToAction("Index", "Home",new {area="" });
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         public PartialViewResult _AdminProfile()
         {
             return PartialView();
         }
-       
+
     }
 }
