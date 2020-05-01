@@ -96,6 +96,20 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.DiscountKeyManagement
 
         }
 
+        public ActionResult AllDelete()
+        {
+            
+            List<DiscountKey> discountKeyList = discountKeyRepository.GetAll();
+
+            foreach (DiscountKey discountKey in discountKeyList)
+            {
+                discountKey.IsActive = false;
+                discountKey.IsDeleted = true;
+              
+            }
+            discountKeyRepository.UpdateMany(discountKeyList);
+            return RedirectToAction("Index", "DiscountKey");
+        }
         [HttpGet]
         public ActionResult Update(int id = 0)
         {

@@ -234,7 +234,13 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             AdminUser adminUser = adminUserRepository.GetById(adminUserUpdatePasswordModel.AdminUserId);
             adminUser.Password = adminUserUpdatePasswordModel.Password;
             adminUserRepository.Update(adminUser);
-            return RedirectToAction("Index", "AdminUser");
+            Response response = new Response()
+            {
+                Message = "Şifre Oluşturuldu",
+                Status = true,
+                RedirectUrl = Url.Action("Login", "Home", new { Area = "Admin" })
+            };
+            return Json(response);
         }
     }
 }
