@@ -23,5 +23,10 @@ namespace ECommerce.BIZ.Repository.ParameterTypeManagement
         /// </summary>
         public static string GenderType= "GenderType";
 
+        /// <summary>
+        /// Ürün Zorunlu Alan Tipleri
+        /// </summary>
+        public static string ProductRequiredTypes = "ProductRequiredTypes";
+
     }
 }

@@ -16,12 +16,12 @@ namespace ECommerce.DATA
     {
         public int ProductMapRequiredFieldsId { get; set; }
         public int ProductId { get; set; }
-        public int ParameterTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public int ParameterId { get; set; }
     
-        public virtual ParameterType ParameterType { get; set; }
+        public virtual Parameter Parameter { get; set; }
         public virtual Product Product { get; set; }
     }
 }
