@@ -1513,6 +1513,7 @@
     <Content Include="Content\lib\swal\sweetalert2.js" />
     <Content Include="Content\lib\swal\sweetalert2.min.css" />
     <Content Include="Content\lib\swal\sweetalert2.min.js" />
+    <Content Include="Uploads\ProductImage\notImage.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1537,6 +1538,7 @@
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ParameterManagement\ParameterListView.cs" />
     <Compile Include="Areas\Admin\Model\ProductManagement\ProductCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\ProductManagement\ProductListView.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperListView.cs" />
     <Compile Include="Areas\Admin\Model\SliderManagement\SliderCRUDModel.cs" />
@@ -1561,6 +1563,7 @@
     <Compile Include="Utility\Extension\MailBase.cs" />
     <Compile Include="Utility\Extension\MailExtension.cs" />
     <Compile Include="Utility\Extension\Mail\Model\DefaultMailTemplate.cs" />
+    <Compile Include="Utility\ModelBinder\DecimalModelBinder.cs" />
     <Compile Include="Utility\UIFramework\CustomSelectList.cs" />
     <Compile Include="Utility\UIFramework\Response.cs" />
   </ItemGroup>
@@ -1648,6 +1651,8 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1676,7 +1681,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\ProductImage\" />
     <Folder Include="Uploads\ShippersLogo\" />
     <Folder Include="Uploads\SliderImage\" />
     <Folder Include="Views\Base\" />

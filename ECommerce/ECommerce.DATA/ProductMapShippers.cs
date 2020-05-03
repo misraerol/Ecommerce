@@ -17,7 +17,7 @@ namespace ECommerce.DATA
         public int ProductMapShippersId { get; set; }
         public int ProductId { get; set; }
         public int ShipperId { get; set; }
-        public Nullable<decimal> Amount { get; set; }
+        public decimal Amount { get; set; }
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }

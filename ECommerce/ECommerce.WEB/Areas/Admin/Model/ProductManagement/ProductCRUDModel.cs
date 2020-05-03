@@ -10,6 +10,8 @@ namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
 {
     public class ProductCRUDModel
     {
+        public int ProductId { get; set; }
+
         [DisplayName("Ürün Adı")]
         [Required]
         public string Name { get; set; }
@@ -52,15 +54,14 @@ namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
         public List<int> ProductRequiredFieldListId { get; set; }
 
         [DisplayName("Ürün Resimleri")]
-        [Required]
         public List<HttpPostedFileBase> ProductImageList { get; set; }
-
         public List<ProductMapPropertyCRUDModel> ProductMapPropertyCRUDModel { get; set; }
+        public List<ProductMapImageCRUDModel> ProductMapImageCRUDModel { get; set; }
 
         public SelectList CategoryList { get; set; }
         public SelectList ShipperList { get; set; }
         public SelectList ProductPropertyList { get; set; }
-        public SelectList ProductRequiredFieldList { get; set; }
+        public MultiSelectList ProductRequiredFieldList { get; set; }
     }
 
 
@@ -75,4 +76,13 @@ namespace ECommerce.WEB.Areas.Admin.Model.ProductManagement
         [Required]
         public int? PrmProductPropertyId { get; set; }
     }
+
+
+    public class ProductMapImageCRUDModel
+    {
+        public int ProductMapImageId { get; set; }
+
+        public string ImagePath { get; set; }
+    }
+
 }

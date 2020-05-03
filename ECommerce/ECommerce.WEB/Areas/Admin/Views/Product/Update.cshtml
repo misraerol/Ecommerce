@@ -1,14 +1,14 @@
 ﻿@model ECommerce.WEB.Areas.Admin.Model.ProductManagement.ProductCRUDModel
 @using ECommerce.CORE.Helper
 @{
-    ViewBag.Title = "Ürün Ekle";
+    ViewBag.Title = "Ürün Güncelle";
     var data = Html.Raw(JsonHelper.Convert(Model));
 }
 
 
-@using (Html.BeginForm("Insert", "Product", FormMethod.Post, new { @id = "InsertProduct" }))
+@using (Html.BeginForm("Update", "Product", FormMethod.Post, new { @id = "UpdateProduct" }))
 {
-
+    @Html.HiddenFor(s=>s.ProductId)
 
     <!-- basic form start -->
     <div class="col-12 mt-5" id="ProductApp">
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         @Html.LabelFor(s => s.Amount, new { @class = "col-form-label" })
 
-                        @Html.TextBoxFor(s => s.Amount, new { @class = "form-control", type = "number", step = "any" })
+                        @Html.TextBoxFor(s => s.Amount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
                         <small id="emailHelp" class="form-text text-muted">
                             Ürün Tutarı
                         </small>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             @Html.LabelFor(s => s.ShipperAmount, new { @class = "col-form-label" })
 
-                            @Html.TextBoxFor(s => s.ShipperAmount, new { @class = "form-control", type = "number", step = "any" })
+                            @Html.TextBoxFor(s => s.ShipperAmount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
                             <small id="emailHelp" class="form-text text-muted">
                                 Kargo Ücreti
                             </small>
@@ -114,7 +114,6 @@
                         <table class="table table-hover table-responsive-sm table-wrapper">
                             <tr v-for="(pmc, pmcIndex) in ProductMapPropertyCRUDModel" :key="pmcIndex">
                                 <td>
-
                                     @Html.LabelFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().PrmProductPropertyId, new Dictionary<string, object> {
                                    { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].PrmProductPropertyId'" },
                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].PrmProductPropertyId'" },
@@ -140,7 +139,7 @@
                                 </td>
 
                                 <td>
-                                    @Html.LabelFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().PrmProductPropertyId, new Dictionary<string, object> {
+                                    @Html.LabelFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().Value, new Dictionary<string, object> {
                                 { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].Value'" },
                                  { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].Value'" },
                                  { "class", "col-form-label" },
@@ -157,7 +156,13 @@
                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].Value'" },
                                    })
 
-                                </td>
+                                    @Html.HiddenFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().ProductMapPropertyId, new Dictionary<string, object> {
+                                     { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
+                                      { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
+                                      { ":class", "isEmpty(pmc.ProductMapPropertyId)" },
+                                      { "v-model", "pmc.ProductMapPropertyId" },
+                                     })
+                               </td>
                                 <td>
                                     <button @@click="deleteProperty(pmcIndex)" class="btn btn-danger" type="button">Sil</button>
                                 </td>
@@ -167,9 +172,8 @@
 
                     <div class="form-group box-design">
                         @Html.LabelFor(s => s.Explanation, new { @class = "col-form-label" })
-                        @*@Html.TextAreaFor(s => s.Explanation)*@
+                        @Html.TextAreaFor(s => s.Explanation)
                         @Html.ValidationMessageFor(s => s.Explanation)
-                        <textarea id="Explanation" name="Explanation"></textarea>
 
                     </div>
 
@@ -179,6 +183,20 @@
                         @Html.ValidationMessageFor(s => s.ProductImageList)
 
                     </div>
+
+                    <table class="table table-hover table-responsive-sm table-wrapper">
+                        <tr>
+                            <td>Resim</td>
+                            <td>Sil</td>
+                        </tr>
+                        @foreach (var img in Model.ProductMapImageCRUDModel)
+                        {
+                            <tr>
+                                <td><img src="~/Uploads/ProductImage/@img.ImagePath" height="150" width="100" /></td>
+                                <td><a href="@Url.Action("DeleteImage","Product",new {id=img.ProductMapImageId })" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+                    </table>
 
 
 
@@ -215,7 +233,7 @@
 
 
 
-        Jform("#InsertProduct","CK");
+        Jform("#UpdateProduct","CK");
 
 
         var data = @(data);
@@ -268,7 +286,7 @@
        });
 
         CKEDITOR.replace('Explanation');
- 
+
     </script>
 
 

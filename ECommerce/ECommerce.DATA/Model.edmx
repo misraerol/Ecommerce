@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -147,10 +147,9 @@
           <Property Name="Explanation" Type="nvarchar(max)" />
           <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="DiscountRate" Type="money" Nullable="false" />
-          <Property Name="CategoryId" Type="int" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="ParentId" Type="int" />
           <Property Name="IsShipperPay" Type="bit" Nullable="false" />
-          <Property Name="IsRequiredFields" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -210,7 +209,7 @@
           <Property Name="ProductMapShippersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ShipperId" Type="int" Nullable="false" />
-          <Property Name="Amount" Type="money" />
+          <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -348,7 +347,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__Categor__47DBAE45">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -594,7 +593,8 @@
             <End Role="UserCart" EntitySet="UserCart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -760,10 +760,9 @@
           <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="DiscountRate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="ParentId" Type="Int32" />
           <Property Name="IsShipperPay" Type="Boolean" Nullable="false" />
-          <Property Name="IsRequiredFields" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -838,7 +837,7 @@
           <Property Name="ProductMapShippersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="ShipperId" Type="Int32" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -981,7 +980,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__Categor__47DBAE45">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -1392,7 +1391,6 @@
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="IsShipperPay" ColumnName="IsShipperPay" />
-                <ScalarProperty Name="IsRequiredFields" ColumnName="IsRequiredFields" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />

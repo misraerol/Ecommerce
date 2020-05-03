@@ -1,6 +1,7 @@
 ﻿using ECommerce.BIZ.Repository.AdminUserManagement;
 using ECommerce.BIZ.Repository.AppUserManagement;
 using ECommerce.DATA;
+using ECommerce.WEB.Utility.ModelBinder;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,6 +21,7 @@ namespace ECommerce.WEB
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalFilters.Filters.Add(new ValidateInputAttribute(false));//Validate Input false için yazıldı
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
         }
 
         protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)

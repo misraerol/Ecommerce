@@ -39,5 +39,17 @@ namespace ECommerce.BIZ.Repository.ProductManagement
             db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+
+        public void UpdateProductMapImage(ProductMapImage entity)
+        {
+            db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public ProductMapImage GetProductMapImageById(int id)
+        {
+            ProductMapImage productMapImage = db.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted && s.ProductMapImageId == id).SingleOrDefault();
+            return productMapImage;
+        }
     }
 }

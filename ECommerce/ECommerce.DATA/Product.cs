@@ -32,10 +32,9 @@ namespace ECommerce.DATA
         public string Explanation { get; set; }
         public decimal Amount { get; set; }
         public decimal DiscountRate { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public Nullable<int> ParentId { get; set; }
         public bool IsShipperPay { get; set; }
-        public bool IsRequiredFields { get; set; }
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }

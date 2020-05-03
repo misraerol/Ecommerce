@@ -1,0 +1,77 @@
+﻿@using ECommerce.WEB.Areas.Admin.Model.ProductManagement
+@using ECommerce.CORE.Helper
+@model List<ProductListView>
+@{
+    ViewBag.Title = "Ürün Listesi";
+}
+
+<div class="main-content-inner">
+    <div class="row">
+        <!-- data table start -->
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Ürün Yönetimi</h4>
+                    <a href="@Url.Action("Insert","Product")" class="btn btn-primary float-right">Ürün Ekle</a>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="data-tables">
+                        <table id="dataTable" class="text-center">
+                            <thead class="bg-light text-capitalize">
+                                <tr>
+                                    <th scope="col">Ürün Resmi</th>
+                                    <th scope="col">Ürün Adı</th>
+                                    <th scope="col">Kategori</th>
+                                    <th scope="col">İndirim Oranı</th>
+                                    <th scope="col">Tutar</th>
+                                    <th scope="col">Düzenle</th>
+                                    <th scope="col">Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ProductListView product in Model)
+                                {
+                                    <tr>
+                                        <td> <img src="~/Uploads/ProductImage/@product.ImagePath" height="100" width="100" alt="" class="img-responsive" /></td>
+                                        <td>@product.ProductName</td>
+                                        <td>@product.CategoryName</td>
+                                        <td>@product.DiscountRate.ConvertToMoney()</td>
+                                        <td>
+                                            @{ decimal productAmount = product.Amount;
+                                                decimal productDiscountAmount = productAmount * (100 - product.DiscountRate) / 100;
+                                            }
+                                            @if (product.DiscountRate != 0)
+                                            {
+                                                <p class="bg-warning">İndirimli Fiyat=@productDiscountAmount.ConvertToMoney()</p>
+                                                <p> İndirimsiz Fiyat=@productAmount.ConvertToMoney()</p>
+                                            }
+                                            else
+                                            {
+                                                <p> Fiyat=@productAmount.ConvertToMoney()</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li class="mr-3">
+                                                    <a href="@Url.Action("Update", "Product", new {id=product.ProductId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li><a href="@Url.Action("Delete", "Product", new {id=product.ProductId})" class="text-danger"><i class="ti-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- data table end -->
+    </div>
+</div>
+
