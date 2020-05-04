@@ -63,6 +63,16 @@ namespace ECommerce.WEB.Controllers.AppUserManagement
             appUser.Email = appUserUpdateView.Email;
             appUser.BirthDate = appUserUpdateView.BirthDate;
             appUser.ParameterGenderId = appUserUpdateView.ParameterGenderId;
+            if(appUser.Password != appUserUpdateView.Password)
+            {
+                response = new Response()
+                {
+                    Message = "Eski şifre Hatalı",
+                    Status = false
+                };
+                return Json(response);
+            }
+
             if (appUserUpdateView.NewPassword != appUserUpdateView.NewRePassword)
             {
                 response = new Response()
@@ -70,6 +80,7 @@ namespace ECommerce.WEB.Controllers.AppUserManagement
                     Message = "Şifreler eşleşmedi",
                     Status = false
                 };
+                return Json(response);
             }
             appUser.Password = appUserUpdateView.NewPassword;
             appUserRepository.Update(appUser);

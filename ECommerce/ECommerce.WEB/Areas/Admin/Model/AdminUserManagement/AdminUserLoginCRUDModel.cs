@@ -9,7 +9,7 @@ namespace ECommerce.WEB.Areas.Admin.Model.AdminUserManagement
 {
     public class AdminUserLoginCRUDModel
     {
-        [DisplayName("Email")]
+        [DisplayName("E-posta")]
         [Required]
         public string Email { get; set; }
         

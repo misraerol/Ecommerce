@@ -1553,6 +1553,7 @@
     <Compile Include="Models\AddressManagament\AddressCRUDModel.cs" />
     <Compile Include="Models\AddressManagament\AddressListView.cs" />
     <Compile Include="Models\AppUserManagement\AppUserCRUDModel.cs" />
+    <Compile Include="Models\AppUserManagement\AppUserPasswordModel.cs" />
     <Compile Include="Models\AppUserManagement\AppUserUpdateView.cs" />
     <Compile Include="Models\AppUserManagement\LoggedUser.cs" />
     <Compile Include="Models\CityCountyManagament\CityCountyListView.cs" />
@@ -1653,6 +1654,8 @@
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\RePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Password.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1672,6 +1675,8 @@
     <Content Include="Views\AppUser\Index.cshtml" />
     <Content Include="Views\AppUser\UpdateUser.cshtml" />
     <Content Include="Views\AppUser\_MenuInfo.cshtml" />
+    <Content Include="Views\Home\Password.cshtml" />
+    <Content Include="Views\Home\RePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

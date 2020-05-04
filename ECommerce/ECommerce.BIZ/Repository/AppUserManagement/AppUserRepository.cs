@@ -46,10 +46,19 @@ namespace ECommerce.BIZ.Repository.AppUserManagement
             bool anyUserEmail = db.AppUser.Where(s => s.Email.Equals(email)).Any();
             return anyUserEmail;
         }
-
+        public AppUser GetByEmail(string email)
+        {
+            AppUser appUser = db.AppUser.Where(s => s.Email.Equals(email)).SingleOrDefault();
+            return appUser;
+        }
         public AppUser GetByActivationCode(string activationCode)
         {
             AppUser appUser = db.AppUser.Where(s => s.IsActive && !s.IsDeleted && !s.IsActivation && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
+            return appUser;
+        }
+        public AppUser GetByActivation(string activationCode)
+        {
+            AppUser appUser = db.AppUser.Where(s => s.IsActive && !s.IsDeleted  && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
             return appUser;
         }
         public AppUser GetByEmailAndPassword(string email, string password)
@@ -81,6 +90,6 @@ namespace ECommerce.BIZ.Repository.AppUserManagement
             db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
-
+    
     }
 }

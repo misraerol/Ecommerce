@@ -279,5 +279,101 @@ namespace ECommerce.WEB.Controllers
             return Json(response);
         }
 
+        [HttpGet]
+        public ActionResult Password()
+        {
+            AppUserCRUDModel appUserCRUDModel = new AppUserCRUDModel();
+            return View(appUserCRUDModel);
+        }
+        [HttpPost]
+        public ActionResult Password(AppUserCRUDModel appUserCRUDModel)
+        {
+            Response response;
+            bool anyUserEmail = appUserRepository.AnyUserEmail(appUserCRUDModel.Email);
+            if (anyUserEmail)
+            {
+                string activationKey = Guid.NewGuid().ToString();
+                AppUser appUser = appUserRepository.GetByEmail(appUserCRUDModel.Email);
+                appUser.ActivationCode = activationKey;
+                appUserRepository.Update(appUser);
+
+                #region Mail
+                MailExtension mailExtension = MailExtension.Instance();
+                mailExtension.Send(appUserCRUDModel.Email, "Şifre Yenileme Talebi", "DefaultMailTemplate", new DefaultMailTemplate()
+                {
+                    CustomerName = StringHelper.Combine(' ', appUser.FirstName, appUser.LastName),
+                    RedirectUrl = Url.Action("RePassword", "Home", new { activationCode = activationKey }),
+                    Message = "Eğer şifre yenileme talebinin size ait olmadığını düşünüyorsanız lütfen bu e-postayı dikkate almayın. " +
+                    "Mevcut şifreniz ile giriş yapmaya devam edebilirsiniz."
+
+                });
+                #endregion Mail
+                response = new Response()
+                {
+                    Message = "Şifre değiştirme linki mailinize başarıyla gönderildi.",
+                    RedirectUrl = Url.Action("Login", "Home"),
+                    Status = true
+                };
+            }
+            else
+            {
+                response = new Response()
+                {
+                    Message = "Lütfen e-posta adresinizi kontrol edin veya yeni üye kaydınızı gerçekleştirin.",
+                    Status = false,
+                };
+            }
+            return Json(response);
+        }
+
+
+        [HttpGet]
+        public ActionResult RePassword(string activationCode)
+        {
+            AppUser appUser = appUserRepository.GetByActivation(activationCode);
+                AppUser appUserse = appUserRepository.GetById(appUser.AppUserId);
+
+                if (appUserse != null)
+                {
+                    AppUserPasswordModel appUserPasswordModel = new AppUserPasswordModel();
+
+                    appUserPasswordModel.AppUserId = appUserse.AppUserId;
+                    appUserPasswordModel.Password = appUserse.Password;
+                    return View(appUserPasswordModel);
+                }
+        
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        [HttpPost]
+        public ActionResult RePassword(AppUserPasswordModel appUserPasswordModel)
+        {
+            Response response;
+            AppUser appUser = appUserRepository.GetById(appUserPasswordModel.AppUserId);
+            if (appUserPasswordModel.Password != appUserPasswordModel.RePassword)
+            {
+                response = new Response()
+                {
+                    Message = "Şifreler eşleşmedi",
+                    Status = false
+                };
+                return Json(response);
+            }
+
+            appUser.Password = appUserPasswordModel.Password;
+            string activationKey = Guid.NewGuid().ToString();
+            appUser.ActivationCode = activationKey;
+            appUserRepository.Update(appUser);
+
+            response = new Response()
+            {
+                Message = "Şifre Yenilendi",
+                Status = true,
+                RedirectUrl = Url.Action("Login", "Home")
+            };
+            return Json(response);
+        }
+
     }
 }

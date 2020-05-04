@@ -189,7 +189,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             return RedirectToAction("Index", "AdminUser");
         }
 
-        
+
         public ActionResult ActivationCode(string activationCode)
         {
             bool status = false;
@@ -207,12 +207,12 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
             return View(status);
         }
-       
+
         [HttpGet]
         public ActionResult UpdatePassword()
         {
             AdminUser adminUserSession = (AdminUser)Session["LoggedAdmin"];
-             AdminUserUpdatePasswordModel adminUserUpdatePasswordModel = new AdminUserUpdatePasswordModel();
+            AdminUserUpdatePasswordModel adminUserUpdatePasswordModel = new AdminUserUpdatePasswordModel();
             AdminUser adminUser = adminUserRepository.GetById(adminUserSession.AdminUserId);
             if (adminUser != null)
             {
@@ -227,7 +227,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             }
 
         }
-    
+
         [HttpPost]
         public ActionResult UpdatePassword(AdminUserUpdatePasswordModel adminUserUpdatePasswordModel)
         {
@@ -242,5 +242,106 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.AdminUserManagement
             };
             return Json(response);
         }
+
+        [HttpGet]
+        public ActionResult Password()
+        {
+            AdminUserCRUDModel adminUserCRUDModel = new AdminUserCRUDModel();
+            return View(adminUserCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Password(AdminUserCRUDModel adminUserCRUDModel)
+        {
+            Response response;
+            bool isHaveEmail = adminUserRepository.IsUseEmailAddress(adminUserCRUDModel.Email);
+
+            if (isHaveEmail)
+            {
+                string activationKey = Guid.NewGuid().ToString();
+                AdminUser adminUser = adminUserRepository.GetByEmail(adminUserCRUDModel.Email);
+                adminUser.ActivationCode = activationKey;
+                adminUserRepository.Update(adminUser);
+
+                #region Mail
+                MailExtension mailExtension = MailExtension.Instance();
+                mailExtension.Send(adminUserCRUDModel.Email, "Şifre Yenileme Talebi", "DefaultMailTemplate", new DefaultMailTemplate()
+                {
+                    CustomerName = StringHelper.Combine(' ', adminUser.Email, string.Empty),
+                    RedirectUrl = Url.Action("RePassword", "AdminUser", new { activationCode = activationKey }),
+                    Message = "Eğer şifre yenileme talebinin size ait olmadığını düşünüyorsanız lütfen bu e-postayı dikkate almayın. " +
+                    "Mevcut şifreniz ile giriş yapmaya devam edebilirsiniz."
+
+                });
+                #endregion Mail
+                response = new Response()
+                {
+                    Message = "Şifre değiştirme linki mailinize başarıyla gönderildi.",
+                    RedirectUrl = Url.Action("Login", "Home",new { Area = "Admin" }),
+                    Status = true
+                };
+            }
+            else
+            {
+                response = new Response()
+                {
+                    Message = "Lütfen e-posta adresinizi kontrol edin veya yeni üye kaydınızı gerçekleştirin.",
+                    Status = false,
+                };
+            }
+            return Json(response);
+        }
+
+
+        [HttpGet]
+        public ActionResult RePassword(string activationCode)
+        {
+            AdminUser adminUserse = adminUserRepository.GetByActivation(activationCode);
+            AdminUser adminUser = adminUserRepository.GetById(adminUserse.AdminUserId);
+
+            if (adminUser != null)
+            {
+                AdminUserUpdatePasswordModel adminUserUpdatePasswordModel = new AdminUserUpdatePasswordModel();
+
+                adminUserUpdatePasswordModel.AdminUserId = adminUser.AdminUserId;
+                adminUserUpdatePasswordModel.Password = adminUser.Password;
+                return View(adminUserUpdatePasswordModel);
+            }
+
+            return RedirectToAction("Login", "Home", new { Area = "Admin" });
+
+        }
+
+        [HttpPost]
+        public ActionResult RePassword(AdminUserUpdatePasswordModel adminUserUpdatePasswordModel)
+        {
+            Response response;
+            AdminUser adminUser = adminUserRepository.GetById(adminUserUpdatePasswordModel.AdminUserId);
+            if (adminUserUpdatePasswordModel.Password != adminUserUpdatePasswordModel.RePassword)
+            {
+                response = new Response()
+                {
+                    Message = "Şifreler eşleşmedi",
+                    Status = false
+                };
+                return Json(response);
+            }
+        
+            adminUser.Password = adminUserUpdatePasswordModel.Password;
+            string activationKey = Guid.NewGuid().ToString();
+            adminUser.ActivationCode = activationKey;
+           
+            adminUserRepository.Update(adminUser);
+        
+
+            response = new Response()
+            {
+                Message = "Şifre Yenilendi",
+                Status = true,
+                RedirectUrl = Url.Action("Login", "Home", new { Area = "Admin" })
+            };
+            return Json(response);
+        }
+
     }
 }

@@ -10,8 +10,9 @@ namespace ECommerce.WEB.Models.AppUserManagement
 {
     public class AppUserCRUDModel
     {
-       
-        [DisplayName("Email")]
+        public int AppUserId { get; set; }
+
+        [DisplayName("E-posta")]
         [Required]
         public string Email { get; set; }
 

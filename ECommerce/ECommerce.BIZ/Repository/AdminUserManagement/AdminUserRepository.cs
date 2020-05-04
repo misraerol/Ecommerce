@@ -62,6 +62,11 @@ namespace ECommerce.BIZ.Repository.AdminUserManagement
             AdminUser adminUser = db.AdminUser.Where(s => !s.IsActive && !s.IsDeleted && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
             return adminUser;
         }
+        public AdminUser GetByActivation(string activationCode)
+        {
+            AdminUser adminUser = db.AdminUser.Where(s => s.IsActive && !s.IsDeleted && s.ActivationCode.Equals(activationCode)).SingleOrDefault();
+            return adminUser;
+        }
 
     }
 }
