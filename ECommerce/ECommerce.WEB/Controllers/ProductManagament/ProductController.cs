@@ -8,13 +8,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ECommerce.WEB.Controllers.ProductManagament
+namespace ECommerce.WEB.Controllers
 {
-    [LoggedUser]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         ProductRepository productRepository;
-    
         public ProductController()
         {
             productRepository = new ProductRepository();
