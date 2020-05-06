@@ -119,6 +119,9 @@
     <Compile Include="ProductMapShippers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductStoreWindow.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursiveCategoryList_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>

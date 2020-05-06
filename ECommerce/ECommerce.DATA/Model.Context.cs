@@ -47,6 +47,7 @@ namespace ECommerce.DATA
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<Slider> Slider { get; set; }
         public virtual DbSet<UserCart> UserCart { get; set; }
+        public virtual DbSet<ProductStoreWindow> ProductStoreWindow { get; set; }
     
         public virtual ObjectResult<RecursiveCategoryList_Result> RecursiveCategoryList()
         {

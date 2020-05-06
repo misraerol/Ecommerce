@@ -51,5 +51,10 @@ namespace ECommerce.BIZ.Repository.ProductManagement
             ProductMapImage productMapImage = db.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted && s.ProductMapImageId == id).SingleOrDefault();
             return productMapImage;
         }
+        public List<ProductStoreWindow> GetAllProductStoreWindow()
+        {
+            List<ProductStoreWindow> productStoreWindows = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).ToList();
+            return productStoreWindows;
+        }
     }
 }

@@ -45,6 +45,8 @@
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Produ__5FB337D6" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__UserCart__Produc__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Shipp__4E88ABD4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductStoreWindow" Width="1.5" PointX="5.25" PointY="22.75" />
+        <AssociationConnector Association="ECommerceModel.FK__ProductSt__Produ__756D6ECB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

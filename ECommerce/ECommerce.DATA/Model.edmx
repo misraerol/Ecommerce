@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -210,6 +210,17 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ShipperId" Type="int" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductStoreWindow">
+          <Key>
+            <PropertyRef Name="ProductStoreWindowId" />
+          </Key>
+          <Property Name="ProductStoreWindowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ExpiredDate" Type="datetime" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -466,6 +477,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductSt__Produ__756D6ECB">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductStoreWindow" Type="Self.ProductStoreWindow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductStoreWindow">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UserCart__AppUse__6754599E">
           <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
           <End Role="UserCart" Type="Self.UserCart" Multiplicity="*" />
@@ -509,6 +532,7 @@
           <EntitySet Name="ProductMapProperty" EntityType="Self.ProductMapProperty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMapRequiredFields" EntityType="Self.ProductMapRequiredFields" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMapShippers" EntityType="Self.ProductMapShippers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductStoreWindow" EntityType="Self.ProductStoreWindow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCart" EntityType="Self.UserCart" Schema="dbo" store:Type="Tables" />
@@ -584,6 +608,10 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
           </AssociationSet>
+          <AssociationSet Name="FK__ProductSt__Produ__756D6ECB" Association="Self.FK__ProductSt__Produ__756D6ECB">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStoreWindow" EntitySet="ProductStoreWindow" />
+          </AssociationSet>
           <AssociationSet Name="FK__UserCart__AppUse__6754599E" Association="Self.FK__UserCart__AppUse__6754599E">
             <End Role="AppUser" EntitySet="AppUser" />
             <End Role="UserCart" EntitySet="UserCart" />
@@ -593,8 +621,7 @@
             <End Role="UserCart" EntitySet="UserCart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -774,6 +801,7 @@
           <NavigationProperty Name="ProductMapProperty" Relationship="Self.FK__ProductMa__Produ__59FA5E80" FromRole="Product" ToRole="ProductMapProperty" />
           <NavigationProperty Name="ProductMapComment" Relationship="Self.FK__ProductMa__Produ__5FB337D6" FromRole="Product" ToRole="ProductMapComment" />
           <NavigationProperty Name="UserCart" Relationship="Self.FK__UserCart__Produc__68487DD7" FromRole="Product" ToRole="UserCart" />
+          <NavigationProperty Name="ProductStoreWindow" Relationship="ECommerceModel.FK__ProductSt__Produ__756D6ECB" FromRole="Product" ToRole="ProductStoreWindow" />
         </EntityType>
         <EntityType Name="ProductMapComment">
           <Key>
@@ -1225,11 +1253,40 @@
             <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
           </AssociationSet>
           <FunctionImport Name="RecursiveCategoryList" ReturnType="Collection(ECommerceModel.RecursiveCategoryList_Result)" />
+          <EntitySet Name="ProductStoreWindow" EntityType="ECommerceModel.ProductStoreWindow" />
+          <AssociationSet Name="FK__ProductSt__Produ__756D6ECB" Association="ECommerceModel.FK__ProductSt__Produ__756D6ECB">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStoreWindow" EntitySet="ProductStoreWindow" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="RecursiveCategoryList_Result">
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" />
         </ComplexType>
+        <EntityType Name="ProductStoreWindow">
+          <Key>
+            <PropertyRef Name="ProductStoreWindowId" />
+          </Key>
+          <Property Name="ProductStoreWindowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="ECommerceModel.FK__ProductSt__Produ__756D6ECB" FromRole="ProductStoreWindow" ToRole="Product" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ProductSt__Produ__756D6ECB">
+          <End Type="ECommerceModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ECommerceModel.ProductStoreWindow" Role="ProductStoreWindow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductStoreWindow">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1509,6 +1566,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ProductStoreWindow">
+            <EntityTypeMapping TypeName="ECommerceModel.ProductStoreWindow">
+              <MappingFragment StoreEntitySet="ProductStoreWindow">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductStoreWindowId" ColumnName="ProductStoreWindowId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
