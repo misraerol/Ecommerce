@@ -1,0 +1,65 @@
+﻿@using ECommerce.WEB.Models.UserCartManagamenet
+@model List<UserCartModel>
+<!-- Add to cart bar -->
+@{ 
+        decimal totalAmount = 0;
+}
+<div id="cart_side" class="add_to_cart right">
+    <a href="javascript:void(0)" class="overlay" onclick="closeCart()"></a>
+    <div class="cart-inner">
+        <div class="cart_top">
+            <h3>Sepetim</h3>
+            <div class="close-cart">
+                <a href="javascript:void(0)" onclick="closeCart()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="cart_media">
+            <ul class="cart_product">
+                @foreach (UserCartModel userCart in Model)
+                {
+                    <li>
+                        <div class="media">
+                            <a href="#">
+                                <img alt="" class="mr-3" src="~/Uploads/ProductImage/@userCart.ImagePath">
+                            </a>
+                            <div class="media-body">
+                                <a href="#">
+                                    <h4>@userCart.ProductName</h4>
+                                </a>
+                                <h4>
+                                    <span>@userCart.ProductCount X @string.Format("{0:F2}", userCart.Amount)</span>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="close-circle">
+                            <a href="@Url.Action("Delete","UserCart")">
+                                <i class="ti-trash" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </li>
+                     {
+                                totalAmount += userCart.Amount * userCart.ProductCount;
+                       }
+                }
+
+
+            </ul>
+            <ul class="cart_total">
+                <li>
+                    <div class="total">
+                        <h5>Sipariş Özeti : <span>@string.Format("{0:F2}", totalAmount)</span></h5>
+                    </div>
+                </li>
+                <li>
+                    <div class="buttons">
+                        <a href="@Url.Action("Index","UserCart")" class="btn btn-solid btn-block btn-solid-sm view-cart">Sepetim</a>
+                        <a href="#" class="btn btn-solid btn-solid-sm btn-block checkout">Şiparişi Tamamla</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Add to cart bar end-->

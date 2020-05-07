@@ -64,6 +64,7 @@
     <Compile Include="Repository\ProductManagement\ProductRepository.cs" />
     <Compile Include="Repository\ShippersManagement\ShippersRepository.cs" />
     <Compile Include="Repository\SliderManagement\SliderRepository.cs" />
+    <Compile Include="Repository\UserCartManagament\UserCartRepository.cs" />
     <Compile Include="Repository\WishlistManagement\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup />

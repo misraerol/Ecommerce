@@ -36,7 +36,7 @@
                                     <div class="img-block">
                                         <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
                                         <div class="cart-right">
-                                            <a href="@Url.Action("Add","UserChart",new {productId=product.ProductId })" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></a>
+                                            <a href="@Url.Action("Add","UserCart",new {productId=product.ProductId })" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></a>
                                             <a href="@Url.Action("Add", "Wishlist", new {productId= product.ProductId })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
                                             <a href="" data-toggle="modal" data-target="#quick-view" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
                                             <a href="compare.html" title="Karşılaştır"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -69,7 +69,7 @@
                                                             <p>@product.Explanation</p>
                                                         </div>
                                                         <div class="product-buttons">
-                                                            <a href="@Url.Action("Add","UserChart",new {productId=product.ProductId })" class="btn btn-solid">Sepete Ekle</a>
+                                                            <a href="@Url.Action("Add","UserCart",new {productId=product.ProductId })" class="btn btn-solid">Sepete Ekle</a>
                                                             <a href="product-page.html" class="btn btn-solid">Ürün detayı</a>
                                                         </div>
                                                     </div>
