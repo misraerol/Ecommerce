@@ -9,10 +9,15 @@ namespace ECommerce.WEB.Models.ProductManagament
     {
         public int ProductId { get; set; }
 
-        public DateTime? ExpiredDate { get; set; }
+        public DateTime ExpiredDate { get; set; }
 
         public DateTime CreateDate { get; set; }
         public string ImagePath { get; set; }
 
+        public string  ProductName { get; set; }
+
+        public string Explanation { get; set; }
+
+        public decimal Amount { get; set; }
     }
 }

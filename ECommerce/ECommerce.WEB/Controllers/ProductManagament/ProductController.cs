@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ECommerce.WEB.Controllers
 {
+    [LoggedUser]
     public class ProductController : BaseController
     {
         ProductRepository productRepository;
@@ -22,20 +23,36 @@ namespace ECommerce.WEB.Controllers
         {
             return View();
         }
-        
+
         public ActionResult IndexProductStoreWindow()
         {
-            Product product = new Product();
-            ProductMapImage procImage = product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
 
-            List<ProductStoreWindowModel> productStoreWindowsList = productRepository.GetAllProductStoreWindow().Select(s => new ProductStoreWindowModel
+            List<ProductStoreWindowModel> productStoreWindowsList = new List<ProductStoreWindowModel>();
+            List<Product> productList = productRepository.GetAll();
+            foreach (Product product in productList)
             {
-                CreateDate=s.CreateDate,
-                ExpiredDate=s.ExpiredDate,
-                ImagePath=procImage.ImagePath,
-                ProductId=s.ProductId
-            }).ToList();
-         
+                ProductStoreWindowModel productStoreWindowModel = new ProductStoreWindowModel()
+                {
+                    CreateDate = product.CreateDate,
+                    ProductId = product.ProductId,
+                    Amount = product.Amount,
+                    Explanation = product.Explanation,
+                    ProductName = product.Name,
+                };
+                if(product.ProductMapImage != null)
+                {
+                    ProductMapImage procImage = product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (procImage != null)
+                    {
+                        productStoreWindowModel.ImagePath = procImage.ImagePath;
+                    }
+                    else
+                    {
+                        productStoreWindowModel.ImagePath = "notImage.jpg";
+                    }
+                }
+                productStoreWindowsList.Add(productStoreWindowModel);
+            }
             return View(productStoreWindowsList);
         }
     }

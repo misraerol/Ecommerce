@@ -14,7 +14,7 @@ namespace ECommerce.DATA
     
     public partial class AppUserMapWish
     {
-        public int AppUserMapWish1 { get; set; }
+        public int AppUserMapWishId { get; set; }
         public int AppUserId { get; set; }
         public int ProductId { get; set; }
         public System.DateTime CreateDate { get; set; }

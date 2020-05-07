@@ -1,0 +1,90 @@
+﻿@using ECommerce.WEB.Models.WishlistManagement
+@model List<AppUserWishlistModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!-- breadcrumb start -->
+<section class="breadcrumb-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title">
+                    <h2>wishlist</h2>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">wishlist</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="wishlist-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">Resim</th>
+                            <th scope="col">Ürün adı</th>
+                            <th scope="col">Fiyatı</th>
+                            <th scope="col">Sil/ Sepete Ekle </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (AppUserWishlistModel wish in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="~/Uploads/ProductImage/@wish.ImagePath" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#">@wish.ProductName</a>
+                                    <div class="mobile-cart-content row">
+                                        <div class="col-xs-3">
+                                            <p>in stock</p>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color"></h2>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <h2 class="td-color">
+                                                <a href="#" class="icon mr-1"><i class="ti-close"></i> </a>
+                                                <a href="#" class="cart"><i class="ti-shopping-cart"></i></a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2>@string.Format("{0:F2}", wish.Amount)</h2>
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Delete","Wishlist",new {wishlistId=wish.AppUserMapWishId})" class="icon mr-3"><i class="ti-close"></i> </a>
+                                    <a href="@Url.Action("Add","UserChart",new {productId=wish.ProductId })" class="cart"><i class="ti-shopping-cart"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="row cart-buttons">
+            <div class="col-6"><a href="#" class="btn btn-solid">continue shopping</a></div>
+            <div class="col-6"><a href="#" class="btn btn-solid">Sepete Git</a></div>
+        </div>
+    </div>
+</section>
+<!--section end-->

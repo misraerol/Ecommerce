@@ -1548,6 +1548,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductManagament\ProductController.cs" />
+    <Compile Include="Controllers\WishlistManagement\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1560,6 +1561,7 @@
     <Compile Include="Models\CityCountyManagament\CityCountyListView.cs" />
     <Compile Include="Models\ProductManagament\ProductStoreWindowModel.cs" />
     <Compile Include="Models\SliderManagement\SliderViewModel.cs" />
+    <Compile Include="Models\WishlistManagement\AppUserWishlistModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Attribute\LoggedAdminAttribute.cs" />
     <Compile Include="Utility\Attribute\LoggedUserAttribute.cs" />
@@ -1681,6 +1683,8 @@
     <Content Include="Views\Home\RePassword.cshtml" />
     <Content Include="Views\Product\IndexProductStoreWindow.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Wishlist\_WishList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,27 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a72b1ddaa2c7456f8f678db651bddd5c" Name="Diagram1">
-        <EntityTypeShape EntityType="ECommerceModel.Address" Width="1.5" PointX="13.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.AppUser" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.AppUserMapAddress" Width="1.5" PointX="15.5" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.AppUserMapWish" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.Category" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.City" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.County" Width="1.5" PointX="11" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.DiscountKey" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.Parameter" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ParameterType" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.Product" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductMapComment" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductMapImage" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductMapProperty" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductMapRequiredFields" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductMapShippers" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.Shipper" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.Slider" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ECommerceModel.UserCart" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+      <Diagram DiagramId="d07b2cf5032c41f0821b995cc755ebe2" Name="Diagram1">
+        <EntityTypeShape EntityType="ECommerceModel.Address" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.AdminUser" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.AppUser" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.AppUserMapAddress" Width="1.5" PointX="10.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.AppUserMapWish" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Category" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.City" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.County" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.DiscountKey" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Parameter" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ParameterType" Width="1.5" PointX="3.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Product" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductMapComment" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductMapImage" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductMapProperty" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductMapRequiredFields" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductMapShippers" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ProductStoreWindow" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Shipper" Width="1.5" PointX="6" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Slider" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.UserCart" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
         <AssociationConnector Association="ECommerceModel.FK__Address__CountyI__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__AppUserMa__Addre__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__AppUser__Paramet__1AD3FDA4" ManuallyRouted="false" />
@@ -43,10 +44,9 @@
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Produ__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Produ__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Produ__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.FK__ProductSt__Produ__756D6ECB" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__UserCart__Produc__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Shipp__4E88ABD4" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ECommerceModel.ProductStoreWindow" Width="1.5" PointX="5.25" PointY="22.75" />
-        <AssociationConnector Association="ECommerceModel.FK__ProductSt__Produ__756D6ECB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
