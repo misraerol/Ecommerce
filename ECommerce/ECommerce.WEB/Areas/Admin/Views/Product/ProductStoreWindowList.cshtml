@@ -1,4 +1,5 @@
-﻿
+﻿@using ECommerce.WEB.Areas.Admin.Model.ProductManagement
+@model List<ProductStoreWindowListView>
 @{
     ViewBag.Title = "ProductStoreWindowList";
 }
@@ -10,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Kategori Yönetimi</h4>
-                        <a href="@Url.Action("Insert","Category")" class="btn btn-primary float-right">Kategori Ekle</a>
+                        <a href="@Url.Action("InsertProductStoreWindow","Product")" class="btn btn-primary float-right">Ürün Ekle</a>
                         <br />
                         <br />
                         <br />
@@ -18,35 +19,29 @@
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
+                                        <td>Resim</td>
                                         <td>Kategori adı</td>
                                         <td>Güncelle</td>
                                         <td>Sil</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (CategoryListView category in Model)
+                                    @foreach (ProductStoreWindowListView product in Model)
                                     {
                                         <tr>
-                                            @if (!category.Name.Contains(">"))
-                                            {
-                                                <td class="bg-warning">@category.Name</td>
-                                            }
-                                            else
-                                            {
-                                                <td>@category.Name</td>
-
-                                            }
+                                          <td><img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt=""></td>
+                                                <td>@product.ProductName</td>
 
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-3">
-                                                        <a href="@Url.Action("Update", "Category", new {id=category.CategoryId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                        <a href="@Url.Action("UpdateProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-secondary"><i class="fa fa-edit"></i></a>
                                                     </li>
                                                 </ul>
                                             </td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li><a href="@Url.Action("Delete", "Category", new {id=category.CategoryId})" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    <li><a href="@Url.Action("DeleteProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>
                                         </tr>

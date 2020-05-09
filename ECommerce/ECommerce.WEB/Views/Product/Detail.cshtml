@@ -96,7 +96,8 @@
                                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                 </ul>
                                 <form class="d-inline-block">
-                                    <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Favorilerime Ekle</span></button>
+                                 
+                                    <button href="@Url.Action("Add", "Wishlist", new {productId= Model.ProductId })" class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Favorilerime Ekle</span></button>
                                 </form>
                             </div>
                         </div>

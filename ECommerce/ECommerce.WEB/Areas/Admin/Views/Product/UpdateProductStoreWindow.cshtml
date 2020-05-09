@@ -1,15 +1,15 @@
 ﻿@model ECommerce.WEB.Areas.Admin.Model.ProductManagement.ProductStoreWindowCRUDModel
 @{
-    ViewBag.Title = "InsertProductStoreWindow";
+    ViewBag.Title = "UpdateProductStoreWindow";
 }
 
 
-@using (Html.BeginForm("InsertProductStoreWindow", "Product", FormMethod.Post, new { @id = "InsertProductStoreWindow" }))
+@using (Html.BeginForm("UpdateProductStoreWindow", "Product", FormMethod.Post, new { @id = "UpdateProductStoreWindow" }))
 {
     <div class="form-group">
 
         @Html.LabelFor(s => s.ProductListId, new { @class = "col-form-label" })
-        @Html.DropDownListFor(s => s.ProductListId, Model.ProductList, string.Empty, new { @class = "form-control", multiple = "" })
+        @Html.DropDownListFor(s => s.ProductListId, Model.ProductList, string.Empty, new { @class = "form-control" })
         @Html.ValidationMessageFor(s => s.ProductListId)
     </div>
     <div class="form-group">
@@ -28,7 +28,8 @@
 @section Scripts{
     <script>
 
-        Jform("#InsertProductStoreWindow");
+        Jform("#UpdateProductStoreWindow");
     </script>
 
 }
+

@@ -65,7 +65,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
             bool anyUseProductId = wishlistRepository.AnyProductId(productId);
             if (anyUseProductId)
             {
-                return RedirectToAction("IndexProductStoreWindow", "Product");
+                return RedirectToAction("Index", "Product");
             }
             else
             {
@@ -79,7 +79,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
 
                 };
                 wishlistRepository.Insert(appUserMapWish);
-                return RedirectToAction("IndexProductStoreWindow", "Product");
+                return RedirectToAction("Index", "Product");
             }
            
         }

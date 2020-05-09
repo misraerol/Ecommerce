@@ -59,34 +59,7 @@ namespace ECommerce.WEB.Controllers
             return View(productStoreWindows);
         }
 
-        //List<ProductStoreWindowModel> productStoreWindows = new List<ProductStoreWindowModel>();
-        //List<ProductStoreWindow> productStoreWindowList = productRepository.GetAllProductStoreWindow();
-        //foreach (ProductStoreWindow productStore in productStoreWindowList)
-        //{
-        //    ProductStoreWindowModel productStoreWindowModel = new ProductStoreWindowModel()
-        //    {
-        //        CreateDate = productStore.Product.CreateDate,
-        //        ProductId = productStore.Product.ProductId,
-        //        Amount = productStore.Product.Amount,
-        //        Explanation = productStore.Product.Explanation,
-        //        ProductName = productStore.Product.ShortName
-        //    };
-        //    if (productStore.Product.ProductMapImage != null)
-        //    {
-        //        ProductMapImage procImage = productStore.Product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
-        //        if (procImage != null)
-        //        {
-        //            productStoreWindowModel.ImagePath = procImage.ImagePath;
-        //        }
-        //        else
-        //        {
-        //            productStoreWindowModel.ImagePath = "notImage.jpg";
-        //        }
-        //    }
-        //    productStoreWindows.Add(productStoreWindowModel);
-        //}
-        //return View(productStoreWindows);
-
+      
 
 
         #region Ürün Detay

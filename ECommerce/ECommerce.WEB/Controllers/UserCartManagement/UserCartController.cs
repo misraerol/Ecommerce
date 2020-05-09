@@ -76,7 +76,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
 
                 userCartRepository.Insert(userCarts);
             }
-            return RedirectToAction("IndexProductStoreWindow", "Product");
+            return RedirectToAction("Index", "Product");
         }
 
         public ActionResult Decrease(int userCartId)

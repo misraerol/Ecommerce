@@ -39,11 +39,11 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             {
                 ProductListView productListViewModel = new ProductListView()
                 {
-                    ProductId=proc.ProductId,
-                    Amount= proc.Amount,
-                    CategoryName=proc.Category.Name,
-                    DiscountRate=proc.DiscountRate,
-                    ProductName=proc.Name
+                    ProductId = proc.ProductId,
+                    Amount = proc.Amount,
+                    CategoryName = proc.Category.Name,
+                    DiscountRate = proc.DiscountRate,
+                    ProductName = proc.Name
                 };
 
                 if (proc.ProductMapImage != null)
@@ -60,7 +60,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
                 }
                 productListViewModelList.Add(productListViewModel);
             }
-            
+
             return View(productListViewModelList);
         }
 
@@ -541,29 +541,131 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
         #region vitrin ürünler
         public ActionResult ProductStoreWindowList()
         {
-            List<ProductStoreWindowCRUDModel> productStoreWindows = new List<ProductStoreWindowCRUDModel>();
-            List<ProductStoreWindow> productStoreWindowList = productRepository.GetAllProductStoreWindow();
-            foreach (ProductStoreWindow productStore in productStoreWindowList)
+            List<ProductStoreWindowListView> productStoreWindowListView = new List<ProductStoreWindowListView>();
+            List<ProductStoreWindow> productStoreWindowsList = productRepository.GetAllProductStoreWindow();
+            foreach (ProductStoreWindow productStoreWindow in productStoreWindowsList)
             {
-                ProductStoreWindowCRUDModel productStoreWindowModel = new ProductStoreWindowCRUDModel()
+                ProductStoreWindowListView productStoreWindowListViewModel = new ProductStoreWindowListView()
                 {
-                   ExpiredDate=productStore.ExpiredDate,
-                   
+                    ExpiredDate = productStoreWindow.ExpiredDate,
+                    ProductName = productStoreWindow.Product.ShortName,
+                    ProductStorewindowId = productStoreWindow.ProductStoreWindowId
                 };
-             
-                productStoreWindows.Add(productStoreWindowModel);
+                if (productStoreWindow.Product.ProductMapImage != null)
+                {
+                    ProductMapImage productMapImage = productStoreWindow.Product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (productMapImage != null)
+                    {
+                        productStoreWindowListViewModel.ImagePath = productMapImage.ImagePath;
+                    }
+                    else
+                    {
+                        productStoreWindowListViewModel.ImagePath = "notImage.jpg";
+                    }
+                }
+                productStoreWindowListView.Add(productStoreWindowListViewModel);
             }
-            return View(productStoreWindows);
+
+            return View(productStoreWindowListView);
         }
 
         public ActionResult InsertProductStoreWindow()
         {
             ProductStoreWindowCRUDModel productStoreWindow = new ProductStoreWindowCRUDModel();
             List<Product> productList = productRepository.GetAll();
-            productStoreWindow.ProductList = new MultiSelectList(productList,"ProductId","ShortName");
+            productStoreWindow.ProductList = new MultiSelectList(productList, "ProductId", "ShortName");
             return View(productStoreWindow);
         }
-        #endregion
+        [HttpPost]
+        public ActionResult InsertProductStoreWindow(ProductStoreWindowCRUDModel productStoreWindowCRUDModel)
+        {
+            Response response;
+            List<ProductStoreWindow> productStoreWindowList = new List<ProductStoreWindow>();
+            foreach (int productId in productStoreWindowCRUDModel.ProductListId)
+            {
+                bool anyUserProductId = productRepository.AnyProductId(productId);
+                if (anyUserProductId)
+                {
+                    Product product = productRepository.GetById(productId);
+                    response = new Response()
+                    {
+                        Status = false,
+                        Message = "Bu ürün " + product.ShortName + "daha önce vitrin ürünlerine eklenmiştir.",
+                    };
+                    return Json(response);
+                }
+                ProductStoreWindow productStoreWindow = new ProductStoreWindow()
+                {
+                    CreateDate = DateTime.Now,
+                    ExpiredDate = productStoreWindowCRUDModel.ExpiredDate,
+                    ProductId = productId,
+                    IsActive = true,
+                    IsDeleted = false
+                };
+                productStoreWindowList.Add(productStoreWindow);
+            }
+            if (productStoreWindowList.Any())
+            {
+                productRepository.InsertManyProductStoreWindow(productStoreWindowList);
+            }
+            response = new Response()
+            {
+                Status = true,
+                Message = "Ürün Eklendi",
+                RedirectUrl = Url.Action("ProductStoreWindowList", "Product"),
+            };
+            return Json(response);
+
+        }
+        public ActionResult UpdateProductStoreWindow(int id)
+        {
+            ProductStoreWindowCRUDModel productStoreWindowCRUDModel = new ProductStoreWindowCRUDModel();
+            ProductStoreWindow productStoreWindow = productRepository.GetProductStoreWindowById(id);
+            List<Product> productList = productRepository.GetAll();
+            productStoreWindowCRUDModel.ProductList = new MultiSelectList(productList, "ProductId", "ShortName", new List<int> { productStoreWindow.ProductId });
+            productStoreWindowCRUDModel.ExpiredDate = productStoreWindow.ExpiredDate;
+            return View(productStoreWindowCRUDModel);
+        }
+        [HttpPost]
+        public ActionResult UpdateProductStoreWindow(ProductStoreWindowCRUDModel productStoreWindowCRUDModel)
+        {
+            Response response;
+            ProductStoreWindow productStoreWindow = productRepository.GetProductStoreWindowById(productStoreWindowCRUDModel.ProductStorewindowId);
+            ProductStoreWindow anyproductStoreWindow = productRepository.GetProductStoreWindowByProductId(productStoreWindowCRUDModel.ProductId);
+            if (anyproductStoreWindow != null)
+            {
+                if (productStoreWindow.ProductStoreWindowId != anyproductStoreWindow.ProductStoreWindowId)
+                {
+                    response = new Response()
+                    {
+                        Status = false,
+                        Message = "Bu ürün daha önce vitrin ürünlerine eklenmiştir."
+                    };
+                    return Json(response);
+                }
+            }
+            productStoreWindow.ProductStoreWindowId = productStoreWindowCRUDModel.ProductStorewindowId;
+            productStoreWindow.ExpiredDate = productStoreWindowCRUDModel.ExpiredDate;
+            productStoreWindow.ProductId = productStoreWindowCRUDModel.ProductId;
+            productRepository.UpdateProductStoreWindow(productStoreWindow);
+            response = new Response()
+            {
+                Status = true,
+                Message = "Ürün Eklendi",
+                RedirectUrl = Url.Action("ProductStoreWindowList", "Product"),
+            };
+            return Json(response);
         
+        }
+        public ActionResult DeleteProductStoreWindow(int id = 0)
+        {
+            ProductStoreWindow productStoreWindow = productRepository.GetProductStoreWindowById(id);
+            productStoreWindow.IsActive = false;
+            productStoreWindow.IsDeleted = true;
+            productRepository.UpdateProductStoreWindow(productStoreWindow);
+            return RedirectToAction("ProductStoreWindowList", "Product");
+        }
+        #endregion
+
     }
 }

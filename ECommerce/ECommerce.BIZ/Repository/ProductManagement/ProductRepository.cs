@@ -56,9 +56,34 @@ namespace ECommerce.BIZ.Repository.ProductManagement
             List<ProductStoreWindow> productStoreWindows = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).ToList();
             return productStoreWindows;
         }
+        public ProductStoreWindow GetProductStoreWindowById(int id)
+        {
+            ProductStoreWindow productStoreWindow = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted && s.ProductStoreWindowId == id).SingleOrDefault();
+            return productStoreWindow;
+        }
         public void InsertProductStoreWindow(ProductStoreWindow productStoreWindow)
         {
             db.ProductStoreWindow.Add(productStoreWindow);
+            db.SaveChanges();
+        }
+        public bool AnyProductId(int productId)
+        {
+            bool anyProductId = db.ProductStoreWindow.Where(s => s.ProductId == productId && s.IsActive && !s.IsDeleted).Any();
+            return anyProductId;
+        }
+        public ProductStoreWindow GetProductStoreWindowByProductId(int productId)
+        {
+            ProductStoreWindow productStoreWindow = db.ProductStoreWindow.Where(s => s.ProductId == productId && s.IsActive && !s.IsDeleted).SingleOrDefault();
+            return productStoreWindow;
+        }
+        public void InsertManyProductStoreWindow(List<ProductStoreWindow> productStoreWindowList)
+        {
+            db.ProductStoreWindow.AddRange(productStoreWindowList);
+            db.SaveChanges();
+        }
+        public void UpdateProductStoreWindow(ProductStoreWindow productStoreWindow)
+        {
+            db.Entry(productStoreWindow).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
     }

@@ -1540,6 +1540,7 @@
     <Compile Include="Areas\Admin\Model\ProductManagement\ProductCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ProductManagement\ProductListView.cs" />
     <Compile Include="Areas\Admin\Model\ProductManagement\ProductStoreWindowCRUDModel.cs" />
+    <Compile Include="Areas\Admin\Model\ProductManagement\ProductStoreWindowListView.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperCRUDModel.cs" />
     <Compile Include="Areas\Admin\Model\ShippersManagement\ShipperListView.cs" />
     <Compile Include="Areas\Admin\Model\SliderManagement\SliderCRUDModel.cs" />
@@ -1667,6 +1668,7 @@
     <Content Include="Areas\Admin\Views\AdminUser\Password.cshtml" />
     <Content Include="Areas\Admin\Views\Product\InsertProductStoreWindow.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ProductStoreWindowList.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\UpdateProductStoreWindow.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
