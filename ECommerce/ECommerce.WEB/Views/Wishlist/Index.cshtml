@@ -1,4 +1,5 @@
 ﻿@using ECommerce.WEB.Models.WishlistManagement
+@using ECommerce.CORE.Helper
 @model List<AppUserWishlistModel>
 @{
     ViewBag.Title = "Index";
@@ -66,7 +67,16 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h2>@string.Format("{0:F2}", wish.Amount)</h2>
+                                    @if (wish.DiscountRate > 0)
+                                    {
+                                        <h3><del>@wish.Amount.ConvertToMoney()</del></h3>
+                                        <h3>@CalculateHelper.CalculateDiscountAmount(wish.DiscountRate, wish.Amount).ConvertToMoney()</h3>
+
+                                    }
+                                    else
+                                    {
+                                        <h3>@wish.Amount.ConvertToMoney()</h3>
+                                    }
                                 </td>
 
                                 <td>

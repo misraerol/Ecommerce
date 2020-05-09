@@ -505,7 +505,6 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             return Json(response);
         }
 
-
         public ActionResult Delete(int id = 0)
         {
             Product product = productRepository.GetById(id);
@@ -539,6 +538,32 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             }
         }
 
+        #region vitrin ürünler
+        public ActionResult ProductStoreWindowList()
+        {
+            List<ProductStoreWindowCRUDModel> productStoreWindows = new List<ProductStoreWindowCRUDModel>();
+            List<ProductStoreWindow> productStoreWindowList = productRepository.GetAllProductStoreWindow();
+            foreach (ProductStoreWindow productStore in productStoreWindowList)
+            {
+                ProductStoreWindowCRUDModel productStoreWindowModel = new ProductStoreWindowCRUDModel()
+                {
+                   ExpiredDate=productStore.ExpiredDate,
+                   
+                };
+             
+                productStoreWindows.Add(productStoreWindowModel);
+            }
+            return View(productStoreWindows);
+        }
 
+        public ActionResult InsertProductStoreWindow()
+        {
+            ProductStoreWindowCRUDModel productStoreWindow = new ProductStoreWindowCRUDModel();
+            List<Product> productList = productRepository.GetAll();
+            productStoreWindow.ProductList = new MultiSelectList(productList,"ProductId","ShortName");
+            return View(productStoreWindow);
+        }
+        #endregion
+        
     }
 }

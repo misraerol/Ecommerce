@@ -17,6 +17,7 @@ using ECommerce.BIZ.Repository.CategoryManagement;
 using ECommerce.WEB.Areas.Admin.Model.CategoryManagement;
 using ECommerce.BIZ.Repository.ParameterManagement;
 using ECommerce.BIZ.Repository.ParameterTypeManagement;
+using ECommerce.BIZ.Repository.UserCartManagament;
 
 namespace ECommerce.WEB.Controllers
 {
@@ -26,12 +27,14 @@ namespace ECommerce.WEB.Controllers
         AppUserRepository appUserRepository;
         CategoryRepository categoryRepository;
         ParameterRepository parameterRepository;
+        UserCartRepository userCartRepository;
         public HomeController()
         {
             sliderRepository = new SliderRepository();
             appUserRepository = new AppUserRepository();
             categoryRepository = new CategoryRepository();
             parameterRepository = new ParameterRepository();
+            userCartRepository = new UserCartRepository();
         }
         public ActionResult Index()
         {
@@ -223,9 +226,22 @@ namespace ECommerce.WEB.Controllers
             }).ToList();
             return PartialView(sliderViewModel);
         }
+
         public PartialViewResult _UserInformation()
         {
-            return PartialView();
+            UserInformationModel userInformationModel = new UserInformationModel();
+            //count yazılacak
+            AppUser appUser = (AppUser)Session["LoggedUser"];
+            if (appUser != null)
+            {
+                userInformationModel.UserCartCount = userCartRepository.TotalProductCount();
+                return PartialView(userInformationModel);
+            }
+            else
+            {
+                userInformationModel.UserCartCount = 0;
+                return PartialView(userInformationModel);
+            }
         }
 
         public PartialViewResult _Category()

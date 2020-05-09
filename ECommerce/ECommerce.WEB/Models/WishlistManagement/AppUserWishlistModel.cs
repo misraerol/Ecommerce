@@ -16,5 +16,7 @@ namespace ECommerce.WEB.Models.WishlistManagement
         public int AppUserMapWishId { get; set; }
 
         public int ProductId { get; set; }
+
+        public decimal DiscountRate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using ECommerce.WEB.Models.UserCartManagamenet
+@using ECommerce.CORE.Helper
 @model List<UserCartModel>
 @{
     ViewBag.Title = "Index";
@@ -60,7 +61,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
-                                            <h2 class="td-color">@userCart.Amount</h2>
+                                            <h2 class="td-color">@userCart.Amount.ConvertToMoney()</h2>
                                         </div>
                                         <div class="col-xs-3">
                                             <h2 class="td-color"><a href="@Url.Action("Delete","UserCart")" class="icon"><i class="ti-close"></i></a></h2>
@@ -68,7 +69,16 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h2>@userCart.Amount</h2>
+                                    @if (userCart.DiscountRate > 0)
+                                    {
+                                        <h3><del>@userCart.Amount.ConvertToMoney()</del></h3>
+                                        <h3>@CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount).ConvertToMoney()</h3>
+
+                                    }
+                                    else
+                                    {
+                                        <h3>@userCart.Amount.ConvertToMoney()</h3>
+                                    }
                                 </td>
                                 <td>
                                     <div class="qty-box">
@@ -84,12 +94,16 @@
                                     </div>
                                 <td><a href="@Url.Action("Delete","UserCart",new {userCartId=userCart.UserCartId})" class="icon"><i class="ti-close"></i></a></td>
                                 <td>
-                                    <h2 class="td-color">@string.Format("{0:F2}", (userCart.Amount * userCart.ProductCount))</h2>
+                                    @{
+                                        decimal productTotalAmount = CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount) * userCart.ProductCount;
+                                    }
+                                    <h2 class="td-color"> @productTotalAmount.ConvertToMoney()</h2>
                                 </td>
                             </tr>
                             {
+
                                 totalCount += userCart.ProductCount;
-                                totalAmount += userCart.Amount * userCart.ProductCount;
+                                totalAmount += CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount) * userCart.ProductCount;
                             }
                         }
 
@@ -103,7 +117,7 @@
                                 Sipariş Özeti:
                             </td>
                             <td>
-                                <h2>@string.Format("{0:F2}", totalAmount)</h2>
+                                <h2>@totalAmount.ConvertToMoney()</h2>
                             </td>
                         </tr>
                     </tfoot>

@@ -62,5 +62,10 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
                 db.SaveChanges();
             }
         }
+        public int TotalProductCount()
+        {
+            int totalCount = db.UserCart.Where(s => s.IsActive && !s.IsDeleted).Sum(s => s.ProductCount);
+            return totalCount;
+        }
     }
 }
