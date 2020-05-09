@@ -1,5 +1,6 @@
 ﻿using ECommerce.BIZ.Repository.CategoryManagement;
 using ECommerce.BIZ.Repository.ProductManagement;
+using ECommerce.CORE.Helper;
 using ECommerce.DATA;
 using ECommerce.WEB.Models.ProductManagament;
 using ECommerce.WEB.Utility.Attribute;
@@ -11,7 +12,6 @@ using System.Web.Mvc;
 
 namespace ECommerce.WEB.Controllers
 {
-    [LoggedUser]
     public class ProductController : BaseController
     {
         ProductRepository productRepository;
@@ -106,9 +106,82 @@ namespace ECommerce.WEB.Controllers
             productDetailViewModel.ShortName = product.ShortName;
             productDetailViewModel.Explanation = product.Explanation;
             productDetailViewModel.Amount = product.Amount;
-            //productDetailViewModel.DiscountAmount = CalculatorHelper
+            productDetailViewModel.DiscountRate = product.DiscountRate;
+            productDetailViewModel.DiscountAmount = CalculateHelper.CalculateDiscountAmount(product.DiscountRate, product.Amount);
+            productDetailViewModel.CategoryName = product.Category.Name;
 
-            return View();
+
+            #region Ürün Resimler
+
+            if (product.ProductMapImage != null)
+            {
+                productDetailViewModel.ProductImageList = new List<string>();
+
+                foreach (ProductMapImage productMapImage in product.ProductMapImage.Where(a=>a.IsActive&&!a.IsDeleted))
+                {
+                    productDetailViewModel.ProductImageList.Add(productMapImage.ImagePath);
+                }
+            }
+            #endregion
+
+            #region Ürün Propertyleri
+
+            if (product.ProductMapProperty != null)
+            {
+                productDetailViewModel.ProductPropertyModel = new List<ProductPropertyModel>();
+
+                foreach (ProductMapProperty productMapProperty in product.ProductMapProperty.Where(a=>a.IsActive&&!a.IsDeleted))
+                {
+                    ProductPropertyModel productPropertyModel = new ProductPropertyModel()
+                    {
+                        PropertyName=productMapProperty.Parameter.Name,
+                        Value= productMapProperty.PropetyKey
+                    };
+                    productDetailViewModel.ProductPropertyModel.Add(productPropertyModel);
+                }
+            }
+
+            #endregion
+
+            #region Ürün Yorumları
+
+            if (product.ProductMapComment != null)
+            {
+                productDetailViewModel.ProductMapCommentModel = new List<ProductMapCommentModel>();
+
+                foreach (ProductMapComment productMapComment in product.ProductMapComment)
+                {
+                    ProductMapCommentModel productMapCommentModel = new ProductMapCommentModel()
+                    {
+                        AppUserName = productMapComment.AppUser.FirstName + " " + productMapComment.AppUser.LastName,
+                        Comment = productMapComment.Comment,
+                        ProductMapCommentId=productMapComment.ProductMapCommentId,
+                        Star=productMapComment.Star
+                    };
+                    productDetailViewModel.ProductMapCommentModel.Add(productMapCommentModel);
+                }
+
+            }
+
+            #endregion
+
+            #region Ürün RequiredFiel
+
+            productDetailViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
+
+            foreach (ProductMapRequiredFields requiredFields in product.ProductMapRequiredFields.Where(a=>a.IsActive&&!a.IsDeleted))
+            {
+                ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
+                {
+                    Field=requiredFields.Parameter.Name,
+                    ProductMapRequiredFieldId=requiredFields.ProductMapRequiredFieldsId
+                };
+                productDetailViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
+
+            }
+            #endregion
+
+            return View(productDetailViewModel);
         }
 
         #endregion

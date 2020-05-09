@@ -17,7 +17,11 @@ namespace ECommerce.WEB.Models.ProductManagament
 
         public decimal Amount { get; set; }
 
+        public decimal DiscountRate { get; set; }
+
         public decimal DiscountAmount { get; set; }
+
+        public string CategoryName { get; set; }
 
         public List<string> ProductImageList { get; set; }
 
@@ -27,33 +31,42 @@ namespace ECommerce.WEB.Models.ProductManagament
 
         public ProductShipperModel ProductShipperModel { get; set; }
 
+        public List<ProductMapCommentModel> ProductMapCommentModel { get; set; }
 
-    }
- 
+        public  List<ProductMapRequiredFieldModel> ProductMapRequiredFieldModel { get; set; }
 
-    public class ProductPropertyModel
-    {
-        public int PropertyName { get; set; }
+}
 
-        public string Value { get; set; }
-    }
 
-    public class ProductShipperModel
-    {
-        public int ProductShipperName { get; set; }
+public class ProductPropertyModel
+{
+    public string PropertyName { get; set; }
 
-        public decimal Amount { get; set; }
-    }
+    public string Value { get; set; }
+}
 
-    public class ProductMapComment
-    {
-        public int ProductMapCommentId { get; set; }
+public class ProductShipperModel
+{
+    public int ProductShipperName { get; set; }
 
-        public string AppUserName { get; set; }
+    public decimal Amount { get; set; }
+}
 
-        public byte Star { get; set; }
+public class ProductMapCommentModel
+{
+    public int ProductMapCommentId { get; set; }
 
-        public string Comment { get; set; }
-    }
+    public string AppUserName { get; set; }
+
+    public byte Star { get; set; }
+
+    public string Comment { get; set; }
+}
+
+public class ProductMapRequiredFieldModel
+{
+    public int ProductMapRequiredFieldId { get; set; }
+    public string Field { get; set; }
+}
 
 }

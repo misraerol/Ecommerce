@@ -18,7 +18,6 @@ namespace ECommerce.DATA
         public ParameterType()
         {
             this.Parameter = new HashSet<Parameter>();
-            this.ProductMapProperty = new HashSet<ProductMapProperty>();
         }
     
         public int ParameterTypeId { get; set; }
@@ -29,7 +28,5 @@ namespace ECommerce.DATA
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parameter> Parameter { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMapProperty> ProductMapProperty { get; set; }
     }
 }

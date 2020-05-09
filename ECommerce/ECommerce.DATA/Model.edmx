@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -185,11 +185,11 @@
           </Key>
           <Property Name="ProductMapPropertyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="ParameterId" Type="int" Nullable="false" />
           <Property Name="PropetyKey" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ParameterId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductMapRequiredFields">
           <Key>
@@ -381,6 +381,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductMa__Param__0880433F">
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ProductMa__Param__4D5F7D71">
           <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
           <End Role="ProductMapRequiredFields" Type="Self.ProductMapRequiredFields" Multiplicity="*" />
@@ -389,18 +401,6 @@
               <PropertyRef Name="ParameterId" />
             </Principal>
             <Dependent Role="ProductMapRequiredFields">
-              <PropertyRef Name="ParameterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductMa__Param__5AEE82B9">
-          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
-          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ParameterType">
-              <PropertyRef Name="ParameterTypeId" />
-            </Principal>
-            <Dependent Role="ProductMapProperty">
               <PropertyRef Name="ParameterId" />
             </Dependent>
           </ReferentialConstraint>
@@ -576,13 +576,13 @@
             <End Role="AppUser" EntitySet="AppUser" />
             <End Role="ProductMapComment" EntitySet="ProductMapComment" />
           </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Param__0880433F" Association="Self.FK__ProductMa__Param__0880433F">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
           <AssociationSet Name="FK__ProductMa__Param__4D5F7D71" Association="Self.FK__ProductMa__Param__4D5F7D71">
             <End Role="Parameter" EntitySet="Parameter" />
             <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductMa__Param__5AEE82B9" Association="Self.FK__ProductMa__Param__5AEE82B9">
-            <End Role="ParameterType" EntitySet="ParameterType" />
-            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductMa__Produ__4AB81AF0" Association="Self.FK__ProductMa__Produ__4AB81AF0">
             <End Role="Product" EntitySet="Product" />
@@ -621,8 +621,7 @@
             <End Role="UserCart" EntitySet="UserCart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -765,6 +764,7 @@
           <NavigationProperty Name="AppUser" Relationship="Self.FK__AppUser__Paramet__1AD3FDA4" FromRole="Parameter" ToRole="AppUser" />
           <NavigationProperty Name="ParameterType" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="Parameter" ToRole="ParameterType" />
           <NavigationProperty Name="ProductMapRequiredFields" Relationship="Self.FK__ProductMa__Param__4D5F7D71" FromRole="Parameter" ToRole="ProductMapRequiredFields" />
+          <NavigationProperty Name="ProductMapProperty" Relationship="ECommerceModel.FK__ProductMa__Param__0880433F" FromRole="Parameter" ToRole="ProductMapProperty" />
         </EntityType>
         <EntityType Name="ParameterType">
           <Key>
@@ -776,7 +776,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Parameter" Relationship="Self.FK__Parameter__Param__534D60F1" FromRole="ParameterType" ToRole="Parameter" />
-          <NavigationProperty Name="ProductMapProperty" Relationship="Self.FK__ProductMa__Param__5AEE82B9" FromRole="ParameterType" ToRole="ProductMapProperty" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -838,13 +837,13 @@
           </Key>
           <Property Name="ProductMapPropertyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="ParameterId" Type="Int32" Nullable="false" />
           <Property Name="PropetyKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ParameterType" Relationship="Self.FK__ProductMa__Param__5AEE82B9" FromRole="ProductMapProperty" ToRole="ParameterType" />
           <NavigationProperty Name="Product" Relationship="Self.FK__ProductMa__Produ__59FA5E80" FromRole="ProductMapProperty" ToRole="Product" />
+          <Property Name="ParameterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parameter" Relationship="ECommerceModel.FK__ProductMa__Param__0880433F" FromRole="ProductMapProperty" ToRole="Parameter" />
         </EntityType>
         <EntityType Name="ProductMapRequiredFields">
           <Key>
@@ -1068,18 +1067,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductMa__Param__5AEE82B9">
-          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
-          <End Role="ProductMapProperty" Type="Self.ProductMapProperty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ParameterType">
-              <PropertyRef Name="ParameterTypeId" />
-            </Principal>
-            <Dependent Role="ProductMapProperty">
-              <PropertyRef Name="ParameterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ProductMa__Produ__4AB81AF0">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductMapImage" Type="Self.ProductMapImage" Multiplicity="*" />
@@ -1246,10 +1233,6 @@
             <End Role="Parameter" EntitySet="Parameter" />
             <End Role="ProductMapRequiredFields" EntitySet="ProductMapRequiredFields" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductMa__Param__5AEE82B9" Association="Self.FK__ProductMa__Param__5AEE82B9">
-            <End Role="ParameterType" EntitySet="ParameterType" />
-            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
-          </AssociationSet>
           <AssociationSet Name="FK__ProductMa__Produ__4AB81AF0" Association="Self.FK__ProductMa__Produ__4AB81AF0">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductMapImage" EntitySet="ProductMapImage" />
@@ -1283,11 +1266,27 @@
             <End Role="ProductMapShippers" EntitySet="ProductMapShippers" />
           </AssociationSet>
           <FunctionImport Name="RecursiveCategoryList" ReturnType="Collection(ECommerceModel.RecursiveCategoryList_Result)" />
+          <AssociationSet Name="FK__ProductMa__Param__0880433F" Association="ECommerceModel.FK__ProductMa__Param__0880433F">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="ProductMapProperty" EntitySet="ProductMapProperty" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="RecursiveCategoryList_Result">
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" />
         </ComplexType>
+        <Association Name="FK__ProductMa__Param__0880433F">
+          <End Type="ECommerceModel.Parameter" Role="Parameter" Multiplicity="1" />
+          <End Type="ECommerceModel.ProductMapProperty" Role="ProductMapProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="ProductMapProperty">
+              <PropertyRef Name="ParameterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1485,9 +1484,9 @@
           <EntitySetMapping Name="ProductMapProperty">
             <EntityTypeMapping TypeName="ECommerceModel.ProductMapProperty">
               <MappingFragment StoreEntitySet="ProductMapProperty">
+                <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
                 <ScalarProperty Name="ProductMapPropertyId" ColumnName="ProductMapPropertyId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
                 <ScalarProperty Name="PropetyKey" ColumnName="PropetyKey" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
