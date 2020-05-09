@@ -31,7 +31,8 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
                     ProductId=userCart.Product.ProductId,
                     ProductName=userCart.Product.Name,
                     UserCartId=userCart.UserCartId,
-                    ProductCount=userCart.ProductCount
+                    ProductCount=userCart.ProductCount,
+                    DiscountRate=userCart.Product.DiscountRate
                 };
                 if (userCart.Product.ProductMapImage != null)
                 {
@@ -59,7 +60,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             {
                 userCart.ProductCount += 1;
                 userCartRepository.Update(userCart);
-                return RedirectToAction("Index", "UserCart");
+                
             }
             else
             {
@@ -74,8 +75,8 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
                 };
 
                 userCartRepository.Insert(userCarts);
-               return RedirectToAction("IndexProductStoreWindow", "Product");
             }
+            return RedirectToAction("IndexProductStoreWindow", "Product");
         }
 
         public ActionResult Decrease(int userCartId)
@@ -123,7 +124,8 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
                     ProductId = userCart.Product.ProductId,
                     ProductName = userCart.Product.ShortName,
                     UserCartId = userCart.UserCartId,
-                    ProductCount = userCart.ProductCount
+                    ProductCount = userCart.ProductCount,
+                     DiscountRate = userCart.Product.DiscountRate
                 };
                 if (userCart.Product.ProductMapImage != null)
                 {
@@ -142,5 +144,8 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             }
             return PartialView(userCartModelList);
         }
+
+
+
     }
 }

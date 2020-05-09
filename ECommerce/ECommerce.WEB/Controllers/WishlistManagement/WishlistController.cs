@@ -37,6 +37,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
                      ProductName = wish.Product.Name,
                     ProductId=wish.Product.ProductId,
                     AppUserMapWishId=wish.AppUserMapWishId,
+                    DiscountRate=wish.Product.DiscountRate
                  };
 
                  if (wish.Product.ProductMapImage != null)
@@ -60,7 +61,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
         public ActionResult Add(int productId)
         {
             AppUser appUserSession = (AppUser)Session["LoggedUser"];
-            //AppUserMapWish appUserwishlist = wishlistRepository.GetByProductId(productId);
+     
             bool anyUseProductId = wishlistRepository.AnyProductId(productId);
             if (anyUseProductId)
             {
@@ -104,6 +105,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
                     ProductName = wish.Product.ShortName,
                     ProductId = wish.Product.ProductId,
                     AppUserMapWishId = wish.AppUserMapWishId,
+                    DiscountRate = wish.Product.DiscountRate
                 };
 
                 if (wish.Product.ProductMapImage != null)

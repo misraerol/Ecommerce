@@ -1,4 +1,5 @@
 ﻿@using ECommerce.WEB.Models.WishlistManagement
+@using ECommerce.CORE.Helper
 @model List<AppUserWishlistModel>
 
 <!-- Add to wishlist bar -->
@@ -26,10 +27,16 @@
                                 <a href="#">
                                     <h4>@wish.ProductName</h4>
                                 </a>
+                                @if (wish.DiscountRate > 0)
+                                {
+                                    <h5><del>@wish.Amount.ConvertToMoney()</del></h5>
+                                    <h5>@CalculateHelper.CalculateDiscountAmount(wish.DiscountRate, wish.Amount).ConvertToMoney()</h5>
 
-                                <h4>
-                                    <span>@wish.Amount</span>
-                                </h4>
+                                }
+                                else
+                                {
+                                    <h5>@wish.Amount.ConvertToMoney()</h5>
+                                }
                             </div>
                         </div>
                         <div class="close-circle">

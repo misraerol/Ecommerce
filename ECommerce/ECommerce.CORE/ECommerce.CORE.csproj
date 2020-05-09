@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\CalculateHelper.cs" />
     <Compile Include="Helper\DecimalHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />

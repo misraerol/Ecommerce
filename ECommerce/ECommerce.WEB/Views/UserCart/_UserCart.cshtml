@@ -1,8 +1,9 @@
 ﻿@using ECommerce.WEB.Models.UserCartManagamenet
+@using ECommerce.CORE.Helper
 @model List<UserCartModel>
 <!-- Add to cart bar -->
-@{ 
-        decimal totalAmount = 0;
+@{
+    decimal totalAmount = 0;
 }
 <div id="cart_side" class="add_to_cart right">
     <a href="javascript:void(0)" class="overlay" onclick="closeCart()"></a>
@@ -28,9 +29,18 @@
                                 <a href="#">
                                     <h4>@userCart.ProductName</h4>
                                 </a>
-                                <h4>
-                                    <span>@userCart.ProductCount X @string.Format("{0:F2}", userCart.Amount)</span>
-                                </h4>
+
+                                @if (userCart.DiscountRate > 0)
+                                {
+                                    <h5><del>@userCart.Amount.ConvertToMoney()</del></h5>
+                                    <h5>@userCart.ProductCount x @CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount).ConvertToMoney()</h5>
+
+                                }
+                                else
+                                {
+                                    <h5>@userCart.ProductCount x @userCart.Amount.ConvertToMoney()</h5>
+                                }
+
                             </div>
                         </div>
                         <div class="close-circle">
@@ -39,9 +49,9 @@
                             </a>
                         </div>
                     </li>
-                     {
-                                totalAmount += userCart.Amount * userCart.ProductCount;
-                       }
+                    {
+                        totalAmount +=  CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount)* userCart.ProductCount;
+                    }
                 }
 
 
@@ -49,7 +59,7 @@
             <ul class="cart_total">
                 <li>
                     <div class="total">
-                        <h5>Sipariş Özeti : <span>@string.Format("{0:F2}", totalAmount)</span></h5>
+                        <h5>Sipariş Özeti : <span> @totalAmount.ConvertToMoney()</span></h5>
                     </div>
                 </li>
                 <li>

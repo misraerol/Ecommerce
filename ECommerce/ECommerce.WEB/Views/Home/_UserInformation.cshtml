@@ -1,5 +1,5 @@
 ﻿@using ECommerce.DATA
-
+@model ECommerce.WEB.Models.AppUserManagement.UserInformationModel
 
 @{
     AppUser appUser = (AppUser)Session["LoggedUser"];
@@ -59,7 +59,7 @@
                 <i class="ti-heart mobile-icon"></i>
                 <div class="wishlist icon-detail">
                    
-                    <h6><a href="@Url.Action("_WishList","Wishlist")">Favorilerim</a></h6>
+                    <h6>Favorilerim</h6>
                 </div>
             </li>
             <li class="onhover-div user-icon">
@@ -82,8 +82,8 @@
                 <img src="~/Themes/assets/images/icon/l-2/cart.png" alt="" class="cart-image">
                 <i class="ti-shopping-cart mobile-icon"></i>
                 <div class="cart  icon-detail">
-                    <h6 class="up-cls"><span>@appUser.UserCart.Count</span></h6>
-                    <h6><a href="@Url.Action("_UserCart","UserCart")">Sepetim</a></h6>
+                    <h6 class="up-cls"><span>@Model.UserCartCount</span></h6>
+                    <h6>Sepetim</h6>
                 </div>
             </li>
         </ul>

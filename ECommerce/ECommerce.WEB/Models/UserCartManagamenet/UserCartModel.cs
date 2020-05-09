@@ -18,5 +18,7 @@ namespace ECommerce.WEB.Models.UserCartManagamenet
         public int ProductId { get; set; }
 
         public int ProductCount { get; set; }
+
+        public decimal DiscountRate { get; set; }
     }
 }

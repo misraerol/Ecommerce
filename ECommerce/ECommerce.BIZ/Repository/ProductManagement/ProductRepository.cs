@@ -56,5 +56,10 @@ namespace ECommerce.BIZ.Repository.ProductManagement
             List<ProductStoreWindow> productStoreWindows = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).ToList();
             return productStoreWindows;
         }
+        public void InsertProductStoreWindow(ProductStoreWindow productStoreWindow)
+        {
+            db.ProductStoreWindow.Add(productStoreWindow);
+            db.SaveChanges();
+        }
     }
 }
