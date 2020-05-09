@@ -156,9 +156,9 @@
         </EntityType>
         <EntityType Name="ProductMapComment">
           <Key>
-            <PropertyRef Name="ProductMapComment" />
+            <PropertyRef Name="ProductMapCommentId" />
           </Key>
-          <Property Name="ProductMapComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductMapCommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="AppUserId" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" />
@@ -806,9 +806,9 @@
         </EntityType>
         <EntityType Name="ProductMapComment">
           <Key>
-            <PropertyRef Name="ProductMapComment1" />
+            <PropertyRef Name="ProductMapCommentId" />
           </Key>
-          <Property Name="ProductMapComment1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductMapCommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="AppUserId" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1458,7 +1458,7 @@
           <EntitySetMapping Name="ProductMapComment">
             <EntityTypeMapping TypeName="ECommerceModel.ProductMapComment">
               <MappingFragment StoreEntitySet="ProductMapComment">
-                <ScalarProperty Name="ProductMapComment1" ColumnName="ProductMapComment" />
+                <ScalarProperty Name="ProductMapCommentId" ColumnName="ProductMapCommentId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />

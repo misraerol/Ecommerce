@@ -83,5 +83,30 @@ namespace ECommerce.WEB.Controllers
             //}
             //return View(productStoreWindows);
         }
+
+
+        #region Ürün Detay
+        public ActionResult Detail(int id=0)
+        {
+            ProductDetailViewModel productDetailViewModel = new ProductDetailViewModel();
+
+            Product product = productRepository.GetById(id);
+
+            if (product == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            productDetailViewModel.ProductName = product.Name;
+            productDetailViewModel.ProductId = product.ProductId;
+            productDetailViewModel.ShortName = product.ShortName;
+            productDetailViewModel.Explanation = product.Explanation;
+            productDetailViewModel.Amount = product.Amount;
+            //productDetailViewModel.DiscountAmount = CalculatorHelper
+
+            return View();
+        }
+
+        #endregion
     }
 }

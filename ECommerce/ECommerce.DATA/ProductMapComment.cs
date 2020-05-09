@@ -14,7 +14,7 @@ namespace ECommerce.DATA
     
     public partial class ProductMapComment
     {
-        public int ProductMapComment1 { get; set; }
+        public int ProductMapCommentId { get; set; }
         public int ProductId { get; set; }
         public int AppUserId { get; set; }
         public string Comment { get; set; }
