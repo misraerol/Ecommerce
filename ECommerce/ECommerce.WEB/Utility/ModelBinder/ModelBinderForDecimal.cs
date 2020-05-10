@@ -20,8 +20,10 @@ namespace ECommerce.WEB.Utility.ModelBinder
             {
                 if (!String.IsNullOrEmpty(valueResult.AttemptedValue))
                 {
+                     string replace= valueResult.AttemptedValue.Replace('.', ',');
+
                     string decimalCulture = ConfigurationManager.AppSettings["DecimalCulture"];
-                    actualValue = Convert.ToDecimal(valueResult.AttemptedValue, CultureInfo.GetCultureInfo(decimalCulture));
+                    actualValue = Convert.ToDecimal(replace, CultureInfo.GetCultureInfo(decimalCulture));
                 }
             }
             catch { }

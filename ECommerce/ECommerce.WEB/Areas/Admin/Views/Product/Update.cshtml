@@ -43,8 +43,9 @@
                         @Html.LabelFor(s => s.Amount, new { @class = "col-form-label" })
 
 
-                        @Html.TextBoxFor(s => s.Amount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
+                        @Html.TextBoxFor(s => s.Amount, Model.Amount.ToString().Replace(",", "."), new { @class = "form-control", type = "number", step = "0.01" })
 
+                        
                         <small id="emailHelp" class="form-text text-muted">
                             Ürün Tutarı
                         </small>
@@ -80,7 +81,8 @@
                         <div class="form-group">
                             @Html.LabelFor(s => s.ShipperAmount, new { @class = "col-form-label" })
 
-                            @Html.TextBoxFor(s => s.ShipperAmount, "{0:0.###}", new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.TextBoxFor(s => s.ShipperAmount, Model.ShipperAmount.ToString().Replace(",", "."), new { @class = "form-control", type = "number", step = "0.01" })
+
                             <small id="emailHelp" class="form-text text-muted">
                                 Kargo Ücreti
                             </small>
