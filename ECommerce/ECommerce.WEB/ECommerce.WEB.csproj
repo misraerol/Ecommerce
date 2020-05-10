@@ -578,6 +578,8 @@
     <Content Include="Content\editor\katex.min.js" />
     <Content Include="Content\editor\suneditor.min.js" />
     <Content Include="Content\editor\xml.js" />
+    <Content Include="Content\js\jquery.mask.js" />
+    <Content Include="Content\js\jquery.mask.min.js" />
     <Content Include="Content\mailImg\arrow-right-gray.png" />
     <Content Include="Content\mailImg\cta-5-image-1.jpg" />
     <Content Include="Content\mailImg\ecommerce-5-image-1.jpg" />
@@ -1574,7 +1576,7 @@
     <Compile Include="Utility\Extension\MailBase.cs" />
     <Compile Include="Utility\Extension\MailExtension.cs" />
     <Compile Include="Utility\Extension\Mail\Model\DefaultMailTemplate.cs" />
-    <Compile Include="Utility\ModelBinder\DecimalModelBinder.cs" />
+    <Compile Include="Utility\ModelBinder\ModelBinderForDecimal.cs" />
     <Compile Include="Utility\UIFramework\CustomSelectList.cs" />
     <Compile Include="Utility\UIFramework\Response.cs" />
   </ItemGroup>

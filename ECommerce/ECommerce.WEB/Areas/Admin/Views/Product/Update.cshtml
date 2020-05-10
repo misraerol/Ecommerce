@@ -14,7 +14,7 @@
     <div class="col-12 mt-5" id="ProductApp">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Ürün Ekle</h4>
+                <h4 class="header-title">Ürün Güncelle</h4>
                 <form>
 
                     <div class="form-group">
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         @Html.LabelFor(s => s.Amount, new { @class = "col-form-label" })
 
-                        @Html.TextBoxFor(s => s.Amount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
+                        @Html.TextBoxFor(s => s.Amount, "{0:P2}", new { @class = "form-control" ,type="number" })
                         <small id="emailHelp" class="form-text text-muted">
                             Ürün Tutarı
                         </small>
@@ -74,11 +74,11 @@
                         </div>
                         @Html.ValidationMessageFor(s => s.IsShipperPay)
                     </div>
-                    <div v-if="isHaveCargoPay">
+                    <div v-if="IsShipperPay">
                         <div class="form-group">
                             @Html.LabelFor(s => s.ShipperAmount, new { @class = "col-form-label" })
 
-                            @Html.TextBoxFor(s => s.ShipperAmount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
+                            @Html.TextBoxFor(s => s.ShipperAmount, "{0:0.###}", new { @class = "form-control", type = "number", step = "0.01" })
                             <small id="emailHelp" class="form-text text-muted">
                                 Kargo Ücreti
                             </small>
@@ -88,11 +88,12 @@
 
                         <div class="form-group">
 
-                            @Html.ValidationMessageFor(s => s.Amount)
 
                             @Html.LabelFor(s => s.ShipperId, new { @class = "col-form-label" })
 
-                            @Html.DropDownListFor(s => s.ShipperId, Model.ShipperList,string.Empty, new { @class = "form-control", })
+                            @Html.DropDownListFor(s => s.ShipperId, Model.ShipperList, string.Empty, new { @class = "form-control", })
+                            @Html.ValidationMessageFor(s => s.ShipperId)
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -156,7 +157,7 @@
                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].Value'" },
                                    })
 
-                                    @Html.HiddenFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().ProductMapPropertyId, new Dictionary<string, object> {
+                                     @Html.HiddenFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().ProductMapPropertyId, new Dictionary<string, object> {
                                      { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
                                       { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
                                       { ":class", "isEmpty(pmc.ProductMapPropertyId)" },

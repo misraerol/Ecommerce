@@ -269,7 +269,6 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             }
             #endregion
 
-
             #region Required Fields Alanları Dolduruyor
 
             if (product.ProductMapRequiredFields != null)
@@ -300,6 +299,10 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
                     });
                 }
             }
+            else
+            {
+                productCRUDModel.ProductMapPropertyCRUDModel = new List<ProductMapPropertyCRUDModel>();
+            }
 
             #endregion
 
@@ -327,14 +330,13 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             Response response;
 
             Product product = productRepository.GetById(productCRUDModel.ProductId);
-            productCRUDModel.Amount = product.Amount;
-            productCRUDModel.CategoryId = product.CategoryId;
-            productCRUDModel.DiscountRate = product.DiscountRate;
-            productCRUDModel.Explanation = product.Explanation;
-            productCRUDModel.Name = product.Name;
-            productCRUDModel.ShortName = product.ShortName;
-            productCRUDModel.ProductId = product.ProductId;
-            productCRUDModel.IsShipperPay = productCRUDModel.IsShipperPay;
+            product.Amount = productCRUDModel.Amount;
+            product.CategoryId = productCRUDModel.CategoryId;
+            product.DiscountRate = productCRUDModel.DiscountRate;
+            product.Explanation=productCRUDModel.Explanation;
+            product.Name= productCRUDModel.Name ;
+            product.ShortName=productCRUDModel.ShortName;
+            product.IsShipperPay = productCRUDModel.IsShipperPay.Value;
 
             #region Shipper alanını kaydedip siliyor
             if (productCRUDModel.IsShipperPay.Value)
@@ -377,7 +379,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             #endregion Shipper alanını kaydedip siliyor
 
             #region Reqiured fields alanın kaydedip siliyor
-            if (product.ProductMapRequiredFields != null)
+            if (productCRUDModel.ProductRequiredFieldListId!=null)
             {
                 List<ProductMapRequiredFields> productMapRequiredFieldsList = product.ProductMapRequiredFields.Where(s => s.IsActive & !s.IsDeleted).ToList();
 
@@ -402,8 +404,16 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
                         product.ProductMapRequiredFields.Add(productMapProperty);
                     }
                 }
+            }
+            else
+            {
+                List<ProductMapRequiredFields> productMapRequiredFieldsList = product.ProductMapRequiredFields.Where(s => s.IsActive & !s.IsDeleted).ToList();
 
-
+                foreach (ProductMapRequiredFields mapRequiredFields in productMapRequiredFieldsList)
+                {
+                    mapRequiredFields.IsActive = false;
+                    mapRequiredFields.IsDeleted = true;
+                }
             }
 
             #endregion

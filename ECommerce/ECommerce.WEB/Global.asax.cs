@@ -21,7 +21,8 @@ namespace ECommerce.WEB
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalFilters.Filters.Add(new ValidateInputAttribute(false));//Validate Input false için yazıldı
-            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal), new ModelBinderForDecimal());
+            ModelBinders.Binders.Add(typeof(decimal?), new ModelBinderForDecimal());
         }
 
         protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
