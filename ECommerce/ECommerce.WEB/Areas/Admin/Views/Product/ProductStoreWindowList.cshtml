@@ -28,23 +28,31 @@
                                 <tbody>
                                     @foreach (ProductStoreWindowListView product in Model)
                                     {
-                                        <tr>
-                                          <td><img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt=""></td>
-                                                <td>@product.ProductName</td>
-
-                                            <td>
-                                                <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3">
-                                                        <a href="@Url.Action("UpdateProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-secondary"><i class="fa fa-edit"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td>
-                                                <ul class="d-flex justify-content-center">
-                                                    <li><a href="@Url.Action("DeleteProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td><img src="~/Uploads/ProductImage/@product.ImagePath" height="100" width="100" class=" img-responsive" alt=""></td>
+                                        <td>@product.ProductName</td>
+                                        <td>@if (product.ExpiredDate!= null)
+                                        {
+                                            @product.ExpiredDate.Value.ToShortDateString()
+                                        }
+                                        else
+                                        {
+                                            <h5 class="bg-light">Süresiz</h5>
+                                        }
+                                        </td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li class="mr-3">
+                                                    <a href="@Url.Action("UpdateProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="d-flex justify-content-center">
+                                                <li><a href="@Url.Action("DeleteProductStoreWindow", "Product", new {id=product.ProductStorewindowId})" class="text-danger"><i class="ti-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

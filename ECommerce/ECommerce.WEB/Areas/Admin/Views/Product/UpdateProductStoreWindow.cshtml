@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm("UpdateProductStoreWindow", "Product", FormMethod.Post, new { @id = "UpdateProductStoreWindow" }))
 {
+    @Html.HiddenFor(s=> s.ProductStorewindowId)
     <div class="form-group">
 
         @Html.LabelFor(s => s.ProductListId, new { @class = "col-form-label" })
