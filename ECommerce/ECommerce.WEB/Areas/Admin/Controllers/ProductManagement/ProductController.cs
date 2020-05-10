@@ -600,7 +600,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
                     response = new Response()
                     {
                         Status = false,
-                        Message = "Bu ürün " + product.ShortName + "daha önce vitrin ürünlerine eklenmiştir.",
+                        Message = product.ShortName + " daha önce vitrin ürünlerine eklenmiştir.",
                     };
                     return Json(response);
                 }
@@ -634,6 +634,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             List<Product> productList = productRepository.GetAll();
             productStoreWindowCRUDModel.ProductList = new MultiSelectList(productList, "ProductId", "ShortName", new List<int> { productStoreWindow.ProductId });
             productStoreWindowCRUDModel.ExpiredDate = productStoreWindow.ExpiredDate;
+            productStoreWindowCRUDModel.ProductStorewindowId = productStoreWindow.ProductStoreWindowId;
             return View(productStoreWindowCRUDModel);
         }
         [HttpPost]
@@ -656,7 +657,7 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             }
             productStoreWindow.ProductStoreWindowId = productStoreWindowCRUDModel.ProductStorewindowId;
             productStoreWindow.ExpiredDate = productStoreWindowCRUDModel.ExpiredDate;
-            productStoreWindow.ProductId = productStoreWindowCRUDModel.ProductId;
+            productStoreWindow.ProductId = productStoreWindowCRUDModel.ProductListId.Take(1).SingleOrDefault();
             productRepository.UpdateProductStoreWindow(productStoreWindow);
             response = new Response()
             {

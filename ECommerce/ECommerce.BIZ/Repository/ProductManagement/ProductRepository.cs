@@ -86,5 +86,17 @@ namespace ECommerce.BIZ.Repository.ProductManagement
             db.Entry(productStoreWindow).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+        public List<ProductStoreWindow> GetProductStoreeManyRequestCount(int takeCount)
+        {
+            List<ProductStoreWindow> productStoreWindowList = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).OrderBy(s=> Guid.NewGuid()).Take(takeCount).ToList();
+            return productStoreWindowList;
+        }
+
+        public List<Product> GetProductManyRequestCountAndDecreaseProductList(int count,List<int> decreaseProductList)
+        {
+            List<Product> productList = db.Product.Where(s => !decreaseProductList.Contains(s.ProductId) && s.IsActive && !s.IsDeleted).OrderBy(s => Guid.NewGuid()).Take(count).ToList();
+
+            return productList;
+        }
     }
 }

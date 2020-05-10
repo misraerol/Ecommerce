@@ -1566,6 +1566,7 @@
     <Compile Include="Models\AppUserManagement\UserInformationModel.cs" />
     <Compile Include="Models\CityCountyManagament\CityCountyListView.cs" />
     <Compile Include="Models\ProductManagament\ProductDetailViewModel.cs" />
+    <Compile Include="Models\ProductManagament\ProductListViewModel.cs" />
     <Compile Include="Models\ProductManagament\ProductStoreWindowModel.cs" />
     <Compile Include="Models\SliderManagement\SliderViewModel.cs" />
     <Compile Include="Models\UserCartManagamenet\UserCartModel.cs" />
@@ -1699,6 +1700,7 @@
     <Content Include="Views\UserCart\Index.cshtml" />
     <Content Include="Views\UserCart\_UserCart.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Product\_Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
