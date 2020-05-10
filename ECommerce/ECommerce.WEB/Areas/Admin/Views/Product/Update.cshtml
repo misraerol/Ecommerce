@@ -42,7 +42,9 @@
                     <div class="form-group">
                         @Html.LabelFor(s => s.Amount, new { @class = "col-form-label" })
 
-                        @Html.TextBoxFor(s => s.Amount, "{0:P2}", new { @class = "form-control" ,type="number" })
+
+                        @Html.TextBoxFor(s => s.Amount, "{0:0.###}", new { @class = "form-control", type = "number", step = "any" })
+
                         <small id="emailHelp" class="form-text text-muted">
                             Ürün Tutarı
                         </small>
