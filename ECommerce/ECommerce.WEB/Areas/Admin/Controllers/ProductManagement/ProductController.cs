@@ -341,15 +341,17 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
             #region Shipper alanını kaydedip siliyor
             if (productCRUDModel.IsShipperPay.Value)
             {
-                if (product.ProductMapShippers != null)
+
+                if (product.ProductMapShippers.Any())
                 {
                     ProductMapShippers productMapShippers = product.ProductMapShippers.Where(s => s.IsActive && !s.IsDeleted).SingleOrDefault();
 
                     if (productMapShippers != null)
                     {
                         productMapShippers.ShipperId = productCRUDModel.ShipperId;
-                        productMapShippers.Amount = productCRUDModel.Amount;
+                        productMapShippers.Amount = productCRUDModel.ShipperAmount;
                     }
+
                 }
                 else
                 {
@@ -358,12 +360,11 @@ namespace ECommerce.WEB.Areas.Admin.Controllers.ProductManagement
                         IsDeleted = false,
                         IsActive = true,
                         CreateDate = DateTime.Now,
-                        Amount = productCRUDModel.Amount,
+                        Amount = productCRUDModel.ShipperAmount,
                         ShipperId = productCRUDModel.ShipperId,
                     };
                     product.ProductMapShippers = new List<ProductMapShippers>();
                     product.ProductMapShippers.Add(productMapShippers);
-
                 }
             }
             else

@@ -45,7 +45,7 @@
 
                         @Html.TextBoxFor(s => s.Amount, Model.Amount.ToString().Replace(",", "."), new { @class = "form-control", type = "number", step = "0.01" })
 
-                        
+
                         <small id="emailHelp" class="form-text text-muted">
                             Ürün Tutarı
                         </small>
@@ -53,6 +53,19 @@
 
                     </div>
 
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.DiscountRate, new { @class = "col-form-label" })
+
+
+                        @Html.TextBoxFor(s => s.DiscountRate, Model.DiscountRate.ToString().Replace(",", "."), new { @class = "form-control", type = "number", step = "0.01" })
+
+
+                        <small id="emailHelp" class="form-text text-muted">
+                            İndirim Oranı
+                        </small>
+                        @Html.ValidationMessageFor(s => s.DiscountRate)
+
+                    </div>
 
                     <div class="form-group">
                         <b class="text-muted mb-3 d-block">Kargo Ücreti Var mı ?</b>
@@ -161,13 +174,13 @@
                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].Value'" },
                                    })
 
-                                     @Html.HiddenFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().ProductMapPropertyId, new Dictionary<string, object> {
-                                     { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
-                                      { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
-                                      { ":class", "isEmpty(pmc.ProductMapPropertyId)" },
-                                      { "v-model", "pmc.ProductMapPropertyId" },
-                                     })
-                               </td>
+                                    @Html.HiddenFor(s => s.ProductMapPropertyCRUDModel.LastOrDefault().ProductMapPropertyId, new Dictionary<string, object> {
+                                    { "v-bind:id", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
+                                     { "v-bind:name", "'ProductMapPropertyCRUDModel[' + pmcIndex + '].ProductMapPropertyId'" },
+                                     { ":class", "isEmpty(pmc.ProductMapPropertyId)" },
+                                     { "v-model", "pmc.ProductMapPropertyId" },
+                                    })
+                                </td>
                                 <td>
                                     <button @@click="deleteProperty(pmcIndex)" class="btn btn-danger" type="button">Sil</button>
                                 </td>
@@ -270,6 +283,7 @@
                IsCargoPay: function (result) {
                    var vm = this;
                    vm.isHaveCargoPay = result;
+                   vm.IsShipperPay = result;
                },
             },
           mounted() {

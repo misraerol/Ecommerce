@@ -53,6 +53,22 @@
 
 
                     <div class="form-group">
+                        @Html.LabelFor(s => s.DiscountRate, new { @class = "col-form-label" })
+
+
+                        @Html.TextBoxFor(s => s.DiscountRate, new { @class = "form-control", type = "number", step = "0.01" })
+
+
+                        <small id="emailHelp" class="form-text text-muted">
+                            İndirim Oranı
+                        </small>
+                        @Html.ValidationMessageFor(s => s.DiscountRate)
+
+                    </div>
+
+
+
+                    <div class="form-group">
                         <b class="text-muted mb-3 d-block">Kargo Ücreti Var mı ?</b>
                         <div class="custom-control custom-radio custom-control-inline">
                             @Html.RadioButtonFor(s => s.IsShipperPay, true, new Dictionary<string, object> {
@@ -79,7 +95,7 @@
                         <div class="form-group">
                             @Html.LabelFor(s => s.ShipperAmount, new { @class = "col-form-label" })
 
-                             @Html.TextBoxFor(s => s.ShipperAmount,string.Empty, new { @class = "form-control", type = "number", step = "0.01" })
+                            @Html.TextBoxFor(s => s.ShipperAmount, string.Empty, new { @class = "form-control", type = "number", step = "0.01" })
 
                             <small id="emailHelp" class="form-text text-muted">
                                 Kargo Ücreti
@@ -94,7 +110,7 @@
 
                             @Html.LabelFor(s => s.ShipperId, new { @class = "col-form-label" })
 
-                            @Html.DropDownListFor(s => s.ShipperId, Model.ShipperList,string.Empty, new { @class = "form-control", })
+                            @Html.DropDownListFor(s => s.ShipperId, Model.ShipperList, string.Empty, new { @class = "form-control", })
                         </div>
                     </div>
                     <div class="form-group">
