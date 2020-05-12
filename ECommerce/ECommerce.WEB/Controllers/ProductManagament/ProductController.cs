@@ -38,7 +38,7 @@ namespace ECommerce.WEB.Controllers
                 ProductStoreWindowModel productStoreWindowModel = new ProductStoreWindowModel()
                 {
                     CreateDate = productStore.Product.CreateDate,
-                   ProductId = productStore.Product.ProductId,
+                    ProductId = productStore.Product.ProductId,
                     Amount = productStore.Product.Amount,
                     Explanation = productStore.Product.Explanation,
                     ProductName = productStore.Product.ShortName
@@ -60,7 +60,7 @@ namespace ECommerce.WEB.Controllers
             return View(productStoreWindows);
         }
 
-  
+
         #region Ürün Detay
         public ActionResult Detail(int id = 0)
         {
@@ -89,7 +89,7 @@ namespace ECommerce.WEB.Controllers
             {
                 productDetailViewModel.ProductImageList = new List<string>();
 
-                foreach (ProductMapImage productMapImage in product.ProductMapImage.Where(a=>a.IsActive&&!a.IsDeleted))
+                foreach (ProductMapImage productMapImage in product.ProductMapImage.Where(a => a.IsActive && !a.IsDeleted))
                 {
                     productDetailViewModel.ProductImageList.Add(productMapImage.ImagePath);
                 }
@@ -102,12 +102,12 @@ namespace ECommerce.WEB.Controllers
             {
                 productDetailViewModel.ProductPropertyModel = new List<ProductPropertyModel>();
 
-                foreach (ProductMapProperty productMapProperty in product.ProductMapProperty.Where(a=>a.IsActive&&!a.IsDeleted))
+                foreach (ProductMapProperty productMapProperty in product.ProductMapProperty.Where(a => a.IsActive && !a.IsDeleted))
                 {
                     ProductPropertyModel productPropertyModel = new ProductPropertyModel()
                     {
-                        PropertyName=productMapProperty.Parameter.Name,
-                        Value= productMapProperty.PropetyKey
+                        PropertyName = productMapProperty.Parameter.Name,
+                        Value = productMapProperty.PropetyKey
                     };
                     productDetailViewModel.ProductPropertyModel.Add(productPropertyModel);
                 }
@@ -127,8 +127,8 @@ namespace ECommerce.WEB.Controllers
                     {
                         AppUserName = productMapComment.AppUser.FirstName + " " + productMapComment.AppUser.LastName,
                         Comment = productMapComment.Comment,
-                        ProductMapCommentId=productMapComment.ProductMapCommentId,
-                        Star=productMapComment.Star
+                        ProductMapCommentId = productMapComment.ProductMapCommentId,
+                        Star = productMapComment.Star
                     };
                     productDetailViewModel.ProductMapCommentModel.Add(productMapCommentModel);
                 }
@@ -141,12 +141,12 @@ namespace ECommerce.WEB.Controllers
 
             productDetailViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
 
-            foreach (ProductMapRequiredFields requiredFields in product.ProductMapRequiredFields.Where(a=>a.IsActive&&!a.IsDeleted))
+            foreach (ProductMapRequiredFields requiredFields in product.ProductMapRequiredFields.Where(a => a.IsActive && !a.IsDeleted))
             {
                 ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
                 {
-                    Field=requiredFields.Parameter.Name,
-                    ProductMapRequiredFieldId=requiredFields.ProductMapRequiredFieldsId
+                    Field = requiredFields.Parameter.Name,
+                    ProductMapRequiredFieldId = requiredFields.ProductMapRequiredFieldsId
                 };
                 productDetailViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
 
@@ -167,7 +167,7 @@ namespace ECommerce.WEB.Controllers
             {
                 productList.Add(product.Product);
             }
-            if(productList.Count < 20)
+            if (productList.Count < 20)
             {
                 int remaining = 20 - productList.Count;
                 List<int> productListId = productList.Select(a => a.ProductId).ToList();
@@ -190,7 +190,7 @@ namespace ECommerce.WEB.Controllers
                     DiscountRate = proc.DiscountRate,
                     ProductName = proc.ShortName
                 };
-              
+
                 if (proc.ProductMapImage != null)
                 {
                     ProductMapImage procImage = proc.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
@@ -203,11 +203,32 @@ namespace ECommerce.WEB.Controllers
                         productListViewModel.ImagePath = "notImage.jpg";
                     }
                 }
+
+                productListViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
+                if (proc.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted).Any())
+                {
+                    foreach (ProductMapRequiredFields productMapRequired in proc.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted))
+                    {
+                        ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
+                        {
+                            Field=productMapRequired.Parameter.Name,
+                            ProductMapRequiredFieldId=productMapRequired.Parameter.ParameterId
+                        };
+                        productListViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
+                    }
+                }
+
                 productListViewModelList.Add(productListViewModel);
             }
 
             return PartialView(productListViewModelList);
         }
+
+        //public ActionResult Search(string toFind)
+        //{
+        //    //List<Product> products = productRepository.GetByProductName(toFind);
+
+        //}
 
     }
 }

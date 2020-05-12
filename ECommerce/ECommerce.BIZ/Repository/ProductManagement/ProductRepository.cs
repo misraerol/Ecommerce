@@ -98,5 +98,11 @@ namespace ECommerce.BIZ.Repository.ProductManagement
 
             return productList;
         }
+        public List<Product> GetByProductName(string productName)
+        {
+            List<Product> products = db.Product.Where(s => s.Name.Contains(productName)&&s.IsActive &&!s.IsDeleted).ToList();
+            return products;
+         
+        }
     }
 }

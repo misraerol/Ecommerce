@@ -20,6 +20,7 @@ namespace ECommerce.DATA
             this.AppUser = new HashSet<AppUser>();
             this.ProductMapRequiredFields = new HashSet<ProductMapRequiredFields>();
             this.ProductMapProperty = new HashSet<ProductMapProperty>();
+            this.UserCart = new HashSet<UserCart>();
         }
     
         public int ParameterId { get; set; }
@@ -37,5 +38,7 @@ namespace ECommerce.DATA
         public virtual ICollection<ProductMapRequiredFields> ProductMapRequiredFields { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapProperty> ProductMapProperty { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCart> UserCart { get; set; }
     }
 }

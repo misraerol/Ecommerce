@@ -18,6 +18,9 @@ namespace ECommerce.WEB.Models.ProductManagament
         public string CategoryName { get; set; }
 
         public string ImagePath { get; set; }
+
         public string Explanation { get; set; }
+        
+        public List<ProductMapRequiredFieldModel> ProductMapRequiredFieldModel { get; set; }
     }
 }
