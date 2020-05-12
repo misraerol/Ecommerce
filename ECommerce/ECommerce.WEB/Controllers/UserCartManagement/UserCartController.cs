@@ -103,7 +103,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             return RedirectToAction("Index", "UserCart");
         }
 
-        public ActionResult Delete(int userCartId)
+        public ActionResult Delete(int userCartId=0)
         {
             UserCart userCart = userCartRepository.GetById(userCartId);
             userCart.IsActive = false;

@@ -22,11 +22,11 @@
                 {
                     <li>
                         <div class="media">
-                            <a href="#">
+                            <a href="@Url.Action("Detail","Product",new {id=userCart.ProductId })">
                                 <img alt="" class="mr-3" src="~/Uploads/ProductImage/@userCart.ImagePath">
                             </a>
                             <div class="media-body">
-                                <a href="#">
+                                <a href="@Url.Action("Detail","Product",new {id=userCart.ProductId })">
                                     <h4>@userCart.ProductName</h4>
                                 </a>
 
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="close-circle">
-                            <a href="@Url.Action("Delete","UserCart")">
+                            <a href="@Url.Action("Delete","UserCart",new {userCartId=userCart.UserCartId})">
                                 <i class="ti-trash" aria-hidden="true"></i>
                             </a>
                         </div>

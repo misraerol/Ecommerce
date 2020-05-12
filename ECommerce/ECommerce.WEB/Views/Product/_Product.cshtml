@@ -1,6 +1,6 @@
 ﻿@using ECommerce.WEB.Models.ProductManagament
 @model List<ProductListViewModel>
-
+@using ECommerce.CORE.Helper
 @{
     ViewBag.Title = "IndexProductStoreWindow";
 }
@@ -17,7 +17,7 @@
                 <img src="../assets/images/right.png" alt="" class=" img-fluid">
             </div>
         </div>
-   
+
         <div class="tab-content-cls">
 
             <div id="tab-1" class="tab-content active default">
@@ -30,17 +30,19 @@
                             <div class="box-5">
                                 <div class="product-box product-full">
                                     <div class="img-block">
-                                        <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
-                                        <div class="cart-right">
-                                            <a href="@Url.Action("Add", "UserCart", new { productId = product.ProductId })" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></a>
-                                            <a href="@Url.Action("Add", "Wishlist", new { productId = product.ProductId })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
-                                            <a href="" data-toggle="modal" data-target="#quick-view@(product.ProductId)" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
-                                            <a href="compare.html" title="Karşılaştır"><i class="ti-reload" aria-hidden="true"></i></a>
-                                        </div>
+                                        <a href="@Url.Action("Detail","Product",new {id=product.ProductId })">
+                                            <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
+                                        </a>
+                                            <div class="cart-right">
+                                                <a href="@Url.Action("Add", "UserCart", new { productId = product.ProductId })" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></a>
+                                                <a href="@Url.Action("Add", "Wishlist", new { productId = product.ProductId })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
+                                                <a href="" data-toggle="modal" data-target="#quick-view@(product.ProductId)" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
+                                                <a href="compare.html" title="Karşılaştır"><i class="ti-reload" aria-hidden="true"></i></a>
+                                            </div>
                                     </div>
                                     <div class="product-info">
-                                        <h6>@product.ProductName</h6>
-                                        <h5> @string.Format("{0:F2}", product.Amount)</h5>
+                                        <h6><a href="@Url.Action("Detail","Product",new {id=product.ProductId })" >@product.ProductName</a></h6>
+                                        <h5>@product.Amount.ConvertToMoney()</h5>
                                     </div>
 
                                 </div>
@@ -59,7 +61,7 @@
                                                 <div class="col-lg-6 rtl-text">
                                                     <div class="product-right">
                                                         <h2>@product.ProductName</h2>
-                                                        <h3>@product.Amount</h3>
+                                                        <h3>@product.Amount.ConvertToMoney()</h3>
                                                         <div class="border-product">
                                                             <h6 class="product-title">Ürün Bilgisi</h6>
                                                             <p>@product.Explanation</p>

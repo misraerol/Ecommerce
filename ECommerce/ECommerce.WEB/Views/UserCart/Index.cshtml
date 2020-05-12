@@ -50,10 +50,10 @@
                         {
                             <tr>
                                 <td>
-                                    <a href="#"><img src="~/Uploads/ProductImage/@userCart.ImagePath" alt=""></a>
+                                    <a href="@Url.Action("Detail","Product",new {id=userCart.ProductId })"><img src="~/Uploads/ProductImage/@userCart.ImagePath" alt=""></a>
                                 </td>
                                 <td>
-                                    <a href="#">@userCart.ProductName</a>
+                                    <a href="@Url.Action("Detail","Product",new {id=userCart.ProductId })">@userCart.ProductName</a>
                                     <div class="mobile-cart-content row">
                                         <div class="col-xs-3">
                                             <div class="qty-box">

@@ -47,10 +47,10 @@
                         {
                             <tr>
                                 <td>
-                                    <a href="#"><img src="~/Uploads/ProductImage/@wish.ImagePath" alt=""></a>
+                                    <a href="@Url.Action("Detail","Product",new {id=wish.ProductId })"><img src="~/Uploads/ProductImage/@wish.ImagePath" alt=""></a>
                                 </td>
                                 <td>
-                                    <a href="#">@wish.ProductName</a>
+                                    <a href="@Url.Action("Detail","Product",new {id=wish.ProductId })">@wish.ProductName</a>
                                     <div class="mobile-cart-content row">
                                         <div class="col-xs-3">
                                             <p>in stock</p>
