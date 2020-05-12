@@ -69,9 +69,10 @@
                                                         <label> Seçenek</label>
                                                         @using (Html.BeginForm("Add", "UserCart"))
                                                         {
+                                                            @Html.Hidden("ProductId",product.ProductId)
                                                             foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
                                                             {
-                                                                @Html.RadioButtonFor(s => productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                                @Html.RadioButton("ProductMapRequiredFieldId",productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
                                                                 @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
                                                             }
                                                             <div class="product-buttons">

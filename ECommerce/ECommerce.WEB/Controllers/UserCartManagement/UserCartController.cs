@@ -52,7 +52,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             return View(userCartModelList);
         }
 
-        public ActionResult Add(int productId = 0)
+        public ActionResult Add(int? ProductMapRequiredFieldId, int productId = 0,int quantity = 1)
         {
             AppUser appUser = (AppUser)Session["LoggedUser"];
             UserCart userCart = userCartRepository.GetByProductId(productId);
@@ -66,17 +66,18 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             {
                 UserCart userCarts = new UserCart()
                 {
-                    ProductCount=1,
+                    ProductCount= quantity,
                     AppUserId=appUser.AppUserId,
                     CreateDate= DateTime.Now,
                     IsActive=true,
                     IsDeleted=false,
                     ProductId=productId,
+                    ParameterProductRequiredTypesId= ProductMapRequiredFieldId
                 };
 
                 userCartRepository.Insert(userCarts);
             }
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Decrease(int userCartId)

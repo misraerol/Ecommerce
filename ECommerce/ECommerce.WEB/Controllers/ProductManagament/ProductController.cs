@@ -146,7 +146,7 @@ namespace ECommerce.WEB.Controllers
                 ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
                 {
                     Field = requiredFields.Parameter.Name,
-                    ProductMapRequiredFieldId = requiredFields.ProductMapRequiredFieldsId
+                    ProductMapRequiredFieldId = requiredFields.ParameterId
                 };
                 productDetailViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
 

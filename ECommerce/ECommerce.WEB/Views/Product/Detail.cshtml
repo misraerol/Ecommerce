@@ -50,69 +50,78 @@
                         </div>
                     </div>
                 </div>
+               
                 <div class="col-lg-6 rtl-text">
-                    <div class="product-right">
-                        <h2>@Model.ProductName</h2>
-                        <h4><del>@Model.Amount.ConvertToMoney() ₺</del><span>@Model.DiscountRate.ConvertToMoney() % Indirim</span></h4>
-                        <h3>@Model.DiscountAmount.ConvertToMoney() ₺</h3>
-                        <ul class="color-variant">
+                    @using (Html.BeginForm("Add", "UserCart"))
+                    {
+                        <div class="product-right">
+                            <h2>@Model.ProductName</h2>
+                            <h4><del>@Model.Amount.ConvertToMoney() ₺</del><span>@Model.DiscountRate.ConvertToMoney() % Indirim</span></h4>
+                            <h3>@Model.DiscountAmount.ConvertToMoney() ₺</h3>
+                            <ul class="color-variant">
 
-                            @if (Model.ProductMapRequiredFieldModel != null)
-                            {
-                                foreach (ProductMapRequiredFieldModel requiredFieldModel in Model.ProductMapRequiredFieldModel)
+                                @Html.Hidden("ProductId", Model.ProductId)
+                                @if (Model.ProductMapRequiredFieldModel != null)
                                 {
-                                    @Html.LabelForModel(requiredFieldModel.Field,new {@for= requiredFieldModel.ProductMapRequiredFieldId })
-                                    <li>@Html.RadioButtonFor(a => a.ProductRequiredFieldId, requiredFieldModel.Field, new { @class = "form-control",id=requiredFieldModel.ProductMapRequiredFieldId })</li>
+                                    foreach (ProductMapRequiredFieldModel requiredFieldModel in Model.ProductMapRequiredFieldModel)
+                                    {
+                                        @Html.LabelForModel(requiredFieldModel.Field, new { @for = requiredFieldModel.ProductMapRequiredFieldId })
+                                        <li>@Html.RadioButton("ProductMapRequiredFieldId", requiredFieldModel.ProductMapRequiredFieldId, new { @class = "form-control", id = requiredFieldModel.ProductMapRequiredFieldId })</li>
+                                        @Html.ValidationMessage("ProductRequiredFieldId")
+                                    }
                                 }
-                            }
 
+                            </ul>
+                            <div class="product-description border-product">
+                                @*<div class="size-box">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0)">s</a></li>
+                            <li><a href="javascript:void(0)">m</a></li>
+                            <li><a href="javascript:void(0)">l</a></li>
+                            <li><a href="javascript:void(0)">xl</a></li>
                         </ul>
-                        <div class="product-description border-product">
-                            @*<div class="size-box">
-                                <ul>
-                                    <li class="active"><a href="javascript:void(0)">s</a></li>
-                                    <li><a href="javascript:void(0)">m</a></li>
-                                    <li><a href="javascript:void(0)">l</a></li>
-                                    <li><a href="javascript:void(0)">xl</a></li>
-                                </ul>
-                            </div>*@
-                            <h6 class="product-title">Miktar</h6>
-                            <div class="qty-box">
-                                <div class="input-group">
-                                    <span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
-                                    <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span>
+                    </div>*@
+                                <h6 class="product-title">Miktar</h6>
+                                <div class="qty-box">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
+                                        <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span>
+                                        @Html.ValidationMessage("quantity")
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-buttons">
+                                <input type="submit" class="btn btn-solid" value="Sepete Ekle" />
+                                <div class="border-product">
+                                    <h6 class="product-title">Ürünü Paylaş</h6>
+                                    <div class="product-icon">
+                                        <ul class="product-social">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                        <form class="d-inline-block">
+
+                                            <button href="@Url.Action("Add", "Wishlist", new {productId= Model.ProductId })" class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Favorilerime Ekle</span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="border-product">
+                                    @*<h6 class="product-title">Time Reminder</h6>
+                        <div class="timer">
+                            <p id="demo">
+                                <span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
+                            </p>
+                        </div>*@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-buttons"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-solid">Sepete Ekle</a>  
-                        <div class="border-product">
-                            <h6 class="product-title">Ürünü Paylaş</h6>
-                            <div class="product-icon">
-                                <ul class="product-social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                </ul>
-                                <form class="d-inline-block">
-                                 
-                                    <button href="@Url.Action("Add", "Wishlist", new {productId= Model.ProductId })" class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Favorilerime Ekle</span></button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="border-product">
-                            @*<h6 class="product-title">Time Reminder</h6>
-                            <div class="timer">
-                                <p id="demo">
-                                    <span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
-                                </p>
-                            </div>*@
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
-        </div>
     </div>
 </section>
 <!-- Section ends -->
