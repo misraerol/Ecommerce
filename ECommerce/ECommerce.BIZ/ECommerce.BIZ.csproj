@@ -60,6 +60,7 @@
     <Compile Include="Repository\DiscountKeyManagement\DiscountKeyRepository.cs" />
     <Compile Include="Repository\OrderManagement\OrderRepository.cs" />
     <Compile Include="Repository\ParameterManagement\ParameterRepository.cs" />
+    <Compile Include="Repository\ParameterTypeManagement\ParameterEnum.cs" />
     <Compile Include="Repository\ParameterTypeManagement\ParameterTypeList.cs" />
     <Compile Include="Repository\ParameterTypeManagement\ParameterTypeRepository.cs" />
     <Compile Include="Repository\ProductManagement\ProductRepository.cs" />
