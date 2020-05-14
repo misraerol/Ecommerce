@@ -48,6 +48,13 @@
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Shipp__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="ECommerceModel.FK__ProductMa__Param__0880433F" />
         <AssociationConnector Association="ECommerceModel.FK__UserCart__Parame__52E34C9D" />
+        <EntityTypeShape EntityType="ECommerceModel.Order" Width="1.5" PointX="13" PointY="10.625" />
+        <EntityTypeShape EntityType="ECommerceModel.OrderDetail" Width="1.5" PointX="15.25" PointY="11.625" />
+        <AssociationConnector Association="ECommerceModel.FK__Order__AppUserId__67DE6983" />
+        <AssociationConnector Association="ECommerceModel.FK__Order__DiscountK__68D28DBC" />
+        <AssociationConnector Association="ECommerceModel.FK__OrderDeta__Order__6BAEFA67" />
+        <AssociationConnector Association="ECommerceModel.FK__OrderDeta__Param__6D9742D9" />
+        <AssociationConnector Association="ECommerceModel.FK__OrderDeta__Produ__6CA31EA0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,23 +12,20 @@ namespace ECommerce.DATA
     using System;
     using System.Collections.Generic;
     
-    public partial class DiscountKey
+    public partial class OrderDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DiscountKey()
-        {
-            this.Order = new HashSet<Order>();
-        }
-    
-        public int DiscountKeyId { get; set; }
-        public Nullable<decimal> Discount { get; set; }
-        public string GuidKey { get; set; }
-        public Nullable<System.DateTime> ExpiredDate { get; set; }
+        public int OrderDetailId { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public Nullable<int> ParameterRequiredFieldsId { get; set; }
+        public byte Quantity { get; set; }
+        public decimal Price { get; set; }
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Parameter Parameter { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
