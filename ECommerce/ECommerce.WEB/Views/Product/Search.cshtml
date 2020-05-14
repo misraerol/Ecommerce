@@ -1,6 +1,9 @@
 ﻿@using ECommerce.WEB.Models.ProductManagament
 @model List<ProductListViewModel>
 @using ECommerce.CORE.Helper
+@{
+    ViewBag.Title = "Search";
+}
 
 
 <!-- tab section start -->
@@ -31,7 +34,7 @@
                                             <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
                                         </a>
                                         <div class="cart-right">
-                                            <button tabindex="0" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></button>
+                                            <a href="@Url.Action("Add", "UserCart", new { productId = product.ProductId,@class="blackcolor" })" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></a>
                                             <a href="@Url.Action("Add", "Wishlist", new { productId = product.ProductId,@class="blackcolor" })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
                                             <a href="" data-toggle="modal" data-target="#quick-view@(product.ProductId)" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
                                             <a href="compare.html" title="Karşılaştır"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -40,30 +43,6 @@
                                     <div class="product-info">
                                         <h6><a href="@Url.Action("Detail","Product",new {id=product.ProductId,@class="blackcolor" })">@product.ProductName</a></h6>
                                         <h5>@product.Amount.ConvertToMoney()</h5>
-                                    </div>
-                                    <div class="addtocart_box">
-                                        <div class="addtocart_detail">
-                                            <div>
-                                                <label> Seçenek</label>
-                                                @using (Html.BeginForm("Add", "UserCart"))
-                                                {
-                                                    @Html.Hidden("ProductId", product.ProductId)
-                                                    foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
-                                                    {
-                                                        @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
-                                                        @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
-                                                    }
-                                                    <div class="product-buttons">
-                                                        <input type="submit" class="btn btn-solid" value="Sepete Ekle" />
-                                                        
-                                                    </div>
-                                                }
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="close-cart">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -90,20 +69,19 @@
                                                         <label> Seçenek</label>
                                                         @using (Html.BeginForm("Add", "UserCart",FormMethod.Post))
                                                         {
-                                                            @Html.Hidden("ProductId",product.ProductId)
+                                                            @Html.Hidden("ProductId", product.ProductId)
                                                             foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
                                                             {
-                                                                @Html.RadioButton("ProductMapRequiredFieldId",productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                                @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
                                                                 @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
                                                             }
-                                                    <div class="product-buttons">
-                                                        <a href="@Url.Action("Add","UserCart",new {productId=product.ProductId})" class="btn btn-solid">Sepete Ekle </a>
-                                                     
-                                                        <a href="@Url.Action("Detail","Product",new {id=product.ProductId ,@class="blackcolor"})" class="btn btn-solid">Ürün detayı</a>
-                                                    </div>
+                                                            <div class="product-buttons">
+                                                                <input type="submit" class="btn btn-solid" value="Sepete Ekle" />
+                                                                <a href="@Url.Action("Detail","Product",new {id=product.ProductId ,@class="blackcolor"})" class="btn btn-solid">Ürün detayı</a>
+                                                            </div>
                                                         }
 
-                                                    
+
                                                     </div>
                                                 </div>
 
@@ -126,4 +104,3 @@
     </div>
 </section>
 <!-- tab section start -->
- 

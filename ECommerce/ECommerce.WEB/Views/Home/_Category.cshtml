@@ -315,8 +315,13 @@
         </div>
         <div class="header-bottom">
             <div class="search-bar">
-                <input class="search__input" type="text" placeholder="Aradığınız ürün, kategori veya markayı yazınız">
-                <div class="search-icon "></div>
+                @using (Html.BeginForm("Search", "Product",FormMethod.Post))
+                {
+                    <input class="search__input" type="text" name="search" placeholder="Aradığınız ürün, kategori veya markayı yazınız">
+                    <div class="search-icon left "></div>
+                    <input type="submit" class="search-icon" value="Ara"/>
+                }
+
             </div>
         </div>
     </div>

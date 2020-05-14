@@ -81,7 +81,7 @@
 
                                 <td>
                                     <a href="@Url.Action("Delete","Wishlist",new {wishlistId=wish.AppUserMapWishId})" class="icon mr-3"><i class="ti-close"></i> </a>
-                                    <a href="@Url.Action("Add","UserCart",new {productId=wish.ProductId })" class="cart"><i class="ti-shopping-cart"></i></a>
+                                    <a href="@Url.Action("Detail","Product",new {id=wish.ProductId })" class="cart"><i class="ti-shopping-cart"></i></a>
                                 </td>
                             </tr>
                         }

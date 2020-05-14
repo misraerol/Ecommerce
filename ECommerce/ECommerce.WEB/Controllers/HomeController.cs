@@ -234,8 +234,16 @@ namespace ECommerce.WEB.Controllers
             AppUser appUser = (AppUser)Session["LoggedUser"];
             if (appUser != null)
             {
-                userInformationModel.UserCartCount = userCartRepository.TotalProductCount();
-                return PartialView(userInformationModel);
+                if (userInformationModel.UserCartCount != null)
+                {
+                    userInformationModel.UserCartCount = userCartRepository.TotalProductCount();
+                    return PartialView(userInformationModel);
+                }
+                else
+                {
+                    userInformationModel.UserCartCount = 0;
+                    return PartialView(userInformationModel);
+                }
             }
             else
             {
@@ -347,17 +355,17 @@ namespace ECommerce.WEB.Controllers
         public ActionResult RePassword(string activationCode)
         {
             AppUser appUser = appUserRepository.GetByActivation(activationCode);
-                AppUser appUserse = appUserRepository.GetById(appUser.AppUserId);
+            AppUser appUserse = appUserRepository.GetById(appUser.AppUserId);
 
-                if (appUserse != null)
-                {
-                    AppUserPasswordModel appUserPasswordModel = new AppUserPasswordModel();
+            if (appUserse != null)
+            {
+                AppUserPasswordModel appUserPasswordModel = new AppUserPasswordModel();
 
-                    appUserPasswordModel.AppUserId = appUserse.AppUserId;
-                    appUserPasswordModel.Password = appUserse.Password;
-                    return View(appUserPasswordModel);
-                }
-        
+                appUserPasswordModel.AppUserId = appUserse.AppUserId;
+                appUserPasswordModel.Password = appUserse.Password;
+                return View(appUserPasswordModel);
+            }
+
             return RedirectToAction("Index", "Home");
 
         }

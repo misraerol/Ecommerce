@@ -211,8 +211,8 @@ namespace ECommerce.WEB.Controllers
                     {
                         ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
                         {
-                            Field=productMapRequired.Parameter.Name,
-                            ProductMapRequiredFieldId=productMapRequired.Parameter.ParameterId
+                            Field = productMapRequired.Parameter.Name,
+                            ProductMapRequiredFieldId = productMapRequired.Parameter.ParameterId
                         };
                         productListViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
                     }
@@ -224,11 +224,50 @@ namespace ECommerce.WEB.Controllers
             return PartialView(productListViewModelList);
         }
 
-        //public ActionResult Search(string toFind)
-        //{
-        //    //List<Product> products = productRepository.GetByProductName(toFind);
-
-        //}
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            List<Product> products = productRepository.GetByProductName(search);
+            List<ProductListViewModel> productListViewModels = new List<ProductListViewModel>();
+            foreach (Product product in products)
+            {
+                ProductListViewModel productListViewModel = new ProductListViewModel()
+                {
+                    ProductId = product.ProductId,
+                    Amount = product.Amount,
+                    CategoryName = product.Category.Name,
+                    DiscountRate = product.DiscountRate,
+                    ProductName = product.Name,
+                };
+                if (product.ProductMapImage != null)
+                {
+                    ProductMapImage productMapImage = product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (productMapImage != null)
+                    {
+                        productListViewModel.ImagePath = productMapImage.ImagePath;
+                    }
+                    else
+                    {
+                        productListViewModel.ImagePath = "notImage.jpg";
+                    }
+                }
+                productListViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
+                if (product.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted).Any())
+                {
+                    foreach (ProductMapRequiredFields productMapRequired in product.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted))
+                    {
+                        ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
+                        {
+                            Field = productMapRequired.Parameter.Name,
+                            ProductMapRequiredFieldId = productMapRequired.Parameter.ParameterId
+                        };
+                        productListViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
+                    }
+                }
+                productListViewModels.Add(productListViewModel);
+            }
+            return View(productListViewModels);
+        }
 
     }
 }
