@@ -55,6 +55,10 @@ namespace ECommerce.BIZ.Repository.DiscountKeyManagement
             db.SaveChanges();
 
         }
-
+        public DiscountKey GetFindDiscountKey(string cuponcode)
+        {
+            DiscountKey discountKey = db.DiscountKey.Where(s => s.IsActive && !s.IsDeleted && s.GuidKey.Equals(cuponcode)).SingleOrDefault();
+            return discountKey;
+        }
     }
 }

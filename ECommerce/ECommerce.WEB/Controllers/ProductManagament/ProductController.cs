@@ -2,7 +2,6 @@
 using ECommerce.BIZ.Repository.ProductManagement;
 using ECommerce.CORE.Helper;
 using ECommerce.DATA;
-
 using ECommerce.WEB.Models.ProductManagament;
 using ECommerce.WEB.Utility.Attribute;
 using System;

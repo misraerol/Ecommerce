@@ -1,4 +1,5 @@
-﻿using ECommerce.BIZ.Repository.UserCartManagament;
+﻿using ECommerce.BIZ.Repository.DiscountKeyManagement;
+using ECommerce.BIZ.Repository.UserCartManagament;
 using ECommerce.DATA;
 using ECommerce.WEB.Models.UserCartManagamenet;
 using ECommerce.WEB.Utility.Attribute;
@@ -14,25 +15,33 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
     public class UserCartController : BaseController
     {
         UserCartRepository userCartRepository;
+        DiscountKeyRepository discountKeyRepository;
         public UserCartController()
         {
             userCartRepository = new UserCartRepository();
+            discountKeyRepository = new DiscountKeyRepository();
         }
         // GET: UserCart
         public ActionResult Index()
         {
-            List<UserCartModel> userCartModelList = new List<UserCartModel>();
+            UserCartModel userCartModel = new UserCartModel();
             List<UserCart> userCartList = userCartRepository.GetAll();
+            userCartModel.UserCartListModel = new List<UserCartListModel>();
+            if(Session["DiscountRate"] != null)
+            {
+                userCartModel.DiscountRate = (decimal)Session["DiscountRate"];
+                userCartModel.IsHaveCupon = true;
+            }
             foreach (UserCart userCart in userCartList)
             {
-                UserCartModel userCartModel = new UserCartModel()
+                UserCartListModel userCartListModel = new UserCartListModel()
                 {
-                    Amount=userCart.Product.Amount,
-                    ProductId=userCart.Product.ProductId,
-                    ProductName=userCart.Product.Name,
-                    UserCartId=userCart.UserCartId,
-                    ProductCount=userCart.ProductCount,
-                    DiscountRate=userCart.Product.DiscountRate
+                    Amount = userCart.Product.Amount,
+                    ProductId = userCart.Product.ProductId,
+                    ProductName = userCart.Product.Name,
+                    UserCartId = userCart.UserCartId,
+                    ProductCount = userCart.ProductCount,
+                    DiscountRate = userCart.Product.DiscountRate
                 };
                 if (userCart.Product.ProductMapImage != null)
                 {
@@ -40,39 +49,39 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
 
                     if (productMap != null)
                     {
-                        userCartModel.ImagePath = productMap.ImagePath;
+                        userCartListModel.ImagePath = productMap.ImagePath;
                     }
                     else
                     {
-                        userCartModel.ImagePath = "notImage.jpg";
+                        userCartListModel.ImagePath = "notImage.jpg";
                     }
                 }
-                userCartModelList.Add(userCartModel);
+                userCartModel.UserCartListModel.Add(userCartListModel);
             }
-            return View(userCartModelList);
+            return View(userCartModel);
         }
 
-        public ActionResult Add(int? ProductMapRequiredFieldId, int productId = 0,int quantity = 1)
+        public ActionResult Add(int? ProductMapRequiredFieldId, int productId = 0, int quantity = 1)
         {
             AppUser appUser = (AppUser)Session["LoggedUser"];
             UserCart userCart = userCartRepository.GetByProductId(productId);
-            if(userCart != null)
+            if (userCart != null)
             {
                 userCart.ProductCount += 1;
                 userCartRepository.Update(userCart);
-                
+
             }
             else
             {
                 UserCart userCarts = new UserCart()
                 {
-                    ProductCount= quantity,
-                    AppUserId=appUser.AppUserId,
-                    CreateDate= DateTime.Now,
-                    IsActive=true,
-                    IsDeleted=false,
-                    ProductId=productId,
-                    ParameterProductRequiredTypesId= ProductMapRequiredFieldId
+                    ProductCount = quantity,
+                    AppUserId = appUser.AppUserId,
+                    CreateDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    ProductId = productId,
+                    ParameterProductRequiredTypesId = ProductMapRequiredFieldId
                 };
 
                 userCartRepository.Insert(userCarts);
@@ -104,7 +113,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
             return RedirectToAction("Index", "UserCart");
         }
 
-        public ActionResult Delete(int userCartId=0)
+        public ActionResult Delete(int userCartId = 0)
         {
             UserCart userCart = userCartRepository.GetById(userCartId);
             userCart.IsActive = false;
@@ -115,18 +124,19 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
 
         public PartialViewResult _UserCart()
         {
-            List<UserCartModel> userCartModelList = new List<UserCartModel>();
+            UserCartModel userCartModel = new UserCartModel();
             List<UserCart> userCartList = userCartRepository.GetAll();
+            userCartModel.UserCartListModel = new List<UserCartListModel>();
             foreach (UserCart userCart in userCartList)
             {
-                UserCartModel userCartModel = new UserCartModel()
+                UserCartListModel userCartListModel = new UserCartListModel()
                 {
                     Amount = userCart.Product.Amount,
                     ProductId = userCart.Product.ProductId,
                     ProductName = userCart.Product.ShortName,
                     UserCartId = userCart.UserCartId,
                     ProductCount = userCart.ProductCount,
-                     DiscountRate = userCart.Product.DiscountRate
+                    DiscountRate = userCart.Product.DiscountRate
                 };
                 if (userCart.Product.ProductMapImage != null)
                 {
@@ -134,19 +144,37 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
 
                     if (productMap != null)
                     {
-                        userCartModel.ImagePath = productMap.ImagePath;
+                        userCartListModel.ImagePath = productMap.ImagePath;
                     }
                     else
                     {
-                        userCartModel.ImagePath = "notImage.jpg";
+                        userCartListModel.ImagePath = "notImage.jpg";
                     }
                 }
-                userCartModelList.Add(userCartModel);
+                userCartModel.UserCartListModel.Add(userCartListModel);
             }
-            return PartialView(userCartModelList);
+            return PartialView(userCartModel);
         }
 
 
+        public ActionResult AddCupon(string cupon)
+        {
+            DiscountKey discountKey = discountKeyRepository.GetFindDiscountKey(cupon);
+            if (discountKey != null)
+            {
+                if (discountKey.ExpiredDate >= DateTime.Now || discountKey.ExpiredDate == null)
+                {
+                    Session.Add("DiscountRate", discountKey.Discount);
+                }
+            }
+            return RedirectToAction("Index", "UserCart");
+        }
+        
+        public ActionResult RemoveCupon()
+        {
+            Session.Remove("DiscountRate");
+            return RedirectToAction("Index", "UserCart");
+        }
 
     }
 }

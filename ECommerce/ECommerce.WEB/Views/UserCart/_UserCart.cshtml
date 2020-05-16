@@ -1,6 +1,6 @@
 ﻿@using ECommerce.WEB.Models.UserCartManagamenet
 @using ECommerce.CORE.Helper
-@model List<UserCartModel>
+@model UserCartModel
 <!-- Add to cart bar -->
 @{
     decimal totalAmount = 0;
@@ -18,7 +18,7 @@
         </div>
         <div class="cart_media">
             <ul class="cart_product">
-                @foreach (UserCartModel userCart in Model)
+                @foreach (UserCartListModel userCart in Model.UserCartListModel)
                 {
                     <li>
                         <div class="media">
