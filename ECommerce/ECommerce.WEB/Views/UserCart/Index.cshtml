@@ -20,7 +20,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("IndexProductStoreWindow","Product")">Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Product")">Anasayfa</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Sepetim</li>
                     </ol>
                 </nav>
@@ -145,7 +145,7 @@
         <br />
         <div class="row cart-buttons">
             <div class="col-6"><a href="@Url.Action("IndexProductStoreWindow","Product")" class="btn btn-solid">ALışverişe Devam et</a></div>
-            <div class="col-6"><a href="#" class="btn btn-solid">Siparişi Tamamla</a></div>
+            <div class="col-6"><a href="@Url.Action("CheckOut","Order")" class="btn btn-solid">Siparişi Tamamla</a></div>
         </div>
     </div>
 </section>

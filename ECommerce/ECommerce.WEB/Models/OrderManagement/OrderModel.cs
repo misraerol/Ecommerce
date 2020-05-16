@@ -11,6 +11,7 @@ namespace ECommerce.WEB.Models.OrderManagement
     public class OrderModel
     {
         public int AddressId { get; set; }
+
         public SelectList AddressList { get; set; }
 
         public int ParameterPaymentId { get; set; }
