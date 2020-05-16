@@ -1551,6 +1551,7 @@
     <Compile Include="Controllers\AppUserManagement\AppUserController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderManagement\OrderController.cs" />
     <Compile Include="Controllers\ProductManagament\ProductController.cs" />
     <Compile Include="Controllers\UserCartManagement\UserCartController.cs" />
     <Compile Include="Controllers\WishlistManagement\WishlistController.cs" />
@@ -1565,6 +1566,7 @@
     <Compile Include="Models\AppUserManagement\LoggedUser.cs" />
     <Compile Include="Models\AppUserManagement\UserInformationModel.cs" />
     <Compile Include="Models\CityCountyManagament\CityCountyListView.cs" />
+    <Compile Include="Models\OrderManagement\OrderModel.cs" />
     <Compile Include="Models\ProductManagament\ProductDetailViewModel.cs" />
     <Compile Include="Models\ProductManagament\ProductListViewModel.cs" />
     <Compile Include="Models\ProductManagament\ProductStoreWindowModel.cs" />
@@ -1702,6 +1704,8 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\_Product.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Order\Success.cshtml" />
+    <Content Include="Views\Order\CheckOut.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

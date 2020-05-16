@@ -18,6 +18,7 @@ namespace ECommerce.DATA
         public Address()
         {
             this.AppUserMapAddress = new HashSet<AppUserMapAddress>();
+            this.Order = new HashSet<Order>();
         }
     
         public int AddressId { get; set; }
@@ -33,5 +34,7 @@ namespace ECommerce.DATA
         public virtual County County { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUserMapAddress> AppUserMapAddress { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

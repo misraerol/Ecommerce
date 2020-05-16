@@ -126,6 +126,7 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -369,6 +370,18 @@
             </Principal>
             <Dependent Role="County">
               <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__AddressId__6E8B6712">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AddressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -665,6 +678,10 @@
             <End Role="City" EntitySet="City" />
             <End Role="County" EntitySet="County" />
           </AssociationSet>
+          <AssociationSet Name="FK__Order__AddressId__6E8B6712" Association="Self.FK__Order__AddressId__6E8B6712">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK__Order__AppUserId__67DE6983" Association="Self.FK__Order__AppUserId__67DE6983">
             <End Role="AppUser" EntitySet="AppUser" />
             <End Role="Order" EntitySet="Order" />
@@ -765,6 +782,7 @@
           <Property Name="NameSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="County" Relationship="Self.FK__Address__CountyI__3E52440B" FromRole="Address" ToRole="County" />
           <NavigationProperty Name="AppUserMapAddress" Relationship="Self.FK__AppUserMa__Addre__412EB0B6" FromRole="Address" ToRole="AppUserMapAddress" />
+          <NavigationProperty Name="Order" Relationship="ECommerceModel.FK__Order__AddressId__6E8B6712" FromRole="Address" ToRole="Order" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -1428,6 +1446,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__Order__AddressId__6E8B6712" Association="ECommerceModel.FK__Order__AddressId__6E8B6712">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="RecursiveCategoryList_Result">
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
@@ -1471,6 +1493,8 @@
           <NavigationProperty Name="AppUser" Relationship="ECommerceModel.FK__Order__AppUserId__67DE6983" FromRole="Order" ToRole="AppUser" />
           <NavigationProperty Name="DiscountKey" Relationship="ECommerceModel.FK__Order__DiscountK__68D28DBC" FromRole="Order" ToRole="DiscountKey" />
           <NavigationProperty Name="OrderDetail" Relationship="ECommerceModel.FK__OrderDeta__Order__6BAEFA67" FromRole="Order" ToRole="OrderDetail" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="ECommerceModel.FK__Order__AddressId__6E8B6712" FromRole="Order" ToRole="Address" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -1546,6 +1570,18 @@
             </Principal>
             <Dependent Role="OrderDetail">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__AddressId__6E8B6712">
+          <End Type="ECommerceModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="ECommerceModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AddressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1844,6 +1880,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ECommerceModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />

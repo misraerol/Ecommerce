@@ -1,6 +1,6 @@
 ﻿@using ECommerce.WEB.Models.UserCartManagamenet
 @using ECommerce.CORE.Helper
-@model List<UserCartModel>
+@model UserCartModel
 @{
     ViewBag.Title = "Index";
 
@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (UserCartModel userCart in Model)
+                        @foreach (UserCartListModel userCart in Model.UserCartListModel)
                         {
                             <tr>
                                 <td>
@@ -117,13 +117,32 @@
                                 Sipariş Özeti:
                             </td>
                             <td>
-                                <h2>@totalAmount.ConvertToMoney()</h2>
+                                <h2>@CalculateHelper.CalculateDiscountAmount(Model.DiscountRate,totalAmount).ConvertToMoney()</h2>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+        @if (!Model.IsHaveCupon)
+        {
+            using (Html.BeginForm("AddCupon", "UserCart", FormMethod.Post))
+            {
+                <div class="form-group col-6 float-right">
+                    @Html.TextBox("cupon", string.Empty, new { @class = "form-control", placeholder = "Kupon Kodu" })
+                    <button type="submit" class="btn btn-success">Getir</button>
+                </div>
+
+            }
+        }
+        else
+        {
+            <a href="@Url.Action("RemoveCupon","UserCart")" class="btn btn-danger">Kuponu Kaldır</a>
+        }
+
+        <br />
+        <br />
+        <br />
         <div class="row cart-buttons">
             <div class="col-6"><a href="@Url.Action("IndexProductStoreWindow","Product")" class="btn btn-solid">ALışverişe Devam et</a></div>
             <div class="col-6"><a href="#" class="btn btn-solid">Siparişi Tamamla</a></div>

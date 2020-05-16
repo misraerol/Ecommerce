@@ -67,5 +67,15 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
             int totalCount = db.UserCart.Where(s => s.IsActive && !s.IsDeleted).Sum(s => s.ProductCount);
             return totalCount;
         }
+        public void AllDelete(int appUserId)
+        {
+            List<UserCart> userCarts = db.UserCart.Where(s => s.IsActive && !s.IsDeleted && s.AppUserId == appUserId).ToList();
+            foreach (UserCart userCart in userCarts)
+            {
+                userCart.IsActive = false;
+                userCart.IsDeleted = true;                
+            }
+            db.SaveChanges();
+        }
     }
 }

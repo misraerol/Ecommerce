@@ -7,6 +7,15 @@ namespace ECommerce.WEB.Models.UserCartManagamenet
 {
     public class UserCartModel
     {
+        public List<UserCartListModel> UserCartListModel { get; set; }
+
+        public bool IsHaveCupon { get; set; }
+
+        public decimal DiscountRate { get; set; }
+    }
+
+    public class UserCartListModel
+    {
         public int UserCartId { get; set; }
 
         public string ImagePath { get; set; }
@@ -20,5 +29,7 @@ namespace ECommerce.WEB.Models.UserCartManagamenet
         public int ProductCount { get; set; }
 
         public decimal DiscountRate { get; set; }
+
+       
     }
 }

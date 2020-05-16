@@ -27,10 +27,12 @@ namespace ECommerce.DATA
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public int AddressId { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual DiscountKey DiscountKey { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public virtual Address Address { get; set; }
     }
 }
