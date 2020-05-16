@@ -73,7 +73,6 @@
                                     {
                                         <h3><del>@userCart.Amount.ConvertToMoney()</del></h3>
                                         <h3>@CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount).ConvertToMoney()</h3>
-
                                     }
                                     else
                                     {
@@ -106,9 +105,7 @@
                                 totalAmount += CalculateHelper.CalculateDiscountAmount(userCart.DiscountRate, userCart.Amount) * userCart.ProductCount;
                             }
                         }
-
                     </tbody>
-
                 </table>
                 <table class="table cart-table table-responsive-md">
                     <tfoot>
@@ -117,30 +114,39 @@
                                 Sipariş Özeti:
                             </td>
                             <td>
-                                <h2>@CalculateHelper.CalculateDiscountAmount(Model.DiscountRate,totalAmount).ConvertToMoney()</h2>
+                                <h2>@CalculateHelper.CalculateDiscountAmount(Model.DiscountRate, totalAmount).ConvertToMoney()</h2>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+        <br />
+        <br />
         @if (!Model.IsHaveCupon)
         {
             using (Html.BeginForm("AddCupon", "UserCart", FormMethod.Post))
             {
-                <div class="form-group col-6 float-right">
-                    @Html.TextBox("cupon", string.Empty, new { @class = "form-control", placeholder = "Kupon Kodu" })
-                    <button type="submit" class="btn btn-success">Getir</button>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <form class="form-header">
+                                <div class="input-group">
+                                    @Html.TextBox("cupon", string.Empty, new { @class = "form-control", placeholder = "Kupon Kodu" })
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-solid">Getir</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
             }
         }
         else
         {
             <a href="@Url.Action("RemoveCupon","UserCart")" class="btn btn-danger">Kuponu Kaldır</a>
         }
-
-        <br />
         <br />
         <br />
         <div class="row cart-buttons">

@@ -42,8 +42,8 @@
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-title">
                                     <h3>Adres Bilgileri</h3>
-                                    @Html.DropDownListFor(s => s.AddressId, Model.AddressList, new { @class = "form-control" })
                                     @Html.LabelFor(s => s.AddressId)
+                                    @Html.DropDownListFor(s => s.AddressId, Model.AddressList, new { @class = "btn btn-light",  })
                                     @Html.ValidationMessageFor(s => s.AddressId)
                                 </div>
 
@@ -94,19 +94,19 @@
                                     <div class="payment-box">
                                         <div class="upper-box">
                                             <div class="payment-options">
+                                                <h4 class="text-black">Ödeme türünü seçiniz</h4>
+                                            
                                                 <ul>
                                                     @foreach (SelectListItem payment in Model.ParameterPayment)
                                                     {
                                                         <li>
                                                             <div class="radio-option">
-                                                                @Html.RadioButtonFor(s => s.ParameterPaymentId, payment.Value, new { id = payment.Value })
                                                                 @Html.LabelForModel(payment.Text, new { @for = payment.Value })
+                                                                @Html.RadioButtonFor(s => s.ParameterPaymentId, payment.Value, new { id = payment.Value })
                                                                 @Html.ValidationMessageFor(s => s.ParameterPaymentId)
                                                             </div>
                                                         </li>
                                                     }
-
-
                                                 </ul>
                                             </div>
                                         </div>
