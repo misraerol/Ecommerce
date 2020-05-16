@@ -28,5 +28,15 @@ namespace ECommerce.BIZ.Repository.ParameterTypeManagement
         /// </summary>
         public static string ProductRequiredTypes = "ProductRequiredTypes";
 
+        /// <summary>
+        /// Ödeme Tipleri
+        /// </summary>
+        public static string PaymentType = "PaymentType";
+
+        /// <summary>
+        /// Ürün Statüsü
+        /// </summary>
+        public static string OrderStatus = "OrderStatus";
+
     }
 }
