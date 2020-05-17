@@ -88,11 +88,11 @@ namespace ECommerce.BIZ.Repository.ProductManagement
         }
         public List<ProductStoreWindow> GetProductStoreeManyRequestCount(int takeCount)
         {
-            List<ProductStoreWindow> productStoreWindowList = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).OrderBy(s=> Guid.NewGuid()).Take(takeCount).ToList();
+            List<ProductStoreWindow> productStoreWindowList = db.ProductStoreWindow.Where(s => s.IsActive && !s.IsDeleted).OrderBy(s => Guid.NewGuid()).Take(takeCount).ToList();
             return productStoreWindowList;
         }
 
-        public List<Product> GetProductManyRequestCountAndDecreaseProductList(int count,List<int> decreaseProductList)
+        public List<Product> GetProductManyRequestCountAndDecreaseProductList(int count, List<int> decreaseProductList)
         {
             List<Product> productList = db.Product.Where(s => !decreaseProductList.Contains(s.ProductId) && s.IsActive && !s.IsDeleted).OrderBy(s => Guid.NewGuid()).Take(count).ToList();
 
@@ -100,9 +100,14 @@ namespace ECommerce.BIZ.Repository.ProductManagement
         }
         public List<Product> GetByProductName(string productName)
         {
-            List<Product> products = db.Product.Where(s => s.Name.Contains(productName)&&s.IsActive &&!s.IsDeleted).ToList();
+            List<Product> products = db.Product.Where(s => s.Name.Contains(productName) && s.IsActive && !s.IsDeleted).ToList();
             return products;
-         
+
+        }
+        public List<Product> GetByCategoryId(int id)
+        {
+            List<Product> products = db.Product.Where(s => s.CategoryId ==id && s.IsActive && !s.IsDeleted).ToList();
+            return products;
         }
     }
 }

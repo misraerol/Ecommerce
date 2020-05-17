@@ -268,5 +268,49 @@ namespace ECommerce.WEB.Controllers
             return View(productListViewModels);
         }
 
+
+        public ActionResult Category(int id = 0)
+        {
+            List<ProductListViewModel> productListViewModels = new List<ProductListViewModel>();
+            List<Product> productList = productRepository.GetByCategoryId(id);
+            foreach (Product product in productList)
+            {
+                ProductListViewModel productListViewModel = new ProductListViewModel()
+                {
+                    Amount = product.Amount,
+                    CategoryName = product.Category.Name,
+                    DiscountRate = product.DiscountRate,
+                    ProductId = product.ProductId,
+                    ProductName = product.ShortName
+                };
+                if (product.ProductMapImage != null)
+                {
+                    ProductMapImage productMapImage = product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (productMapImage != null)
+                    {
+                        productListViewModel.ImagePath = productMapImage.ImagePath;
+                    }
+                    else
+                    {
+                        productListViewModel.ImagePath = "notImage.jpg";
+                    }
+                }
+                productListViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
+                if (product.ProductMapRequiredFields.Where(s=> s.IsActive && !s.IsDeleted).Any())
+                {
+                    foreach (ProductMapRequiredFields productMapRequiredFields in product.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted))
+                    {
+                        ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
+                        {
+                            Field = productMapRequiredFields.Parameter.Name,
+                            ProductMapRequiredFieldId = productMapRequiredFields.Parameter.ParameterId
+                        }; 
+                        productListViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
+                    }
+                }
+                productListViewModels.Add(productListViewModel);
+            }
+            return View(productListViewModels);
+        }
     }
 }

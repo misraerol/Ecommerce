@@ -1,0 +1,129 @@
+﻿@using ECommerce.WEB.Models.ProductManagament
+@using ECommerce.CORE.Helper
+@model List<ProductListViewModel>
+@{
+    ViewBag.Title = "Ürünler";
+}
+<!-- tab section start -->
+<section class="section-b-space tab-layout1 grey-bg ratio_square">
+    <div class="theme-tab">
+        <div class="drop-shadow">
+            <div class="left-shadow">
+                <img src="../assets/images/left.png" alt="" class=" img-fluid">
+            </div>
+            <div class="right-shadow">
+                <img src="../assets/images/right.png" alt="" class=" img-fluid">
+            </div>
+        </div>
+
+        <div class="tab-content-cls">
+
+            <div id="tab-1" class="tab-content active default">
+
+                <div class="container">
+
+                    <div class="row border-row1 grid-5">
+                        @foreach (ProductListViewModel product in Model)
+                        {
+                            <div class="box-5">
+                                <div class="product-box product-full">
+                                    <div class="img-block">
+                                        <a href="@Url.Action("Detail","Product",new {id=product.ProductId,@class="blackcolor" })">
+                                            <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
+                                        </a>
+                                        <div class="cart-right">
+                                            <button tabindex="0" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></button>
+                                            <a href="@Url.Action("Add", "Wishlist", new { productId = product.ProductId,@class="blackcolor" })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#quick-view@(product.ProductId)" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
+                                            <a href="compare.html" title="Karşılaştır"><i class="ti-reload" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6><a href="@Url.Action("Detail","Product",new {id=product.ProductId,@class="blackcolor" })">@product.ProductName</a></h6>
+                                        <h5>@product.Amount.ConvertToMoney()</h5>
+                                    </div>
+                                    <div class="addtocart_box">
+                                        <div class="addtocart_detail">
+                                            <div>
+                                                <label> Seçenek</label>
+                                                @using (Html.BeginForm("Add", "UserCart"))
+                                                {
+                                                    @Html.Hidden("ProductId", product.ProductId)
+                                                    foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
+                                                    {
+                                                        @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                        @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
+                                                    }
+                                                    <div class="product-buttons">
+                                                        <input type="submit" class="btn btn-solid" value="Sepete Ekle" />
+
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="close-cart">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Quick-view modal popup start-->
+                            <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view@(product.ProductId)" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content quick-view-modal">
+                                        <div class="modal-body">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="row">
+
+                                                <div class="col-lg-6 ">
+                                                    <div class="quick-view-img"><img src="~/Uploads/ProductImage/@product.ImagePath" alt="" class="img-fluid "></div>
+                                                </div>
+                                                <div class="col-lg-6 rtl-text">
+                                                    <div class="product-right">
+                                                        <h2>@product.ProductName</h2>
+                                                        <h3>@product.Amount.ConvertToMoney()</h3>
+                                                        <div class="border-product">
+                                                            <h6 class="product-title">Ürün Bilgisi</h6>
+                                                            <p>@product.Explanation</p>
+                                                        </div>
+                                                        <label> Seçenek</label>
+                                                        @using (Html.BeginForm("Add", "UserCart", FormMethod.Post))
+                                                        {
+                                                            @Html.Hidden("ProductId", product.ProductId)
+                                                            foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
+                                                            {
+                                                                @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                                @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
+                                                            }
+                                                            <div class="product-buttons">
+                                                                <a href="@Url.Action("Add","UserCart",new {productId=product.ProductId})" class="btn btn-solid">Sepete Ekle </a>
+
+                                                                <a href="@Url.Action("Detail","Product",new {id=product.ProductId ,@class="blackcolor"})" class="btn btn-solid">Ürün detayı</a>
+                                                            </div>
+                                                        }
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quick-view modal popup end-->}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+<!-- tab section start -->

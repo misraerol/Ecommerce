@@ -1706,6 +1706,7 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Order\Success.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
