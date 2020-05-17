@@ -1,14 +1,14 @@
 ﻿@using ECommerce.DATA
 
-
 @{
+     ViewBag.Title = "Hesabım";
     AppUser appUser = (AppUser)Session["LoggedUser"];
 }
 
 @using (Html.BeginForm("UserProfile", "AppUser", FormMethod.Post))
 {
-    @Html.Action("_ProfileInfo","AppUser")
- 
+    @Html.Action("_ProfileInfo", "AppUser")
+
     <!-- section start -->
     <section class="section-b-space">
         <div class="container">
@@ -53,12 +53,7 @@
                                             <div class="box-title">
                                                 <h3>Adres Bilgilerim</h3><a href="@Url.Action("Index","Address")">Düzenle</a>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                        <h6>Fatura Adresi</h6><address><br><a href="#">Edit Address</a></address>
-                                                    </div>
-                                                    
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
