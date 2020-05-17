@@ -1,7 +1,209 @@
-﻿
+﻿@using ECommerce.WEB.Models.ProductManagament
+@model List<ProductListViewModel>
+@using ECommerce.CORE.Helper
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ürünler";
 }
 
-<h2>Index</h2>
+<!-- breadcrumb start -->
+<section class="breadcrumb-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title">
+                    <h2>ÜRÜNLER</h2>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+ 
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space ratio_square">
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="collection-content col">
+                    <div class="page-main-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                
+                                <div class="collection-product-wrapper">
+                                    <div class="product-top-filter">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="product-filter-content">
+                                                    <div class="search-count">
+                                                        <h5>Ürünler</h5>
+                                                    </div>
+                                                    <div class="collection-view">
+                                                        <ul>
+                                                            <li><i class="fa fa-th grid-layout-view"></i></li>
+                                                            <li><i class="fa fa-list-ul list-layout-view"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="collection-grid-view">
+                                                        <ul>
+                                                            <li><a href="javascript:void(0)" class="product-2-layout-view"><ul class="filter-select"><li></li><li></li></ul></a></li>
+                                                            <li><a href="javascript:void(0)" class="product-3-layout-view"><ul class="filter-select"><li></li><li></li><li></li></ul></a></li>
+                                                            <li><a href="javascript:void(0)" class="product-4-layout-view"><ul class="filter-select"><li></li><li></li><li></li><li></li></ul></a></li>
+                                                            <li><a href="javascript:void(0)" class="product-6-layout-view"><ul class="filter-select"><li></li><li></li><li></li><li></li><li></li><li></li></ul></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product-page-per-view">
+                                                        <select>
+                                                            <option value="High to low">24 Ürün Göster</option>
+                                                            <option value="Low to High">50 Ürün Göster</option>
+                                                            <option value="Low to High">100 Ürün Göster</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="product-page-filter">
+                                                        <select>
+                                                            <option value="High to low">Sıralama</option>
+                                                            <option value="Low to High">50 Products</option>
+                                                            <option value="Low to High">100 Products</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-wrapper-grid">
+                                        <div class="row">
+                                            @foreach (ProductListViewModel product in Model)
+                                            {
+                                                <div class="col-lg-2 col-md-4 col-6 col-grid-box">
 
+                                                    <div class="product-box">
+                                                        <div class="img-block">
+                                                            <a href="@Url.Action("Detail","Product",new {id=product.ProductId,@class="blackcolor" })">
+                                                                <img src="~/Uploads/ProductImage/@product.ImagePath" class=" img-fluid bg-img" alt="">
+                                                            </a>
+                                                            <div class="cart-details">
+                                                                <button tabindex="0" class="addcart-box" title="Sepete Ekle"><i class="ti-shopping-cart"></i></button>
+                                                                <a href="@Url.Action("Add", "Wishlist", new { productId = product.ProductId,@class="blackcolor" })" title="Favorilere Ekle"><i class="ti-heart" aria-hidden="true"></i></a>
+                                                                <a href="" data-toggle="modal" data-target="#quick-view@(product.ProductId)" title="İncele"><i class="ti-search" aria-hidden="true"></i></a>
+                                                                <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <div>
+                                                                <h6><a href="@Url.Action("Detail","Product",new {id=product.ProductId,@class="blackcolor" })">@product.ProductName</a></h6>
+                                                                <h5>@product.Amount.ConvertToMoney()</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="addtocart_box">
+                                                            <div class="addtocart_detail">
+                                                                <div>
+                                                                    <label> Seçenek</label>
+                                                                    @using (Html.BeginForm("Add", "UserCart"))
+                                                                    {
+                                                                        @Html.Hidden("ProductId", product.ProductId)
+                                                                        foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
+                                                                        {
+                                                                            @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                                            @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
+                                                                        }
+                                                                        <div class="product-buttons">
+                                                                            <input type="submit" class="btn btn-solid" value="Sepete Ekle" />
+
+                                                                        </div>
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="close-cart">
+                                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Quick-view modal popup start-->
+                                                    <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view@(product.ProductId)" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                            <div class="modal-content quick-view-modal">
+                                                                <div class="modal-body">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="row">
+
+                                                                        <div class="col-lg-6 ">
+                                                                            <div class="quick-view-img"><img src="~/Uploads/ProductImage/@product.ImagePath" alt="" class="img-fluid "></div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 rtl-text">
+                                                                            <div class="product-right">
+                                                                                <h2>@product.ProductName</h2>
+                                                                                <h3>@product.Amount.ConvertToMoney()</h3>
+                                                                                <div class="border-product">
+                                                                                    <h6 class="product-title">Ürün Bilgisi</h6>
+                                                                                    <p>@product.Explanation</p>
+                                                                                </div>
+                                                                                <label> Seçenek</label>
+                                                                                @using (Html.BeginForm("Add", "UserCart", FormMethod.Post))
+                                                                                {
+                                                                                    @Html.Hidden("ProductId", product.ProductId)
+                                                                                    foreach (ProductMapRequiredFieldModel productMapRequired in product.ProductMapRequiredFieldModel)
+                                                                                    {
+                                                                                        @Html.RadioButton("ProductMapRequiredFieldId", productMapRequired.ProductMapRequiredFieldId, new { @class = "form-control", id = productMapRequired.ProductMapRequiredFieldId })
+                                                                                        @Html.LabelForModel(productMapRequired.Field, new { @for = productMapRequired.ProductMapRequiredFieldId })
+                                                                                    }
+                                                                                    <div class="product-buttons">
+                                                                                        <a href="@Url.Action("Add","UserCart",new {productId=product.ProductId})" class="btn btn-solid">Sepete Ekle </a>
+
+                                                                                        <a href="@Url.Action("Detail","Product",new {id=product.ProductId ,@class="blackcolor"})" class="btn btn-solid">Ürün detayı</a>
+                                                                                    </div>
+                                                                                }
+
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Quick-view modal popup end-->
+
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="product-pagination mb-0">
+                                        <div class="theme-paggination-block">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6 col-sm-12">
+                                                    <nav aria-label="Page navigation">
+                                                        <ul class="pagination">
+                                                            <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span> <span class="sr-only">Previous</span></a></li>
+                                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span> <span class="sr-only">Next</span></a></li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                                <div class="col-xl-6 col-md-6 col-sm-12">
+                                                    <div class="product-search-count-bottom">
+                                                        <h5>Ürün sayısı</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section End -->

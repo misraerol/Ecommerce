@@ -24,7 +24,68 @@ namespace ECommerce.WEB.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            List<Product> productList = new List<Product>();
+            List<ProductStoreWindow> productStoreWindowList = productRepository.GetProductStoreeManyRequestCount(20);
+
+            foreach (ProductStoreWindow product in productStoreWindowList)
+            {
+                productList.Add(product.Product);
+            }
+            if (productList.Count < 20)
+            {
+                int remaining = 20 - productList.Count;
+                List<int> productListId = productList.Select(a => a.ProductId).ToList();
+                List<Product> increaseProductList = productRepository.GetProductManyRequestCountAndDecreaseProductList(remaining, productListId);
+
+                foreach (Product product in increaseProductList)
+                {
+                    productList.Add(product);
+                }
+
+            }
+            List<ProductListViewModel> productListViewModelList = new List<ProductListViewModel>();
+            foreach (Product proc in productList)
+            {
+                ProductListViewModel productListViewModel = new ProductListViewModel()
+                {
+                    ProductId = proc.ProductId,
+                    Amount = proc.Amount,
+                    CategoryName = proc.Category.Name,
+                    DiscountRate = proc.DiscountRate,
+                    ProductName = proc.ShortName
+                };
+
+                if (proc.ProductMapImage != null)
+                {
+                    ProductMapImage procImage = proc.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (procImage != null)
+                    {
+                        productListViewModel.ImagePath = procImage.ImagePath;
+                    }
+                    else
+                    {
+                        productListViewModel.ImagePath = "notImage.jpg";
+                    }
+                }
+
+                productListViewModel.ProductMapRequiredFieldModel = new List<ProductMapRequiredFieldModel>();
+                if (proc.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted).Any())
+                {
+                    foreach (ProductMapRequiredFields productMapRequired in proc.ProductMapRequiredFields.Where(s => s.IsActive && !s.IsDeleted))
+                    {
+                        ProductMapRequiredFieldModel productMapRequiredFieldModel = new ProductMapRequiredFieldModel()
+                        {
+                            Field = productMapRequired.Parameter.Name,
+                            ProductMapRequiredFieldId = productMapRequired.Parameter.ParameterId
+                        };
+                        productListViewModel.ProductMapRequiredFieldModel.Add(productMapRequiredFieldModel);
+                    }
+                }
+
+                productListViewModelList.Add(productListViewModel);
+            }
+
+            return View(productListViewModelList);
         }
 
         public ActionResult IndexProductStoreWindow()
