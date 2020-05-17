@@ -34,7 +34,7 @@ namespace ECommerce.BIZ.Repository.WishlistManagement
         }
         public bool AnyProductId(int productId)
         {
-            bool anyProductId = db.AppUserMapWish.Where(s => s.ProductId == productId).Any();
+            bool anyProductId = db.AppUserMapWish.Where(s => s.IsActive && !s.IsDeleted && s.ProductId == productId).Any();
             return anyProductId;
         }
         public void Insert(AppUserMapWish entity)

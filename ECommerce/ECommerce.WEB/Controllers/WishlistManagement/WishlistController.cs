@@ -16,52 +16,51 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
     public class WishlistController : BaseController
     {
         WishlistRepository wishlistRepository;
-       
+
         public WishlistController()
         {
             wishlistRepository = new WishlistRepository();
-       
+
         }
         // GET: Wishlist
         public ActionResult Index()
         {
 
-             List<AppUserWishlistModel> appUserMapWishes = new List<AppUserWishlistModel> ();
-             List<AppUserMapWish> appUserMapWishList = wishlistRepository.GetAll();
+            List<AppUserWishlistModel> appUserMapWishes = new List<AppUserWishlistModel>();
+            List<AppUserMapWish> appUserMapWishList = wishlistRepository.GetAll();
 
-             foreach (AppUserMapWish wish in appUserMapWishList)
-             {
-                 AppUserWishlistModel appUserWishlistModel = new AppUserWishlistModel()
-                 {
-                     Amount = wish.Product.Amount,
-                     ProductName = wish.Product.Name,
-                    ProductId=wish.Product.ProductId,
-                    AppUserMapWishId=wish.AppUserMapWishId,
-                    DiscountRate=wish.Product.DiscountRate
-                 };
+            foreach (AppUserMapWish wish in appUserMapWishList)
+            {
+                AppUserWishlistModel appUserWishlistModel = new AppUserWishlistModel()
+                {
+                    Amount = wish.Product.Amount,
+                    ProductName = wish.Product.Name,
+                    ProductId = wish.Product.ProductId,
+                    AppUserMapWishId = wish.AppUserMapWishId,
+                    DiscountRate = wish.Product.DiscountRate
+                };
 
-                 if (wish.Product.ProductMapImage != null)
-                 {
-                     ProductMapImage procImage = wish.Product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
-                     if (procImage != null)
-                     {
-                         appUserWishlistModel.ImagePath = procImage.ImagePath;
-                     }
-                     else
-                     {
-                         appUserWishlistModel.ImagePath = "notImage.jpg";
-                     }
-                 }
-                 appUserMapWishes.Add(appUserWishlistModel);
-             }
-             return View(appUserMapWishes);
-    
+                if (wish.Product.ProductMapImage != null)
+                {
+                    ProductMapImage procImage = wish.Product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+                    if (procImage != null)
+                    {
+                        appUserWishlistModel.ImagePath = procImage.ImagePath;
+                    }
+                    else
+                    {
+                        appUserWishlistModel.ImagePath = "notImage.jpg";
+                    }
+                }
+                appUserMapWishes.Add(appUserWishlistModel);
+            }
+            return View(appUserMapWishes);
+
         }
 
         public ActionResult Add(int productId)
         {
             AppUser appUserSession = (AppUser)Session["LoggedUser"];
-     
             bool anyUseProductId = wishlistRepository.AnyProductId(productId);
             if (anyUseProductId)
             {
@@ -76,12 +75,12 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
                     IsActive = true,
                     IsDeleted = false,
                     CreateDate = DateTime.Now,
-
+                    
                 };
                 wishlistRepository.Insert(appUserMapWish);
                 return RedirectToAction("Index", "Product");
             }
-           
+
         }
         public ActionResult Delete(int wishlistId)
         {
@@ -122,7 +121,7 @@ namespace ECommerce.WEB.Controllers.WishlistManagement
                 }
                 appUserMapWishes.Add(appUserWishlistModel);
             }
-           
+
             return PartialView(appUserMapWishes);
         }
 
