@@ -127,6 +127,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="ParameterPaymentTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -406,6 +407,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="DiscountKeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__Parameter__7908F585">
+          <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ParameterPaymentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -690,6 +703,10 @@
             <End Role="DiscountKey" EntitySet="DiscountKey" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK__Order__Parameter__7908F585" Association="Self.FK__Order__Parameter__7908F585">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK__OrderDeta__Order__6BAEFA67" Association="Self.FK__OrderDeta__Order__6BAEFA67">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
@@ -912,6 +929,7 @@
           <NavigationProperty Name="ProductMapProperty" Relationship="ECommerceModel.FK__ProductMa__Param__0880433F" FromRole="Parameter" ToRole="ProductMapProperty" />
           <NavigationProperty Name="UserCart" Relationship="ECommerceModel.FK__UserCart__Parame__52E34C9D" FromRole="Parameter" ToRole="UserCart" />
           <NavigationProperty Name="OrderDetail" Relationship="ECommerceModel.FK__OrderDeta__Param__6D9742D9" FromRole="Parameter" ToRole="OrderDetail" />
+          <NavigationProperty Name="Order" Relationship="ECommerceModel.FK__Order__Parameter__7908F585" FromRole="Parameter" ToRole="Order" />
         </EntityType>
         <EntityType Name="ParameterType">
           <Key>
@@ -1450,6 +1468,10 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK__Order__Parameter__7908F585" Association="ECommerceModel.FK__Order__Parameter__7908F585">
+            <End Role="Parameter" EntitySet="Parameter" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="RecursiveCategoryList_Result">
           <Property Type="Int32" Name="LastCategoryId" Nullable="true" />
@@ -1495,6 +1517,8 @@
           <NavigationProperty Name="OrderDetail" Relationship="ECommerceModel.FK__OrderDeta__Order__6BAEFA67" FromRole="Order" ToRole="OrderDetail" />
           <Property Name="AddressId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="ECommerceModel.FK__Order__AddressId__6E8B6712" FromRole="Order" ToRole="Address" />
+          <Property Name="ParameterPaymentTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parameter" Relationship="ECommerceModel.FK__Order__Parameter__7908F585" FromRole="Order" ToRole="Parameter" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -1582,6 +1606,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__Parameter__7908F585">
+          <End Type="ECommerceModel.Parameter" Role="Parameter" Multiplicity="1" />
+          <End Type="ECommerceModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameter">
+              <PropertyRef Name="ParameterId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ParameterPaymentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1880,6 +1916,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ECommerceModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ParameterPaymentTypeId" ColumnName="ParameterPaymentTypeId" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

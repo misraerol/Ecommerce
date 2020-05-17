@@ -46,7 +46,7 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
         public void DecreaseByUserCartId(int userCartId)
         {
             UserCart userCart = db.UserCart.Where(s => s.IsActive && !s.IsDeleted && s.UserCartId == userCartId).SingleOrDefault();
-            if(userCart != null)
+            if (userCart != null)
             {
                 userCart.ProductCount -= 1;
                 db.SaveChanges();
@@ -55,8 +55,8 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
 
         public void IncreaseByUserCartId(int userCartId)
         {
-            UserCart userCart = db.UserCart.Where(s=> s.IsActive&& !s.IsDeleted && s.UserCartId == userCartId).SingleOrDefault();
-            if(userCart != null)
+            UserCart userCart = db.UserCart.Where(s => s.IsActive && !s.IsDeleted && s.UserCartId == userCartId).SingleOrDefault();
+            if (userCart != null)
             {
                 userCart.ProductCount += 1;
                 db.SaveChanges();
@@ -64,7 +64,17 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
         }
         public int TotalProductCount()
         {
-            int totalCount = db.UserCart.Where(s => s.IsActive && !s.IsDeleted).Sum(s => s.ProductCount);
+            int totalCount = 0;
+            try
+            {
+                totalCount = db.UserCart.Where(s => s.IsActive && !s.IsDeleted).Sum(s => s.ProductCount);
+            }
+            catch (Exception)
+            {
+
+                
+            }
+
             return totalCount;
         }
         public void AllDelete(int appUserId)
@@ -73,7 +83,7 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
             foreach (UserCart userCart in userCarts)
             {
                 userCart.IsActive = false;
-                userCart.IsDeleted = true;                
+                userCart.IsDeleted = true;
             }
             db.SaveChanges();
         }

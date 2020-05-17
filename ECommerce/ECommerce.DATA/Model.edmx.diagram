@@ -56,6 +56,7 @@
         <AssociationConnector Association="ECommerceModel.FK__OrderDeta__Param__6D9742D9" />
         <AssociationConnector Association="ECommerceModel.FK__OrderDeta__Produ__6CA31EA0" />
         <AssociationConnector Association="ECommerceModel.FK__Order__AddressId__6E8B6712" />
+        <AssociationConnector Association="ECommerceModel.FK__Order__Parameter__7908F585" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

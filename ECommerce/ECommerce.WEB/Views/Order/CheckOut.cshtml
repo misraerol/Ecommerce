@@ -7,8 +7,7 @@
     decimal totalAmount = 0;
 }
 
-@using (Html.BeginForm("CheckOut", "Order",FormMethod.Post))
-{
+@using (Html.BeginForm("CheckOut", "Order",FormMethod.Post)){
     <!-- breadcrumb start -->
     <section class="breadcrumb-section section-b-space">
         <div class="container">
@@ -36,8 +35,6 @@
             <div class="checkout-page">
                 <div class="checkout-form">
                     <form>
-
-
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-title">
@@ -46,7 +43,6 @@
                                     @Html.DropDownListFor(s => s.AddressId, Model.AddressList, new { @class = "btn btn-light",  })
                                     @Html.ValidationMessageFor(s => s.AddressId)
                                 </div>
-
                             </div>
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-details">
@@ -54,7 +50,6 @@
                                         <div class="title-box">
                                             <div>Ürün <span>Fiyat</span></div>
                                         </div>
-
                                         @foreach (UserCartListModel userCart in Model.UserCartModel.UserCartListModel)
                                         {
                                             <ul class="qty">
@@ -87,22 +82,18 @@
                                                 <li>İndirimli Hali <span class="count">@CalculateHelper.CalculateDiscountAmount(Model.UserCartModel.DiscountRate, totalAmount).ConvertToMoney()</span></li>
                                             </ul>
                                         }
-
-
                                     </div>
-
                                     <div class="payment-box">
                                         <div class="upper-box">
                                             <div class="payment-options">
                                                 <h4 class="text-black">Ödeme türünü seçiniz</h4>
-                                            
                                                 <ul>
                                                     @foreach (SelectListItem payment in Model.ParameterPayment)
                                                     {
                                                         <li>
                                                             <div class="radio-option">
+                                                                @Html.RadioButtonFor(s => s.ParameterPaymentId, payment.Value, new { id = payment.Value }) 
                                                                 @Html.LabelForModel(payment.Text, new { @for = payment.Value })
-                                                                @Html.RadioButtonFor(s => s.ParameterPaymentId, payment.Value, new { id = payment.Value })
                                                                 @Html.ValidationMessageFor(s => s.ParameterPaymentId)
                                                             </div>
                                                         </li>
@@ -110,13 +101,13 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="text-right"><a href="#" class="btn-solid btn">Place Order</a></div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-solid">Ödeme Yap</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 ﻿using ECommerce.BIZ.Repository.AppUserManagement;
+using ECommerce.BIZ.Repository.DiscountKeyManagement;
 using ECommerce.BIZ.Repository.OrderManagement;
 using ECommerce.BIZ.Repository.ParameterManagement;
 using ECommerce.BIZ.Repository.ParameterTypeManagement;
@@ -23,25 +24,25 @@ namespace ECommerce.WEB.Controllers.OrderManagement
         UserCartRepository userCartRepository;
         AppUserRepository appUserRepository;
         ParameterRepository parameterRepository;
+        DiscountKeyRepository discountKeyRepository;
         public OrderController()
         {
             orderRepository = new OrderRepository();
             userCartRepository = new UserCartRepository();
             appUserRepository = new AppUserRepository();
             parameterRepository = new ParameterRepository();
+            discountKeyRepository = new DiscountKeyRepository();
         }
         // GET: Order
         public ActionResult Index()
         {
-
-
             return View();
         }
         [HttpGet]
         public ActionResult CheckOut()
         {
             AppUser appUser = (AppUser)Session["LoggedUser"];
-            
+
             OrderModel orderModel = new OrderModel();
             List<Address> addressList = appUserRepository.GetAllAddress(appUser.AppUserId);
             orderModel.AddressList = new SelectList(addressList, "AddressId", "Title");
@@ -89,44 +90,61 @@ namespace ECommerce.WEB.Controllers.OrderManagement
         public ActionResult CheckOut(OrderModel orderModel)
         {
             AppUser appUser = (AppUser)Session["LoggedUser"];
-            if (appUser != null)
+            UserCartModel userCartModel = new UserCartModel();
+            List<UserCart> userCartList = userCartRepository.GetAll();
+            userCartModel.UserCartListModel = new List<UserCartListModel>();
+            decimal totalAmount = 0;
+            Order order = new Order()
             {
-                List<UserCart> userCartList = userCartRepository.GetAll();
-                decimal totalAmount = 0;
-                Order order = new Order()
-                {
-                    AppUserId = appUser.AppUserId,
-                    IsActive = true,
-                    IsDeleted = false,
-                };
-                foreach (UserCart userCart in userCartList)
-                {
-                    totalAmount += CalculateHelper.CalculateDiscountAmount(userCart.Product.DiscountRate, userCart.Product.Amount) * userCart.ProductCount;
-                }
-                order.TotalAmount = totalAmount;
-                foreach (UserCart userCart in userCartList)
-                {
-                    decimal productTotalAmount = CalculateHelper.CalculateDiscountAmount(userCart.Product.DiscountRate, userCart.Product.Amount) * userCart.ProductCount;
-                    byte ProductCount = System.Convert.ToByte(userCart.ProductCount);
+                AppUserId = appUser.AppUserId,
+                IsActive = true,
+                IsDeleted = false,
+                AddressId = orderModel.AddressId,
+                CreateDate = DateTime.Now,
+                ParameterPaymentTypeId = orderModel.ParameterPaymentId
 
-                    OrderDetail orderDetail = new OrderDetail()
-                    {
-                        IsActive = true,
-                        IsDeleted = false,
-                        Quantity = ProductCount,
-                        Price = productTotalAmount,
-                        ProductId = userCart.ProductId,
-                    };
-                    order.OrderDetail.Add(orderDetail);
-                }
-                orderRepository.Insert(order);
-                userCartRepository.AllDelete(appUser.AppUserId);
-                return RedirectToAction("Success", "Order");
+            };
+            foreach (UserCart userCart in userCartList)
+            {
+                totalAmount += CalculateHelper.CalculateDiscountAmount(userCart.Product.DiscountRate, userCart.Product.Amount) * userCart.ProductCount;
+            }
+            if (Session["Discount"] == null)
+            {
+
+                order.TotalAmount = totalAmount;
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                DiscountKey discount = (DiscountKey)Session["Discount"];
+                order.TotalAmount = CalculateHelper.CalculateDiscountAmount(discount.Discount.Value, totalAmount);
+                order.DiscountKeyId = discount.DiscountKeyId;
+                discount.IsActive = false;
+                discount.IsDeleted = true;
+                discountKeyRepository.Update(discount);
             }
+            foreach (UserCart userCart in userCartList)
+            {
+                decimal productTotalAmount = CalculateHelper.CalculateDiscountAmount(userCart.Product.DiscountRate, userCart.Product.Amount) * userCart.ProductCount;
+                byte ProductCount =(byte) userCart.ProductCount;
+
+                OrderDetail orderDetail = new OrderDetail()
+                {
+                    IsActive = true,
+                    IsDeleted = false,
+                    Quantity = ProductCount,
+                    Price = productTotalAmount,
+                    ProductId = userCart.ProductId,
+                    CreateDate = DateTime.Now,
+                    ParameterRequiredFieldsId=userCart.ParameterProductRequiredTypesId
+                };
+                order.OrderDetail.Add(orderDetail);
+            }
+            orderRepository.Insert(order);
+            userCartRepository.AllDelete(appUser.AppUserId);
+            Session.Remove("Discount");
+            Session.Remove("DiscountRate");
+            return RedirectToAction("Success", "Order");
+
         }
         public ActionResult Success()
         {

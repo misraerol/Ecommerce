@@ -22,6 +22,7 @@ namespace ECommerce.DATA
             this.ProductMapProperty = new HashSet<ProductMapProperty>();
             this.UserCart = new HashSet<UserCart>();
             this.OrderDetail = new HashSet<OrderDetail>();
+            this.Order = new HashSet<Order>();
         }
     
         public int ParameterId { get; set; }
@@ -43,5 +44,7 @@ namespace ECommerce.DATA
         public virtual ICollection<UserCart> UserCart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

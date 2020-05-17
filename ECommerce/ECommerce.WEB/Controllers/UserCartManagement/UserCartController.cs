@@ -165,6 +165,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
                 if (discountKey.ExpiredDate >= DateTime.Now || discountKey.ExpiredDate == null)
                 {
                     Session.Add("DiscountRate", discountKey.Discount);
+                    Session.Add("Discount", discountKey);
                 }
             }
             return RedirectToAction("Index", "UserCart");
@@ -173,6 +174,7 @@ namespace ECommerce.WEB.Controllers.UserCartManagement
         public ActionResult RemoveCupon()
         {
             Session.Remove("DiscountRate");
+            Session.Remove("Discount");
             return RedirectToAction("Index", "UserCart");
         }
 
