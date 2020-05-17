@@ -1566,6 +1566,7 @@
     <Compile Include="Models\AppUserManagement\LoggedUser.cs" />
     <Compile Include="Models\AppUserManagement\UserInformationModel.cs" />
     <Compile Include="Models\CityCountyManagament\CityCountyListView.cs" />
+    <Compile Include="Models\OrderManagement\OrderListView.cs" />
     <Compile Include="Models\OrderManagement\OrderModel.cs" />
     <Compile Include="Models\ProductManagament\ProductDetailViewModel.cs" />
     <Compile Include="Models\ProductManagament\ProductListViewModel.cs" />
@@ -1707,6 +1708,7 @@
     <Content Include="Views\Order\Success.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
     <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Order\OrderHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

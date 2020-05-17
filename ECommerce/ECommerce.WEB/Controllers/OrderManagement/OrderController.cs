@@ -125,7 +125,7 @@ namespace ECommerce.WEB.Controllers.OrderManagement
             foreach (UserCart userCart in userCartList)
             {
                 decimal productTotalAmount = CalculateHelper.CalculateDiscountAmount(userCart.Product.DiscountRate, userCart.Product.Amount) * userCart.ProductCount;
-                byte ProductCount =(byte) userCart.ProductCount;
+                byte ProductCount = (byte)userCart.ProductCount;
 
                 OrderDetail orderDetail = new OrderDetail()
                 {
@@ -135,7 +135,7 @@ namespace ECommerce.WEB.Controllers.OrderManagement
                     Price = productTotalAmount,
                     ProductId = userCart.ProductId,
                     CreateDate = DateTime.Now,
-                    ParameterRequiredFieldsId=userCart.ParameterProductRequiredTypesId
+                    ParameterRequiredFieldsId = userCart.ParameterProductRequiredTypesId
                 };
                 order.OrderDetail.Add(orderDetail);
             }
@@ -149,6 +149,40 @@ namespace ECommerce.WEB.Controllers.OrderManagement
         public ActionResult Success()
         {
             return View();
+        }
+
+        public ActionResult OrderHistory()
+        {
+            List<OrderDetail> orderDetail = orderRepository.GetHistoryProduct();
+            List<OrderListView> OrderListViews = new List<OrderListView>();
+          
+            foreach (OrderDetail order in orderDetail)
+            {
+                OrderListView orderListView = new OrderListView()
+                {
+                    Amount=order.Price,
+                    CreateDate=order.CreateDate,
+                    ProductId=order.ProductId,
+                    ProductName=order.Product.ShortName,
+                    ProductCount=order.Quantity,
+                };
+               
+                    if (order.Product.ProductMapImage != null)
+                    {
+                        ProductMapImage productMap = order.Product.ProductMapImage.Where(s => s.IsActive && !s.IsDeleted).Take(1).FirstOrDefault();
+
+                        if (productMap != null)
+                        {
+                        orderListView.ImagePath = productMap.ImagePath;
+                        }
+                        else
+                        {
+                        orderListView.ImagePath = "notImage.jpg";
+                        }
+                    }
+                OrderListViews.Add(orderListView);
+                }
+            return View(OrderListViews);
         }
     }
 }

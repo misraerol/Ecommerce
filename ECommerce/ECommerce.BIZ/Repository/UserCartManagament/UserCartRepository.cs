@@ -20,6 +20,11 @@ namespace ECommerce.BIZ.Repository.UserCartManagament
             List<UserCart> userCarts = db.UserCart.Where(s => s.IsActive && !s.IsDeleted).ToList();
             return userCarts;
         }
+        public List<UserCart> GetHistoryProduct()
+        {
+            List<UserCart> userCarts = db.UserCart.Where(s => !s.IsActive && s.IsDeleted).ToList();
+            return userCarts;
+        }
 
         public UserCart GetById(int id)
         {

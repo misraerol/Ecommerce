@@ -1,0 +1,83 @@
+﻿@using ECommerce.WEB.Models.OrderManagement
+@using ECommerce.WEB.Models.UserCartManagamenet
+@using ECommerce.CORE.Helper
+@model  List<OrderListView>
+@{
+    ViewBag.Title = "Siparişlerim";
+}
+
+<!-- breadcrumb start -->
+<section class="breadcrumb-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title">
+                    <h2>SİPARİŞLERİM</h2>
+                </div>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Product")">Anasayfa</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">SİPARİŞLERİM</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="cart-section order-history section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">ÜRÜN</th>
+                            <th scope="col">Adı</th>
+                            <th scope="col">Adet</th>
+                            <th scope="col">FİYAT</th>
+                            <th scope="col">Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (OrderListView order in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <a href="@Url.Action("Detail","Product",new {id=order.ProductId })">
+                                        <img src="~/Uploads/ProductImage/@order.ImagePath" alt="">
+                                    </a>
+                                </td>
+                                <td>
+                                    <h4> <a href="@Url.Action("Detail","Product",new {id=order.ProductId })">@order.ProductName</a></h4>
+
+                                </td>
+                                <td>
+                                    <h4>@order.ProductCount</h4>
+                                </td>
+                                <td>
+                                    <h4>@order.Amount.ConvertToMoney()</h4>
+                                </td>
+
+                                <td>
+
+                                    <span class="dark-data">Sipariş alındı</span><h6>( @order.CreateDate.ToShortDateString() )</h6>
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @*<div class="row cart-buttons">
+                <div class="col-12 pull-right"><a href="#" class="btn btn-solid btn-sm">show all orders</a></div>
+            </div>*@
+    </div>
+</section>
+<!--section end-->
