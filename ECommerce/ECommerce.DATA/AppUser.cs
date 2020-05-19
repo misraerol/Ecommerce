@@ -19,9 +19,9 @@ namespace ECommerce.DATA
         {
             this.AppUserMapAddress = new HashSet<AppUserMapAddress>();
             this.AppUserMapWish = new HashSet<AppUserMapWish>();
+            this.Order = new HashSet<Order>();
             this.ProductMapComment = new HashSet<ProductMapComment>();
             this.UserCart = new HashSet<UserCart>();
-            this.Order = new HashSet<Order>();
         }
     
         public int AppUserId { get; set; }
@@ -44,10 +44,10 @@ namespace ECommerce.DATA
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUserMapWish> AppUserMapWish { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapComment> ProductMapComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCart> UserCart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

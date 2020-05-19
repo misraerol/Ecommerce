@@ -18,6 +18,7 @@ namespace ECommerce.DATA
         public Product()
         {
             this.AppUserMapWish = new HashSet<AppUserMapWish>();
+            this.OrderDetail = new HashSet<OrderDetail>();
             this.ProductMapImage = new HashSet<ProductMapImage>();
             this.ProductMapShippers = new HashSet<ProductMapShippers>();
             this.ProductMapRequiredFields = new HashSet<ProductMapRequiredFields>();
@@ -25,7 +26,6 @@ namespace ECommerce.DATA
             this.ProductMapComment = new HashSet<ProductMapComment>();
             this.ProductStoreWindow = new HashSet<ProductStoreWindow>();
             this.UserCart = new HashSet<UserCart>();
-            this.OrderDetail = new HashSet<OrderDetail>();
         }
     
         public int ProductId { get; set; }
@@ -45,6 +45,8 @@ namespace ECommerce.DATA
         public virtual ICollection<AppUserMapWish> AppUserMapWish { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapImage> ProductMapImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapShippers> ProductMapShippers { get; set; }
@@ -58,7 +60,5 @@ namespace ECommerce.DATA
         public virtual ICollection<ProductStoreWindow> ProductStoreWindow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCart> UserCart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

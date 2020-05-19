@@ -36,6 +36,8 @@ namespace ECommerce.DATA
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<County> County { get; set; }
         public virtual DbSet<DiscountKey> DiscountKey { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<Parameter> Parameter { get; set; }
         public virtual DbSet<ParameterType> ParameterType { get; set; }
         public virtual DbSet<Product> Product { get; set; }
@@ -48,12 +50,28 @@ namespace ECommerce.DATA
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<Slider> Slider { get; set; }
         public virtual DbSet<UserCart> UserCart { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
+    
+        public virtual ObjectResult<string> GetParentCategoryId(Nullable<int> categoryId)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetParentCategoryId", categoryIdParameter);
+        }
     
         public virtual ObjectResult<RecursiveCategoryList_Result> RecursiveCategoryList()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RecursiveCategoryList_Result>("RecursiveCategoryList");
+        }
+    
+        public virtual ObjectResult<GetRecursiveChildCategory_Result> GetRecursiveChildCategory(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRecursiveChildCategory_Result>("GetRecursiveChildCategory", idParameter);
         }
     }
 }

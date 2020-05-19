@@ -71,6 +71,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ECommerce.CORE\ECommerce.CORE.csproj">
+      <Project>{FF3470A0-ED77-4EA2-BCE3-45D31649DABF}</Project>
+      <Name>ECommerce.CORE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ECommerce.DATA\ECommerce.DATA.csproj">
       <Project>{D5092C6E-9867-4149-B0DC-98EB1388C6D5}</Project>
       <Name>ECommerce.DATA</Name>

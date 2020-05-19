@@ -1,4 +1,5 @@
 ﻿using ECommerce.BIZ.Infrastructure;
+using ECommerce.CORE.Helper;
 using ECommerce.DATA;
 using System;
 using System.Collections.Generic;
@@ -106,7 +107,10 @@ namespace ECommerce.BIZ.Repository.ProductManagement
         }
         public List<Product> GetByCategoryId(int id)
         {
-            List<Product> products = db.Product.Where(s => s.CategoryId ==id && s.IsActive && !s.IsDeleted).ToList();
+ 
+            List<int> categoryIdList = db.GetRecursiveChildCategory(id).Select(a=>a.CategoryId.Value).ToList();
+            List<Product> products = new List<Product>();
+            products = db.Product.Where(s => s.IsActive && !s.IsDeleted && categoryIdList.Contains(s.CategoryId)).ToList();
             return products;
         }
     }

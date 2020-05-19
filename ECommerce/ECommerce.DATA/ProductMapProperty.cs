@@ -22,7 +22,7 @@ namespace ECommerce.DATA
         public bool IsDeleted { get; set; }
         public int ParameterId { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual Parameter Parameter { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

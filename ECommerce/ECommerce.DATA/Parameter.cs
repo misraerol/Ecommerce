@@ -18,11 +18,11 @@ namespace ECommerce.DATA
         public Parameter()
         {
             this.AppUser = new HashSet<AppUser>();
-            this.ProductMapRequiredFields = new HashSet<ProductMapRequiredFields>();
-            this.ProductMapProperty = new HashSet<ProductMapProperty>();
-            this.UserCart = new HashSet<UserCart>();
-            this.OrderDetail = new HashSet<OrderDetail>();
             this.Order = new HashSet<Order>();
+            this.OrderDetail = new HashSet<OrderDetail>();
+            this.ProductMapProperty = new HashSet<ProductMapProperty>();
+            this.ProductMapRequiredFields = new HashSet<ProductMapRequiredFields>();
+            this.UserCart = new HashSet<UserCart>();
         }
     
         public int ParameterId { get; set; }
@@ -35,16 +35,16 @@ namespace ECommerce.DATA
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppUser> AppUser { get; set; }
-        public virtual ParameterType ParameterType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMapRequiredFields> ProductMapRequiredFields { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public virtual ParameterType ParameterType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMapProperty> ProductMapProperty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductMapRequiredFields> ProductMapRequiredFields { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCart> UserCart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

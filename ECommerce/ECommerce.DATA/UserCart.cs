@@ -24,7 +24,7 @@ namespace ECommerce.DATA
         public Nullable<int> ParameterProductRequiredTypesId { get; set; }
     
         public virtual AppUser AppUser { get; set; }
-        public virtual Product Product { get; set; }
         public virtual Parameter Parameter { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

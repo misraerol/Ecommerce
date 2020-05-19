@@ -30,11 +30,11 @@ namespace ECommerce.DATA
         public int AddressId { get; set; }
         public int ParameterPaymentTypeId { get; set; }
     
+        public virtual Address Address { get; set; }
         public virtual AppUser AppUser { get; set; }
         public virtual DiscountKey DiscountKey { get; set; }
+        public virtual Parameter Parameter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
-        public virtual Address Address { get; set; }
-        public virtual Parameter Parameter { get; set; }
     }
 }

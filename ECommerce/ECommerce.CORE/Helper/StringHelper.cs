@@ -55,5 +55,19 @@ namespace ECommerce.CORE.Helper
             return cryptedText;
 
         }
+
+        public static List<int> ParseCommatoListInt(string commaList)
+        {
+            List<int> result = new List<int>();
+
+            foreach (string comma in commaList.Split(','))
+            {
+                if (!string.IsNullOrEmpty(comma))
+                {
+                    result.Add(int.Parse(comma));
+                }
+            }
+            return result;
+        }
     }
 }
