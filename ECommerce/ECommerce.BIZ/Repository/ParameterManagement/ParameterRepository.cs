@@ -51,9 +51,13 @@ namespace ECommerce.BIZ.Repository.ParameterManagement
         public Parameter GetByParameterNameAndParameterTypeId(string parameterName, int parameterTypeId)
         {
             Parameter parameter = db.Parameter.Where(s => s.Name.Equals(parameterName) && s.ParameterTypeId == parameterTypeId).SingleOrDefault();
-
             return parameter;
         }
 
+        public Parameter GetParameterByTypeValue(int typeValue)
+        {
+            Parameter parameter = db.Parameter.Where(s => s.IsActive && !s.IsDeleted && s.TypeValue == typeValue).SingleOrDefault();
+            return parameter;
+        }
     }
 }
