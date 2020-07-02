@@ -83,7 +83,7 @@ ProductId int identity primary key
 ,DiscountRate money not null
 ,CategoryId int references Category(CategoryId)
 ,ParentId int --kankileri
-,IsShipperPay bit not null ---kargo parasý var mý ?
+,IsShipperPay bit not null ---kargo parasÃ½ var mÃ½ ?
 ,IsRequiredFields bit not null 
 ,CreateDate datetime not null
 ,IsActive bit not null
